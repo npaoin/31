@@ -2124,12 +2124,15 @@ function matchMvpHeights() {
     const mobileImg = mobile.querySelector('img');
     if (mobileImg) mobileImg.style.height = '';
     const h = desktop.offsetHeight;
-    mobile.style.height = h + 'px';
-    if (mobileImg) mobileImg.style.height = '100%';
+    if (h > 0) {
+      mobile.style.height = h + 'px';
+      if (mobileImg) mobileImg.style.height = '100%';
+    }
   }
 }
 window.addEventListener('load', matchMvpHeights);
 window.addEventListener('resize', matchMvpHeights);
+window.addEventListener('load', function() { setTimeout(matchMvpHeights, 300); });
 
 // Agoda page accordion + image swap
 function selectAgodaProject(el) {
