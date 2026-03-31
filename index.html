@@ -1232,8 +1232,8 @@
       .cs-section-title { font-size: 20px; }
       .cs-text { font-size: 15px; }
       .cs-image-block { height: 160px; }
-      .mvp-comparison { flex-direction: column; align-items: center; }
-      .mvp-mobile-col { width: 180px !important; }
+      .mvp-comparison { flex-direction: column; align-items: stretch; }
+      .mvp-mobile-col { width: 100% !important; max-width: 100% !important; }
       /* Overview: stack images on mobile */
       .cs-overview-side-by-side { flex-direction: column !important; }
 
@@ -2117,6 +2117,7 @@ window.addEventListener('load', function() { setTimeout(matchOverviewHeights, 30
 
 // Match MVP image heights
 function matchMvpHeights() {
+  if (isMobile()) return;
   const desktop = document.querySelector('.mvp-desktop-col');
   const mobile = document.querySelector('.mvp-mobile-col');
   if (desktop && mobile) {
