@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #F9F8F5;
+      --bg: #FBFAF8;
       --surface: #FFFFFF;
       --border: #E8E4DE;
       --text-primary: #1A1714;
-      --text-secondary: #6B6560;
+      --text-secondary: #57524E;
       --accent: #236868;
       --accent-hover: #143d3d;
       --tag-bg: #EEF6F6;
@@ -43,7 +43,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(249,248,245,0.88);
+      background: rgba(251,250,248,0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -51,7 +51,7 @@
     }
 
     nav.scrolled {
-      background: rgba(249,248,245,0.98);
+      background: rgba(251,250,248,0.98);
       box-shadow: 0 2px 16px rgba(44,40,37,0.08);
     }
 
@@ -713,6 +713,91 @@
       border-radius: 20px;
     }
 
+    /* ── MTL FIT META ROW ── */
+    .cs-meta-row { display: flex; gap: 32px; flex-wrap: wrap; margin: 24px 0 0; }
+    .cs-meta-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 4px; }
+    .cs-meta-value { font-size: 15px; color: var(--text-primary); font-weight: 500; }
+
+    /* ── CAROUSEL ── */
+    .cs-carousel { position: relative; }
+    .carousel-track-wrap { position: relative; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; background: var(--surface); }
+    .carousel-track { display: flex; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .carousel-slide { min-width: 100%; cursor: zoom-in; }
+    .carousel-slide img { width: 100%; display: block; user-select: none; }
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.92); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-primary); transition: all 0.18s ease; z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .carousel-btn:hover { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .carousel-btn.hidden { opacity: 0; pointer-events: none; }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.2s ease; border: none; padding: 0; }
+    .carousel-dot.active { background: var(--accent); width: 18px; border-radius: 3px; }
+
+    /* ── PROCESS STEPS ── */
+    .process-steps { display: flex; flex-direction: column; gap: 0; margin: 12px 0; }
+    .process-step { display: flex; gap: 20px; padding: 24px 0; align-items: flex-start; }
+    .process-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .process-content { flex: 1; min-width: 0; }
+    .process-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+    .consideration-rows { display: flex; flex-direction: column; gap: 0; }
+    .consideration-row { display: flex; gap: 24px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .consideration-row:last-child { border-bottom: none; }
+    .consideration-label { font-size: 14px; font-weight: 600; color: var(--text-primary); width: 180px; flex-shrink: 0; padding-top: 2px; }
+    .consideration-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+
+    /* ── PRINCIPLES GRID ── */
+    .principles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .principle-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; }
+    .principle-name { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .principle-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── LIGHTBOX NAV ── */
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 1; }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-nav.hidden { opacity: 0; pointer-events: none; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); font-size: 13px; color: rgba(255,255,255,0.6); font-family: 'DM Sans', sans-serif; }
+
+    /* ── PHASE TABLE ── */
+    .phase-table-wrap { margin: 0 0 32px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+    .phase-table { width: 100%; border-collapse: collapse; }
+    .phase-table thead th { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); padding: 12px 20px; text-align: left; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .phase-table tbody tr { border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s ease; }
+    .phase-table tbody tr:last-child { border-bottom: none; }
+    .phase-table tbody tr:hover { background: var(--tag-bg); }
+    .phase-table tbody tr.active-row { background: var(--tag-bg); }
+    .phase-table td { padding: 14px 20px; font-size: 16px; color: var(--text-secondary); vertical-align: middle; }
+    .phase-table td:first-child { font-weight: 600; color: var(--accent); white-space: nowrap; width: 160px; }
+    .phase-table td:nth-child(2) { color: var(--text-primary); font-weight: 500; width: 160px; }
+
+    /* ── PHASE PANELS ── */
+    .cs-phase { display: none; }
+    .cs-phase.active { display: block; }
+
+    /* ── SUBSECTION LABEL ── */
+    .cs-sub-label { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); margin: 28px 0 10px; }
+    .cs-sub-label:first-child { margin-top: 0; }
+
+    /* ── OBJECTIVES GRID ── */
+    .objectives-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+
+    /* ── OUTCOME STATS ── */
+    .outcome-stats { display: flex; gap: 16px; margin: 20px 0; flex-wrap: wrap; }
+    .outcome-stat { flex: 1; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; }
+    .outcome-stat-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+    .outcome-stat-label { font-size: 14px; color: var(--text-secondary); line-height: 1.4; }
+
+    /* ── REAL IMAGES ── */
+    .cs-img-real { border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin: 24px 0; }
+    .cs-img-real img { width: 100%; display: block; cursor: zoom-in; }
+
+    /* ── PHASE SWITCHER ── */
+    .cs-phase-switcher { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-top: 1px solid var(--border); margin-top: 16px; }
+    .cs-switcher-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 600; color: var(--accent); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: all 0.18s ease; }
+    .cs-switcher-btn:hover { color: var(--accent-hover); text-decoration: underline; }
+    .cs-switcher-btn.hidden { visibility: hidden; pointer-events: none; }
+
     .back-to-top {
       position: fixed;
       bottom: 32px;
@@ -1019,7 +1104,7 @@
     /* Agoda page accordion */
     .agoda-acc-item.active .agoda-acc-body {
       max-height: 800px !important;
-      padding: 0 0 16px 38px !important;
+      padding: 0 0 24px 38px !important;
     }
     .agoda-acc-item.active .cs-approach-chevron {
       transform: rotate(180deg);
@@ -1236,8 +1321,20 @@
       .mvp-mobile-col { width: 100% !important; max-width: 100% !important; }
       /* Overview: stack images on mobile */
       .cs-overview-side-by-side { flex-direction: column !important; }
-
-      .cs-section { margin-bottom: 32px; }
+      /* Phase table: stack on mobile */
+      .phase-table thead { display: none; }
+      .phase-table tbody tr { display: flex; flex-direction: column; padding: 14px 16px; gap: 4px; }
+      .phase-table td { padding: 0; font-size: 15px; width: auto !important; }
+      .phase-table td:first-child { font-size: 12px; }
+      .phase-table td:nth-child(2) { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+      .phase-table td:nth-child(3) { font-size: 14px; color: var(--text-secondary); }
+      /* Outcome stats: stack on mobile */
+      .outcome-stats { flex-direction: column; }
+      .objectives-grid { grid-template-columns: 1fr; }
+      .principles-grid { grid-template-columns: 1fr; }
+      .consideration-row { flex-direction: column; gap: 4px; }
+      .consideration-label { width: auto; }
+      .cs-meta-row { gap: 20px; }
       .early-title { font-size: 22px; }
       .early-visual { height: 220px; }
       .early-projects { gap: 24px; }
@@ -1604,7 +1701,7 @@
                     <li>Partner Programs — Contributed to strategic vision for consistent program education and experiences across all partner programs</li>
                     <li>Finance — Supported Finance UI redesign by consolidating user research and partner satisfaction data</li>
                   </ul>
-                  <span class="badge-coming-soon">⏳ Coming soon</span>
+                  <a class="btn-primary" onclick="openGallery('propertyportal', event)" style="display:inline-flex; margin-top:4px; margin-bottom:16px;">View images <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                 </div>
               </div>
             </div>
@@ -1660,215 +1757,438 @@
   <div class="container">
     <div class="case-study-section">
 
-      <div class="cs-top">
-        <div class="cs-header">
-          <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
-          <h1 class="cs-title">Agoda Dynamic Rates+</h1>
-          <p class="cs-subtitle">A $7.5M automated pricing program that helps more than 15,000 Agoda hotel partners beat third-party listings by 2% to convert more direct bookings and increase revenue.</p>
-          <div class="cs-meta">
-            <div class="cs-meta-item">
-              <div class="cs-meta-label" style="color: var(--text-primary);">My role</div>
-              <ul class="learnings-list" style="margin-top: 8px;">
-                <li>Designed complete program experiences from pre-activation education and sign-up through post-activation management and analytics</li>
-                <li>Created 8+ core features: self-sign-up, tier selection, program dashboard, performance report, bookings report, and deactivation flow</li>
-                <li>Built scalable design systems that support future growth while features were still being defined</li>
-                <li>Conducted data analysis using SQL to identify business and design opportunities</li>
-                <li>Advocated for strategic initiatives backed by data insights</li>
-                <li>Collaborated with PM, engineers, and business teams</li>
-              </ul>
+      <!-- ── HEADER ── -->
+      <div class="cs-header">
+        <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+        <h1 class="cs-title">Agoda Dynamic Rates+</h1>
+        <p class="cs-subtitle" style="margin-bottom: 16px;">A $7.5M automated pricing program that helps 15,000+ hotel partners beat third-party listings by 2% to convert more direct bookings and increase revenue.</p>
+        <p class="cs-text" style="margin-top: 0; margin-bottom: 16px;">As the sole designer from launch to scale, I owned every stage of the program and every touchpoint of the hotel partner journey — from pre-activation education and sign-up through post-activation management and analytics. I created 8+ core features, built scalable design systems that supported future growth while features were still being defined, conducted SQL data analysis to identify business and design opportunities, and advocated for strategic initiatives backed by data insights.</p>
+      </div>
+
+      <p class="cs-text" style="margin-top: 16px; margin-bottom: 0;">I structured my design approach across three phases, each responding to a new set of challenges as the program and its hotel partners evolved.</p>
+
+      <!-- ── PHASE OVERVIEW TABLE ── -->
+      <div class="phase-table-wrap" style="margin-top: 16px; margin-bottom: 48px;">
+        <table class="phase-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Product lifecycle</th>
+              <th>Partner need</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="active-row" onclick="switchPhase(0)" data-phase="0">
+              <td>Phase 1</td>
+              <td>Launch</td>
+              <td>Discover — Should I join the program?</td>
+            </tr>
+            <tr onclick="switchPhase(1)" data-phase="1">
+              <td>Phase 2</td>
+              <td>Grow</td>
+              <td>Commit — Is this worth staying in?</td>
+            </tr>
+            <tr onclick="switchPhase(2)" data-phase="2">
+              <td>Phase 3</td>
+              <td>Scale</td>
+              <td>Succeed — How do I get the most out of this?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+           PHASE 1 — LAUNCH · DISCOVER
+      ══════════════════════════════════════════════ -->
+      <div class="cs-phase active" id="phase-0">
+
+        <div class="cs-section">
+          <div class="cs-section-label">Phase 1 · Launch</div>
+          <h2 class="cs-section-title">Discover — <em>Should I join the program?</em></h2>
+
+          <div class="cs-sub-label">Problem</div>
+          <p class="cs-text">When we launched ADR+ on Agoda Property Portal in June 2025, we started with only a self-sign-up flow and a minimal landing page — the goal was to validate hotel adoption before investing further. I broke down the design challenge into three core questions:</p>
+          <ul class="learnings-list" style="margin-bottom: 20px;">
+            <li>How do I drive the 35,000–40,000 eligible hotels visiting Agoda Property Portal every month to discover ADR+?</li>
+            <li>How do I explain a complex automated pricing program clearly enough that hotels feel confident and want to join?</li>
+            <li>How do I make the sign-up experience as easy as possible?</li>
+          </ul>
+
+          <div class="cs-sub-label">Ideate & Iterate</div>
+          <p class="cs-text">For <strong>discoverability</strong>, I explored three touchpoints to reach hotels:</p>
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+            <div style="display: flex; gap: 12px;">
+              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+              <p class="cs-text" style="margin: 0;"><strong>Banner & slideout</strong> — I investigated high-traffic pages within Agoda Property Portal and placed a banner and slideout where hotels were most likely to see them. This approach had shown promising results in past campaigns and could be self-published via a third-party tool with minimal dev effort, making it fast to test and iterate</p>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+              <p class="cs-text" style="margin: 0;"><strong>ADR+ card on Growth Programs page</strong> — once a consolidated partner program hub launched after ADR+, I leveraged it to surface ADR+ alongside other programs hotels were already actively browsing</p>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+              <p class="cs-text" style="margin: 0;"><strong>Email</strong> — evaluated but deprioritized due to typically low click-through rates and higher dev effort compared to the other channels</p>
+            </div>
+          </div>
+
+          <div class="cs-img-real">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ Discovery screens.png" alt="Discovery screens: banner, slideout modal, Growth Programs card" style="width:100%; display:block;" data-lightbox>
+          </div>
+
+          <p class="cs-text">For <strong>education</strong>, I worked with the business team to align on the core narrative: lead with revenue impact, make it tangible with personalized estimates based on each hotel's own data, and explain the pricing mechanic through a side-by-side visual diagram rather than text. I ran quick internal testing to validate which explanation was clearest, and anticipated top hotel concerns in a proactive FAQ organized by user intent.</p>
+
+          <p class="cs-text">For <strong>sign-up</strong>, I worked with the PM and legal team to define the absolute minimum requirements — landing on a single confirmation step with just T&Cs and one click to confirm. I also added a self-deactivation button upfront so accidental clicks could be undone without friction, maintaining partner trust in the program's flexibility.</p>
+
+          <div class="cs-img-real">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ Landing page sign-up.png" alt="ADR+ landing page & sign-up confirmation" style="width:100%; display:block;" data-lightbox>
+          </div>
+
+          <div class="cs-sub-label">Outcome</div>
+          <div class="outcome-stats">
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">4,500–6,000</div>
+              <div class="outcome-stat-label">Unique hotel page visits per month sustained across 10 months post-launch</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">5%</div>
+              <div class="outcome-stat-label">Page-to-activation conversion rate — lower than initially expected, reflecting the complexity of the program</div>
+              <div class="outcome-stat-label" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border);">Hotels often consulted their account managers before committing, suggesting that for a program of this nature, the conversion journey extends beyond the page itself.</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">88%</div>
+              <div class="outcome-stat-label">Completion rate from intent to activation — once hotels decided to join, the single-step confirmation eliminated drop-off almost entirely</div>
             </div>
           </div>
         </div>
-      </div>
 
-      <hr class="cs-divider" />
+        <div class="cs-phase-switcher">
+          <button class="cs-switcher-btn hidden" onclick="switchPhase(-1)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            <span>Phase 1 Launch</span>
+          </button>
+          <button class="cs-switcher-btn" onclick="switchPhase(1)">
+            <span>Phase 2 Grow</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
 
-      <div class="cs-body">
-        <div class="cs-content">
+      </div><!-- /phase-0 -->
 
-          <!-- Overview -->
-          <div class="cs-section" id="cs-overview">
-            <div class="cs-section-label">Overview</div>
-            <h2 class="cs-section-title">Program dashboard — <em>From exploratory phase to strategic retention tool</em></h2>
 
-            <div class="cs-overview-side-by-side" style="display:flex; gap:16px; margin:0 0 20px; align-items:flex-start;">
-              <div class="cs-overview-img-wrap" style="flex:1; min-width:0; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Old ADR+ landing page.png" alt="Initial launch state" style="width:100%; display:block;" data-lightbox>
-              </div>
-              <div class="cs-overview-img-wrap" style="flex:1; min-width:0; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-                <img class="cs-overview-img-match" src="https://raw.githubusercontent.com/npaoin/31/main/images/Old landing page with dropdown.png" alt="Old landing page with added features" style="width:100%; display:block; object-fit:cover; object-position:top;" data-lightbox>
-              </div>
+      <!-- ══════════════════════════════════════════════
+           PHASE 2 — GROW · COMMIT
+      ══════════════════════════════════════════════ -->
+      <div class="cs-phase" id="phase-1">
+
+        <div class="cs-section">
+          <div class="cs-section-label">Phase 2 · Grow</div>
+          <h2 class="cs-section-title">Commit — <em>Is this worth staying in?</em></h2>
+
+          <div class="cs-sub-label">Problem</div>
+          <p class="cs-text">Six months after launch, ADR+ had scaled significantly — but we were seeing a ~10% churn rate. The MVP experience we launched with was no longer sufficient. To understand why hotels were leaving, I leveraged two data sources I had previously set up: tracking across all features, and 2,500+ responses from the MVP deactivation survey.</p>
+
+          <div class="cs-sub-label">Research & Analysis</div>
+          <p class="cs-text">Using SQL to query deactivation patterns by hotel segment, booking volume, and time in program, I surfaced 4 key insights:</p>
+
+          <div class="insights-grid">
+            <div class="insight-card">
+              <div class="insight-number">Insight 01</div>
+              <div class="insight-title">Low ADR+ dashboard engagement</div>
+              <div class="insight-desc">Gap between portal visits vs ADR+ page widened over time — minimal value for return visits.</div>
+              <div class="insight-opp">Surface key info on dashboard for immediate value</div>
             </div>
-
-            <p class="cs-text">When we launched ADR+ in June 2025, the program was in an exploratory stage. We started with only the self-sign-up feature and a minimal landing page showing basic status information. The goal was to validate hotel adoption before investing in more complex features.</p>
-
-            <p class="cs-text">Six months later, the program had scaled to 15,000 active hotels. By this point, we had added several features including performance reports, bookings reports, and program upgrade opt-in, with plans to add tier selection, issue reporting, and pause functionality. We also planned to enhance the existing deactivation flow to address our ~10% churn rate. As I evaluated the current state of the program dashboard, I identified two critical design objectives:</p>
-
-            <div class="objectives-grid">
-              <div class="learnings-box" style="margin-top: 0;">
-                <div class="learnings-title">🎯 Enhance post-activation experiences</div>
-                <p class="cs-text" style="margin-bottom: 0;">Give hotels more visibility into program performance, increase engagement, and reduce churn.</p>
-              </div>
-              <div class="learnings-box" style="margin-top: 0;">
-                <div class="learnings-title">🎯 Ensure scalability</div>
-                <p class="cs-text" style="margin-bottom: 0;">Design the dashboard to accommodate continuous feature additions without creating clutter. As features multiplied, buttons and links were competing for attention and creating information hierarchy issues.</p>
-              </div>
+            <div class="insight-card">
+              <div class="insight-number">Insight 02</div>
+              <div class="insight-title">Deactivation by booking volume</div>
+              <div class="insight-desc">77% of deactivations among hotels with 0–50 ADR+ bookings — ~8% also new to Agoda overall, pointing to an onboarding gap.</div>
+              <div class="insight-opp">Help hotels understand value without large booking volumes</div>
             </div>
-          </div>
-
-          <!-- Data Analysis -->
-          <div class="cs-section" id="cs-research">
-            <div class="cs-section-label">Research & Analysis</div>
-            <h2 class="cs-section-title">Investigating churn root causes <em>through data</em></h2>
-
-            <p class="cs-text">I leveraged two key data sources I had previously set up: data tracking implemented across all features, and 2,500+ deactivation survey responses. Using SQL to query our data tables, I examined deactivation patterns by hotel segment, booking volume, and time in program.</p>
-
-            <div class="insights-grid">
-              <div class="insight-card">
-                <div class="insight-number">Insight 01</div>
-                <div class="insight-title">Low page engagement</div>
-                <div class="insight-desc">Gap between portal visits vs ADR+ page widened over time — minimal value for return visits.</div>
-                <div class="insight-opp">Surface key info on landing page for immediate value</div>
-              </div>
-              <div class="insight-card">
-                <div class="insight-number">Insight 02</div>
-                <div class="insight-title">Deactivation by booking volume</div>
-                <p class="cs-text" style="margin-top: 8px; flex: 1;">77% of deactivations occurred among hotels with 0–50 ADR+ bookings — of which ~8% were also new to Agoda overall (0–50 total bookings), pointing to an onboarding gap, not just an ADR+ issue.</p>
-                <div class="insight-opp">Help hotels understand value without large booking volumes</div>
-              </div>
-              <div class="insight-card">
-                <div class="insight-number">Insight 03</div>
-                <div class="insight-title">Deactivation timing</div>
-                <div class="insight-desc">28% deactivated within 1 week. 50% deactivated within one month.</div>
-                <div class="insight-opp">Provide early engagement touchpoints</div>
-              </div>
-              <div class="insight-card">
-                <div class="insight-number">Insight 04</div>
-                <div class="insight-title">Top deactivation concerns</div>
-                <div class="insight-desc">Low net rates, no bookings, not understanding benefits, rate parity concerns — from 2,500+ responses.</div>
-                <div class="insight-opp">Improve FAQ addressing these specific concerns</div>
-              </div>
+            <div class="insight-card">
+              <div class="insight-number">Insight 03</div>
+              <div class="insight-title">Deactivation timing</div>
+              <div class="insight-desc">28% deactivated within 1 week, 50% within one month.</div>
+              <div class="insight-opp">Provide early engagement touchpoints</div>
+            </div>
+            <div class="insight-card">
+              <div class="insight-number">Insight 04</div>
+              <div class="insight-title">Top deactivation concerns</div>
+              <div class="insight-desc">Low net rates, no bookings, not understanding benefits, rate parity concerns — from 2,500+ survey responses.</div>
+              <div class="insight-opp">Surface relevant alternatives before deactivation</div>
             </div>
           </div>
 
-          <!-- Design Solution -->
-          <div class="cs-section" id="cs-design">
-            <div class="cs-section-label">Design Solution</div>
-            <h2 class="cs-section-title">Redesigned dashboard</h2>
+          <p class="cs-text">From these insights, I defined two clear design objectives:</p>
+          <div class="objectives-grid">
+            <div class="learnings-box">
+              <div class="learnings-title">🎯 Enhance post-activation experiences</div>
+              <p class="cs-text" style="margin-bottom: 0;">Give hotels more visibility into program performance, increase engagement, and reduce churn.</p>
+            </div>
+            <div class="learnings-box">
+              <div class="learnings-title">🎯 Ensure scalability</div>
+              <p class="cs-text" style="margin-bottom: 0;">Design the dashboard to accommodate continuous feature additions without creating clutter. As features multiplied, buttons and links were competing for attention and creating information hierarchy issues.</p>
+            </div>
+          </div>
+        </div>
 
-            <p class="cs-text">Built with visual hierarchy and mobile responsiveness as foundational principles to address the cluttered information architecture as features multiplied.</p>
+        <div class="cs-section">
+          <div class="cs-sub-label">Dashboard redesign</div>
 
-<div class="cs-design-layout">
-              <div class="cs-design-img">
-                <div class="cs-zoom-container">
-                  <img class="cs-zoom-img" src="https://raw.githubusercontent.com/npaoin/31/main/images/New ADR+ landing page.png" alt="Redesigned program dashboard" data-lightbox>
-                </div>
+          <p class="cs-text" style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">Before</p>
+          <div class="cs-overview-side-by-side" style="display:flex; gap:16px; margin:0 0 28px; align-items:flex-start;">
+            <div class="cs-overview-img-wrap" style="flex:1; min-width:0; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
+              <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Old ADR+ landing page.png" alt="MVP dashboard — before redesign" style="width:100%; display:block;" data-lightbox>
+            </div>
+            <div class="cs-overview-img-wrap" style="flex:1; min-width:0; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
+              <img class="cs-overview-img-match" src="https://raw.githubusercontent.com/npaoin/31/main/images/Old landing page with dropdown.png" alt="MVP dashboard with dropdown — before redesign" style="width:100%; display:block; object-fit:cover; object-position:top;" data-lightbox>
+            </div>
+          </div>
+
+          <p class="cs-text" style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">After</p>
+
+          <div class="cs-design-layout">
+            <div class="cs-design-img">
+              <div class="cs-zoom-container">
+                <img class="cs-zoom-img" src="https://raw.githubusercontent.com/npaoin/31/main/images/New ADR+ landing page.png" alt="Redesigned dashboard" data-lightbox>
               </div>
-              <div class="cs-design-desc">
-                <div class="cs-approach-accordion">
-              <div class="cs-approach-item" data-region="0" data-pos="0% 0%" data-scale="1.8" onclick="selectRegion(this)">
-                <div class="cs-approach-header">
-                  <span class="approach-num">1</span>
-                  <span class="cs-approach-title">Program title & tagline</span>
-                  <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="cs-design-desc">
+              <div class="cs-approach-accordion">
+                <div class="cs-approach-item" data-pos="0% 0%" data-scale="1.8" onclick="selectRegion(this)">
+                  <div class="cs-approach-header">
+                    <span class="approach-num">1</span>
+                    <span class="cs-approach-title">Program title & tagline</span>
+                    <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div class="cs-approach-body">
+                    <div class="cs-approach-desc">Designed as a reusable pattern for scalability — other partner programs can adopt this consistent structure.</div>
+                  </div>
                 </div>
-                <div class="cs-approach-body">
-                  <div class="cs-approach-desc">Designed as a reusable pattern for scalability — other partner programs can adopt this consistent structure.</div>
+                <div class="cs-approach-item" data-pos="100% 0%" data-scale="2.5" onclick="selectRegion(this)">
+                  <div class="cs-approach-header">
+                    <span class="approach-num">2</span>
+                    <span class="cs-approach-title">Action hierarchy</span>
+                    <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div class="cs-approach-body">
+                    <div class="cs-approach-desc">
+                      <ul class="learnings-list" style="margin-bottom:8px">
+                        <li>Frequently used actions → displayed as main buttons upfront</li>
+                        <li>Optional, less frequent actions → nested under "More"</li>
+                      </ul>
+                      Maintains clear CTA hierarchy and discoverability while accommodating future actions without overwhelming the interface.
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="cs-approach-item " data-region="1" data-pos="100% 0%" data-scale="2.5" onclick="selectRegion(this)">
-                <div class="cs-approach-header">
-                  <span class="approach-num">2</span>
-                  <span class="cs-approach-title">Actions</span>
-                  <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                <div class="cs-approach-item" data-pos="0% 18%" data-scale="2.2" onclick="selectRegion(this)">
+                  <div class="cs-approach-header">
+                    <span class="approach-num">3</span>
+                    <span class="cs-approach-title">Program details</span>
+                    <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div class="cs-approach-body">
+                    <div class="cs-approach-desc">Status (Active, Trial, or Paused), Tier level, and date context. Key improvement for trial users: clearly stating "Trial" status and showing the trial end date upfront encourages new hotels to give the program a fair chance even before seeing immediate results.</div>
+                  </div>
                 </div>
-                <div class="cs-approach-body">
-                  <div class="cs-approach-desc"><ul class="learnings-list" style="margin-bottom:8px"><li>Frequently used actions → Display as main buttons upfront</li><li>Optional, less frequent management actions → Nest under "More"</li></ul>This maintains clear CTA hierarchy and discoverability while accommodating future actions without overwhelming the interface.</div>
+                <div class="cs-approach-item" data-pos="70% 18%" data-scale="2.2" onclick="selectRegion(this)">
+                  <div class="cs-approach-header">
+                    <span class="approach-num">4</span>
+                    <span class="cs-approach-title">Performance metrics</span>
+                    <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div class="cs-approach-body">
+                    <div class="cs-approach-desc">4 key metrics surfaced directly on the dashboard rather than requiring navigation to a separate analytics page — giving hotels immediate visibility to evaluate program value and make informed decisions.</div>
+                  </div>
                 </div>
-              </div>
-              <div class="cs-approach-item " data-region="2" data-pos="0% 18%" data-scale="2.2" onclick="selectRegion(this)">
-                <div class="cs-approach-header">
-                  <span class="approach-num">3</span>
-                  <span class="cs-approach-title">Program details</span>
-                  <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                <div class="cs-approach-item" data-pos="50% 55%" data-scale="1.6" onclick="selectRegion(this)">
+                  <div class="cs-approach-header">
+                    <span class="approach-num">5</span>
+                    <span class="cs-approach-title">"Get more value" cards</span>
+                    <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div class="cs-approach-body">
+                    <div class="cs-approach-desc">A modular card system for high-priority personalized suggestions — flexible enough to scale as new features are added, while keeping static content like FAQ at a lower hierarchy level.</div>
+                  </div>
                 </div>
-                <div class="cs-approach-body">
-                  <div class="cs-approach-desc">Accommodates granular program information and management options:<ul class="learnings-list" style="margin:8px 0"><li>Status: Active, Trial, or Paused (upcoming)</li><li>Tier: Displays selected tier level (upcoming)</li><li>Date context: Start date, Trial duration, or Pause resume date</li></ul>Key improvement for trial users: Previously, we had no clear way to display trial status. The hypothesis: clearly stating "Trial" status and showing the trial end date upfront encourages new hotels to give the program a fair chance even before seeing immediate results.</div>
+                <div class="cs-approach-item" data-pos="15% 82%" data-scale="1.3" onclick="selectRegion(this)">
+                  <div class="cs-approach-header">
+                    <span class="approach-num">6</span>
+                    <span class="cs-approach-title">FAQ</span>
+                    <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                  <div class="cs-approach-body">
+                    <div class="cs-approach-desc">Reorganized by user intent:
+                      <ul class="learnings-list" style="margin-top:8px">
+                        <li>"How can I optimize ADR+ performance?" — addresses top concerns from deactivation survey responses</li>
+                        <li>"How does ADR+ work?" — provides educational content to clarify program mechanics</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="cs-approach-item " data-region="3" data-pos="70% 18%" data-scale="2.2" onclick="selectRegion(this)">
-                <div class="cs-approach-header">
-                  <span class="approach-num">4</span>
-                  <span class="cs-approach-title">Performance metrics</span>
-                  <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                </div>
-                <div class="cs-approach-body">
-                  <div class="cs-approach-desc">4 key metrics surfaced directly on the landing page rather than requiring navigation to a separate analytics page — giving hotels immediate visibility to evaluate program value and make informed decisions before taking management actions.</div>
-                </div>
-              </div>
-              <div class="cs-approach-item " data-region="4" data-pos="50% 55%" data-scale="1.6" onclick="selectRegion(this)">
-                <div class="cs-approach-header">
-                  <span class="approach-num">5</span>
-                  <span class="cs-approach-title">"Get more value" cards</span>
-                  <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                </div>
-                <div class="cs-approach-body">
-                  <div class="cs-approach-desc">A modular card system for high-priority personalized suggestions — flexible enough to scale as new features are added, while keeping static content like FAQ at a lower hierarchy level.</div>
-                </div>
-              </div>
-              <div class="cs-approach-item " data-region="5" data-pos="15% 82%" data-scale="1.3" onclick="selectRegion(this)">
-                <div class="cs-approach-header">
-                  <span class="approach-num">6</span>
-                  <span class="cs-approach-title">FAQ</span>
-                  <svg class="cs-approach-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                </div>
-                <div class="cs-approach-body">
-                  <div class="cs-approach-desc">While lower priority than action cards, the FAQ provides essential guidance in addressing user concerns and improving retention. Reorganized structure by user intent:<ul class="learnings-list" style="margin-top:8px"><li>"How can I optimize ADR+ performance?" — Addresses top concerns identified in our 2,500+ deactivation survey responses</li><li>"How does ADR+ work?" — Provides educational content to clarify program mechanics and address common misunderstandings</li></ul></div>
-                </div>
-              </div>
                 <a id="reset-zoom-btn" onclick="showFullImg()" style="display:none; align-items:center; gap:6px; margin-top:14px; font-size:16px; font-weight:600; color:var(--accent); cursor:pointer; font-family:'DM Sans',sans-serif; text-decoration:none; transition:all 0.18s ease;" onmouseover="this.style.color='var(--accent-hover)';this.style.textDecoration='underline'" onmouseout="this.style.color='var(--accent)';this.style.textDecoration='none'">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                   Reset zoom
                 </a>
               </div>
-            </div>            </div>
-          </div>
-
-          <!-- Roadmap -->
-          <div class="cs-section" id="cs-impact">
-            <div class="cs-section-label">Impact</div>
-            <h2 class="cs-section-title">Influencing the <em>product roadmap</em></h2>
-
-            <p class="cs-text">After validating technical feasibility with the lead engineer, I presented the redesign to the PM with quantified business impact. The PM agreed and committed to the long-term 2026 roadmap.</p>
-
-            <p class="cs-text">However, he raised concerns about Q1 development effort since the revamped landing page wasn't in his original Q1 milestones. I addressed this by proposing an MVP version for Q1 that would lay the foundation with minimal development effort while accommodating planned Q1 features — with the complete version following in the upcoming quarters. This phased approach balanced immediate business needs with long-term strategic goals.</p>
-
-            <p class="cs-text">The redesign will be measured by: retained active users, reduced deactivation rate, decreased support escalations, and increased page engagement.</p>
-
-            <div class="mvp-comparison" style="display:flex; gap:16px; align-items:flex-start; margin:28px 0; flex-wrap:wrap;">
-              <div class="mvp-desktop-col" style="flex:1; min-width:280px; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MVP landing page desktop.png" alt="MVP landing page — desktop" style="width:100%; display:block;" data-lightbox>
-              </div>
-              <div class="mvp-mobile-col" style="flex:0 0 auto; width:auto; max-width:240px; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-                <img class="mvp-mobile-img" src="https://raw.githubusercontent.com/npaoin/31/main/images/MVP landing page mobile.png" alt="MVP landing page — mobile" style="width:100%; display:block;" data-lightbox>
-              </div>
             </div>
           </div>
 
+          <p class="cs-text">After validating technical feasibility with the lead engineer, I presented the redesign to the PM with quantified business impact. The PM agreed and committed to the long-term 2026 roadmap. However, he raised concerns about Q1 development effort since the revamped dashboard wasn't in his original Q1 milestones. I addressed this by proposing an MVP version for Q1 that would lay the foundation with minimal development effort while accommodating planned Q1 features — with the complete version following in subsequent quarters. This phased approach balanced immediate business needs with long-term strategic goals.</p>
+
+          <p class="cs-text">The redesign will be measured by: retained active users, reduced deactivation rate, decreased support escalations, and increased page engagement.</p>
+
+          <div class="mvp-comparison" style="display:flex; gap:16px; align-items:flex-start; margin:28px 0; flex-wrap:wrap;">
+            <div class="mvp-desktop-col" style="flex:1; min-width:280px; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
+              <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MVP landing page desktop.png" alt="MVP landing page — desktop" style="width:100%; display:block;" data-lightbox>
+            </div>
+            <div class="mvp-mobile-col" style="flex:0 0 auto; width:auto; max-width:240px; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
+              <img class="mvp-mobile-img" src="https://raw.githubusercontent.com/npaoin/31/main/images/MVP landing page mobile.png" alt="MVP landing page — mobile" style="width:100%; display:block;" data-lightbox>
+            </div>
+          </div>
         </div>
 
-        <!-- Sidebar removed - now in cs-top -->
-      </div>
+        <div class="cs-section">
+          <div class="cs-sub-label">Enhanced deactivation flow</div>
 
-      <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
-        <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
-      </div>
+          <p class="cs-text">The enhanced flow turns a deactivation intent into a retention and support opportunity — with personalization, alternatives, and better data collection at every step.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+            <div style="display: flex; gap: 12px;">
+              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+              <p class="cs-text" style="margin: 0;"><strong>Personalized first step</strong> — two versions based on hotel data: no ADR+ bookings variant encourages staying enrolled for future benefits; bookings variant shows full key metrics summary (average daily rate, net revenue, net bookings, net room nights vs. non-direct bookings) — making the cost of leaving concrete and personal</p>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+              <p class="cs-text" style="margin: 0;"><strong>Alternative options step</strong> — Change tier (recommended), Pause, Report issue, or Proceed with deactivation — surfacing options hotels may not have known existed</p>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+              <p class="cs-text" style="margin: 0;"><strong>Report issue flow</strong> — dedicated path to flag specific problems with preferred contact method, turning deactivation intent into a support opportunity</p>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+              <p class="cs-text" style="margin: 0;"><strong>Enhanced deactivation survey</strong> — refined from v1 learnings, with clearer reason categories and document upload for more actionable data</p>
+            </div>
+          </div>
+
+          <p class="cs-text" style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">v.1 — MVP flow</p>
+          <div class="cs-img-real">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ Deactivation flow v1.png" alt="Deactivation flow v.1" style="width:100%; display:block;" data-lightbox>
+          </div>
+
+          <p class="cs-text" style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">v.2 — Enhanced flow</p>
+          <div class="cs-img-real">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ Deactivation flow v2.png" alt="Deactivation flow v.2" style="width:100%; display:block;" data-lightbox>
+          </div>
+        </div>
+
+        <div class="cs-section">
+          <div class="cs-sub-label">Outcome</div>
+          <p class="cs-text">The enhanced deactivation flow launched in March 2026. Early data shows an encouraging downward trend — deactivation rate dropped from 8.7% in February to 5.12% in March and 4.26% in April, reaching one of the lowest rates since program launch.</p>
+          <div class="outcome-stats">
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">8.7%</div>
+              <div class="outcome-stat-label">Deactivation rate in February 2026</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">5.12%</div>
+              <div class="outcome-stat-label">Deactivation rate in March 2026</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">4.26%</div>
+              <div class="outcome-stat-label">Deactivation rate in April 2026 — one of the lowest since launch</div>
+            </div>
+          </div>
+          <p class="cs-text" style="margin-top: 12px;">While it is still early to draw definitive conclusions, the initial signal is positive and we will continue monitoring over the coming months.</p>
+        </div>
+
+        <div class="cs-phase-switcher">
+          <button class="cs-switcher-btn" onclick="switchPhase(0)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            <span>Phase 1 Launch</span>
+          </button>
+          <button class="cs-switcher-btn" onclick="switchPhase(2)">
+            <span>Phase 3 Scale</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+      </div><!-- /phase-1 -->
+
+
+      <!-- ══════════════════════════════════════════════
+           PHASE 3 — SCALE · SUCCEED
+      ══════════════════════════════════════════════ -->
+      <div class="cs-phase" id="phase-2">
+
+        <div class="cs-section">
+          <div class="cs-section-label">Phase 3 · Scale</div>
+          <h2 class="cs-section-title">Succeed — <em>How do I get the most out of this program?</em></h2>
+
+          <div class="cs-sub-label">Problem</div>
+          <p class="cs-text">With activation and retention addressed, we now focus more on maximizing value for hotels that stayed — and revenue for Agoda. Giving committed hotels the visibility and control to optimize their participation was always part of the vision; with the foundation in place, we could invest in it fully.</p>
+          <p class="cs-text">Working closely with the business team and PM, we expanded the program to maximize value and revenue by improving the program mechanism, providing more visibility, flexibility, and control to our partners. I designed the following key features:</p>
+        </div>
+
+        <div class="cs-section">
+          <div class="cs-sub-label">Program performance & bookings report</div>
+          <p class="cs-text">Dedicated performance and bookings reports giving hotels visibility into ADR+ booking volume, average daily rate vs. non-direct bookings, net revenue, and room nights — concrete data to evaluate and trust the program.</p>
+        </div>
+
+        <div class="cs-section">
+          <div class="cs-sub-label">Tier selection</div>
+          <p class="cs-text">As the business team improved program logic to win more bookings against third-party listings, I introduced 4 tiers ranging from basic to advanced rate adjustment — giving hotels agency over how aggressively ADR+ operates for their property.</p>
+        </div>
+
+        <div class="cs-section">
+          <div class="cs-sub-label">Pause</div>
+          <p class="cs-text">A flexibility option allowing hotels to temporarily halt ADR+ adjustments for a set bookable period — an alternative to deactivation for hotels needing to resolve pending issues.</p>
+        </div>
+
+        <div class="cs-section">
+          <div class="cs-sub-label">Blackout dates <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--text-secondary); font-size:14px;">(upcoming)</span></div>
+          <p class="cs-text">Allow hotels to block ADR+ adjustments on specific dates with more flexible control — giving partners greater precision over when the program operates.</p>
+          <div class="cs-img-real">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ Phase 3 features.png" alt="Performance report, tier selection & pause screens" style="width:100%; display:block;" data-lightbox>
+          </div>
+        </div>
+
+        <div class="cs-section">
+          <div class="cs-sub-label">Outcome</div>
+          <p class="cs-text">The program grew from 1,570 active hotels at launch in June 2025 to 16,460 in April 2026 — a consistent month-over-month growth across 10 months — generating $7.5M in revenue. This reflects the compounding impact of activation, retention, and ongoing program optimization working together across the full partner journey.</p>
+          <div class="outcome-stats">
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">16,460</div>
+              <div class="outcome-stat-label">Active hotels in April 2026, up from 1,570 at launch</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">$7.5M</div>
+              <div class="outcome-stat-label">Revenue generated across the full program lifecycle</div>
+            </div>
+          </div>
+          <p class="cs-text" style="margin-top: 16px;">As the sole designer across the full program lifecycle, this case study reflects the breadth of my product design practice — from setting up tracking infrastructure and conducting SQL churn analysis, to translating a complex pricing mechanism into a complete program experience and shaping the long-term roadmap. ADR+ is the project I'm most proud of — not just for what it delivered, but for how it pushed me to grow as a designer who thinks beyond the screen.</p>
+        </div>
+
+        <div class="cs-phase-switcher">
+          <button class="cs-switcher-btn" onclick="switchPhase(1)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            <span>Phase 2 Grow</span>
+          </button>
+          <button class="cs-switcher-btn hidden" onclick="switchPhase(3)">
+            <span>Phase 4</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <div style="margin-top: 32px;">
+          <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+        </div>
+
+      </div><!-- /phase-2 -->
 
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════ EARLY WORK ═══════════════════════ -->
 <div id="page-early" class="page">
   <div class="container">
     <div class="early-section">
@@ -1941,6 +2261,9 @@
                     <li>Leading and mentoring a junior designer while driving strategic design vision</li>
                   </ul>
                 </div>
+                <div style="margin-top: 32px;">
+                  <a class="btn-primary" onclick="showPage('mtlfit')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
           </div>
         </div>
 
@@ -1980,10 +2303,216 @@
   </div>
 </div>
 
+<!-- ═══════════════════════ MTL FIT CASE STUDY ═══════════════════════ -->
+<div id="page-mtlfit" class="page">
+  <div class="container">
+    <div class="case-study-section">
+
+      <a class="cs-back" onclick="showPage('early')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Early work</a>
+
+      <h1 class="cs-title">MTL Fit Health App</h1>
+      <p class="cs-subtitle" style="margin-bottom: 8px;">A health app owned by Muang Thai Life Assurance (MTL), one of Thailand's largest insurance companies — striving to promote a holistic and enjoyable healthy lifestyle, guided by the slogan "being healthy is easy and fun."</p>
+      <p class="cs-text" style="margin-top: 0;">MTL Fit marked my professional entry into UX/UI design. I joined as the sole designer on the team, owning the end-to-end design across features and later evolving into Lead UX/UI Designer for a comprehensive app redesign — mentoring a junior designer while leading app architecture planning, product roadmap development, and a new design system.</p>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Company</div>
+          <div class="cs-meta-value">Muang Thai Life Assurance</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Role</div>
+          <div class="cs-meta-value">UX/UI Designer → Lead UX/UI Designer</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Timeline</div>
+          <div class="cs-meta-value">2022–2023</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Users</div>
+          <div class="cs-meta-value">General public & MTL customers</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Key features</div>
+          <div class="feature-tags" style="margin-top: 4px;">
+            <span class="feature-tag">Nutrition tracking</span>
+            <span class="feature-tag">Team challenges</span>
+            <span class="feature-tag">Photo download</span>
+            <span class="feature-tag">Dynamic pricing</span>
+            <span class="feature-tag">Back office tools</span>
+            <span class="feature-tag">App redesign</span>
+            <span class="feature-tag">Design system</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAROUSEL -->
+      <div class="cs-carousel" style="margin-top: 40px; margin-bottom: 48px;">
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide">
+              <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MTL Fit.png" alt="MTL Fit — screen 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MTL Fit 2.png" alt="MTL Fit — screen 2">
+            </div>
+          </div>
+          <button class="carousel-btn carousel-prev" id="carouselPrev" onclick="carouselMove(-1)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          </button>
+          <button class="carousel-btn carousel-next" id="carouselNext" onclick="carouselMove(1)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+
+      <!-- PROCESS -->
+      <div class="cs-section">
+        <div class="cs-section-label">Process</div>
+        <h2 class="cs-section-title">How I approached <em>each feature</em></h2>
+
+        <div class="process-steps">
+
+          <div class="process-step">
+            <div class="process-num">1</div>
+            <div class="process-content">
+              <div class="process-title">Understanding objectives and relevant factors</div>
+              <p class="cs-text" style="margin-bottom: 16px;">Before designing any feature, I grounded myself in business, user, technical, and legal considerations — ensuring every design decision was purposeful and aligned across teams.</p>
+              <div class="consideration-rows">
+                <div class="consideration-row">
+                  <div class="consideration-label">Business objectives</div>
+                  <div class="consideration-desc">Aligned each feature with quantifiable metrics — new user acquisition, monthly active users, app ratings — while scoping effort and timeline. In high-urgency cases, opted for MVPs to validate quickly before investing further.</div>
+                </div>
+                <div class="consideration-row">
+                  <div class="consideration-label">User needs & goals</div>
+                  <div class="consideration-desc">Understood how each feature served users at different stages of their health journey — from beginners to those optimizing their wellbeing. Acted as the voice of the user within the team, using user stories to align stakeholder perspectives with real user needs.</div>
+                </div>
+                <div class="consideration-row">
+                  <div class="consideration-label">Technical constraints</div>
+                  <div class="consideration-desc">Collaborated with the development team to understand implementation requirements, effort estimates, and technical opportunities and limitations before committing to a design direction.</div>
+                </div>
+                <div class="consideration-row">
+                  <div class="consideration-label">Legal considerations</div>
+                  <div class="consideration-desc">Addressed data privacy and consent requirements relevant to health and insurance data, ensuring designs remained compliant from the outset.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-num">2</div>
+            <div class="process-content">
+              <div class="process-title">Designing a useful, user-friendly, and engaging app</div>
+              <p class="cs-text" style="margin-bottom: 16px;">I developed user flows and low-to-mid fidelity wireframes — combined into comprehensive wireflows — then transitioned to high-fidelity mockups and visual design, guided by the following principles:</p>
+              <div class="principles-grid">
+                <div class="principle-card">
+                  <div class="principle-name">Utility</div>
+                  <div class="principle-desc">Ensured every feature had all elements necessary to meet its objectives — defining all screens, functionalities, and the full user journey.</div>
+                </div>
+                <div class="principle-card">
+                  <div class="principle-name">Usability</div>
+                  <div class="principle-desc">Examined the journey from the user's perspective, making each flow as smooth and intuitive as possible.</div>
+                </div>
+                <div class="principle-card">
+                  <div class="principle-name">UX principles</div>
+                  <div class="principle-desc">Applied visual hierarchy, familiar UI patterns, and clear primary/secondary CTAs — drawing inspiration from other apps and existing patterns.</div>
+                </div>
+                <div class="principle-card">
+                  <div class="principle-name">Edge cases</div>
+                  <div class="principle-desc">Mapped all possible scenarios — loading states, error states — to ensure a seamless experience beyond the happy path.</div>
+                </div>
+                <div class="principle-card">
+                  <div class="principle-name">UX writing</div>
+                  <div class="principle-desc">Organised all information to communicate, determined text placement, and crafted language that resonated with users — including English translations.</div>
+                </div>
+                <div class="principle-card">
+                  <div class="principle-name">Visual design</div>
+                  <div class="principle-desc">Aimed for pixel-perfect designs following the rule of 8, consistent spacing, and alignment with the existing design system — introducing new elements where needed, with illustrations to add a sense of fun.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-num">3</div>
+            <div class="process-content">
+              <div class="process-title">Testing with users</div>
+              <div class="consideration-rows">
+                <div class="consideration-row">
+                  <div class="consideration-label">Usability testing</div>
+                  <div class="consideration-desc">Conducted moderated remote usability tests once mockups were relatively complete. Started by asking users for initial impressions, then provided task-specific instructions, and in some cases exposed users to different states of the same screen to assess their comprehension.</div>
+                </div>
+                <div class="consideration-row">
+                  <div class="consideration-label">Constraints</div>
+                  <div class="consideration-desc">Budget constraints limited testing frequency, so I tested at key milestones when features were nearly polished — allowing users to experience the app as realistically as possible and providing insights that closely resembled real interactions.</div>
+                </div>
+                <div class="consideration-row">
+                  <div class="consideration-label">Iteration</div>
+                  <div class="consideration-desc">After each round, I summarised findings and iterated the designs — ensuring features met users' functional and emotional needs before handoff.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-num">4</div>
+            <div class="process-content">
+              <div class="process-title">Assisting the development phase</div>
+              <div class="consideration-rows">
+                <div class="consideration-row">
+                  <div class="consideration-label">Handoff</div>
+                  <div class="consideration-desc">Prepared comprehensive wireflows detailing all aspects of each feature, walked the PM through the full flow, and helped assess development effort. Presented wireflows to the team during bi-weekly sprint grooming sessions.</div>
+                </div>
+                <div class="consideration-row">
+                  <div class="consideration-label">Support</div>
+                  <div class="consideration-desc">Maintained open communication with the development team throughout implementation — addressing issues and ensuring designs were integrated seamlessly.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- KEY LEARNINGS -->
+      <div class="cs-section">
+        <div class="cs-section-label">Reflection</div>
+        <h2 class="cs-section-title">Key learnings</h2>
+
+        <div class="learnings-box">
+          <div class="learnings-title">What this experience taught me</div>
+          <ul class="learnings-list">
+            <li>Taking full design ownership and being the voice of the user in an agile, fast-paced environment</li>
+            <li>Growing confidence in UI design and UX writing — areas with less prior foundation</li>
+            <li>Balancing multiple stakeholder needs while maintaining design quality under sprint pressure</li>
+            <li>Articulating design decisions clearly and engaging in constructive discussions with non-designers</li>
+            <li>Making design decisions with limited quantitative data — which later drove me to learn SQL and data analysis at Agoda</li>
+            <li>Leading and mentoring a junior designer while driving strategic design vision for the full app redesign</li>
+          </ul>
+        </div>
+
+        <div class="learnings-box" style="margin-top: 16px;">
+          <div class="learnings-title">What I want to do more of</div>
+          <p style="font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin: 0;">Incorporate quantitative data collection and analysis related to user behaviour into the design process. The absence of this at MTL meant we couldn't take full advantage of learning from real user interactions — a gap I actively addressed when I moved to Agoda, where I set up tracking infrastructure and used SQL to surface design and business insights.</p>
+        </div>
+      </div>
+
+      <a class="cs-back" onclick="showPage('early')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Early work</a>
+
+    </div>
+  </div>
+</div>
+
 <div class="lightbox-overlay" id="lightbox">
   <button class="lightbox-close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev" style="display:none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+  </button>
   <img src="" alt="">
-  <span class="lightbox-hint">Rotate device to adjust view</span>
+  <button class="lightbox-nav lightbox-next" id="lbNext" style="display:none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </button>
+  <span class="lightbox-counter" id="lbCounter" style="display:none;"></span>
 </div>
 
 <script>
@@ -2039,6 +2568,11 @@
       lightboxImg.alt = target.alt;
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
+      // Hide carousel nav for regular images
+      lbImages = [];
+      document.getElementById('lbPrev').style.display = 'none';
+      document.getElementById('lbNext').style.display = 'none';
+      document.getElementById('lbCounter').style.display = 'none';
     }
   });
 
@@ -2049,7 +2583,12 @@
 
   lightbox.addEventListener('click', closeLightbox);
   lightboxClose.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft' && lbImages.length) { lbIndex = Math.max(0, lbIndex - 1); updateLightbox(); }
+    if (e.key === 'ArrowRight' && lbImages.length) { lbIndex = Math.min(lbImages.length - 1, lbIndex + 1); updateLightbox(); }
+  });
 
   // Back to top button
   const backToTop = document.getElementById('backToTop');
@@ -2063,13 +2602,24 @@
     nav.classList.toggle('scrolled', window.scrollY > 10);
   });
 
+  // ── Phase switching (ADR+ case study) ──
+  const totalPhases = 3;
+  function switchPhase(idx) {
+    if (idx < 0 || idx >= totalPhases) return;
+    document.querySelectorAll('.cs-phase').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.phase-table tbody tr').forEach(r => r.classList.remove('active-row'));
+    document.getElementById('phase-' + idx).classList.add('active');
+    document.querySelectorAll('.phase-table tbody tr')[idx].classList.add('active-row');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function showPage(page) {
     const current = document.querySelector('.page.active');
     const next = document.getElementById('page-' + page);
     if (!next || next === current) return;
 
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navMap = { home: 'nav-home', agoda: 'nav-agoda', early: 'nav-early', casestudy: 'nav-agoda' };
+    const navMap = { home: 'nav-home', agoda: 'nav-agoda', early: 'nav-early', casestudy: 'nav-agoda', mtlfit: 'nav-early' };
     const navId = navMap[page];
     if (navId) document.getElementById(navId)?.classList.add('active');
 
@@ -2079,10 +2629,12 @@
         current.classList.remove('active', 'leaving');
         next.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (page === 'mtlfit') initCarousel();
       }, 120);
     } else {
       next.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (page === 'mtlfit') initCarousel();
     }
   }
 
@@ -2094,6 +2646,105 @@ function isMobile() {
 
 
 // Match overview image heights
+// ── Gallery lightbox (for accordion "View images" buttons) ──
+const galleries = {
+  propertyportal: [
+    { src: 'https://raw.githubusercontent.com/npaoin/31/main/images/Property Portal 1.png', alt: 'Property Portal — screen 1' },
+    { src: 'https://raw.githubusercontent.com/npaoin/31/main/images/Property Portal 2.png', alt: 'Property Portal — screen 2' },
+    { src: 'https://raw.githubusercontent.com/npaoin/31/main/images/Property Portal 3.png', alt: 'Property Portal — screen 3' },
+  ]
+};
+
+function openGallery(key, e) {
+  if (e) e.stopPropagation();
+  const imgs = galleries[key];
+  if (!imgs || !imgs.length) return;
+  lbImages = imgs;
+  lbIndex = 0;
+  updateLightbox();
+  const lb = document.getElementById('lightbox');
+  lb.querySelector('img').src = imgs[0].src;
+  lb.querySelector('img').alt = imgs[0].alt;
+  document.getElementById('lbPrev').style.display = 'flex';
+  document.getElementById('lbNext').style.display = 'flex';
+  document.getElementById('lbCounter').style.display = 'block';
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// ── Carousel (MTL Fit) ──
+let carouselCurrent = 0;
+let carouselTotal = 0;
+
+function initCarousel() {
+  const track = document.getElementById('carouselTrack');
+  const dotsWrap = document.getElementById('carouselDots');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.carousel-slide');
+  carouselTotal = slides.length;
+  carouselCurrent = 0;
+  dotsWrap.innerHTML = '';
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => carouselGoTo(i);
+    dotsWrap.appendChild(dot);
+  });
+
+  slides.forEach((slide, i) => {
+    slide.onclick = () => openCarouselLightbox(i);
+  });
+
+  carouselGoTo(0);
+}
+
+function carouselGoTo(idx) {
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  if (!track) return;
+  carouselCurrent = idx;
+  track.style.transform = `translateX(-${carouselCurrent * 100}%)`;
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselCurrent));
+  prevBtn.classList.toggle('hidden', carouselCurrent === 0);
+  nextBtn.classList.toggle('hidden', carouselCurrent === carouselTotal - 1);
+}
+
+function carouselMove(dir) { carouselGoTo(Math.max(0, Math.min(carouselTotal - 1, carouselCurrent + dir))); }
+
+// ── Lightbox with nav ──
+let lbImages = [];
+let lbIndex = 0;
+
+function openCarouselLightbox(idx) {
+  const slides = document.querySelectorAll('.carousel-slide img');
+  lbImages = Array.from(slides).map(img => ({ src: img.src, alt: img.alt }));
+  lbIndex = idx;
+  updateLightbox();
+  const lb = document.getElementById('lightbox');
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lbPrev').style.display = 'flex';
+  document.getElementById('lbNext').style.display = 'flex';
+  document.getElementById('lbCounter').style.display = 'block';
+}
+
+function updateLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.querySelector('img').src = lbImages[lbIndex].src;
+  lb.querySelector('img').alt = lbImages[lbIndex].alt;
+  document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+  document.getElementById('lbPrev').classList.toggle('hidden', lbIndex === 0);
+  document.getElementById('lbNext').classList.toggle('hidden', lbIndex === lbImages.length - 1);
+}
+
+document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); lbIndex = Math.max(0, lbIndex - 1); updateLightbox(); });
+document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); lbIndex = Math.min(lbImages.length - 1, lbIndex + 1); updateLightbox(); });
+
 function matchOverviewHeights() {
   const wraps = document.querySelectorAll('.cs-overview-img-wrap');
   if (wraps.length === 2) {
