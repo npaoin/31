@@ -323,6 +323,19 @@
     /* AGODA PAGE */
     .agoda-section { padding: 60px 0 100px; }
 
+    .project-cards { display: flex; flex-direction: column; gap: 28px; }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; min-height: 360px; transition: box-shadow 0.2s ease; }
+    .project-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+    .card-img { background: #F0EDEA; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .card-content { padding: 36px 36px 32px; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.25; }
+    .card-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
+    .card-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+    .card-bullets li { font-size: 14px; color: var(--text-secondary); line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
+    .card-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+    .card-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
     .page-header {
       margin-bottom: 48px;
       padding-bottom: 0;
@@ -788,6 +801,13 @@
     .outcome-stat-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
     .outcome-stat-label { font-size: 14px; color: var(--text-secondary); line-height: 1.4; }
 
+    .problem-cards { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .problem-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; }
+    .problem-number { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .problem-content { flex: 1; }
+    .problem-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .problem-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
     /* ── REAL IMAGES ── */
     .cs-img-real { border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin: 24px 0; }
     .cs-img-real img { width: 100%; display: block; cursor: zoom-in; }
@@ -1235,7 +1255,8 @@
     .page.active .projects-grid,
     .page.active .cs-header,
     .page.active .cs-body,
-    .page.active .agoda-layout,
+    .page.active .case-study-section,
+    .page.active .project-cards,
     .page.active .early-projects {
       animation: fadeUp 0.28s ease both;
     }
@@ -1245,7 +1266,8 @@
     .page.active .cards-grid { animation-delay: 0.12s; }
     .page.active .projects-grid { animation-delay: 0.07s; }
     .page.active .cs-body { animation-delay: 0.08s; }
-    .page.active .agoda-layout { animation-delay: 0.08s; }
+    .page.active .case-study-section { animation-delay: 0.05s; }
+    .page.active .project-cards { animation-delay: 0.08s; }
 
     /* RESPONSIVE */
 
@@ -1341,6 +1363,9 @@
       .early-desc { font-size: 15px; }
       .learnings-box { padding: 12px 16px; }
       .agoda-section, .case-study-section, .early-section { padding: 40px 0 60px; }
+      .project-card { grid-template-columns: 1fr; }
+      .card-img { height: 200px; }
+      .card-content { padding: 24px; }
     }
 
     /* Lightbox */
@@ -1652,98 +1677,92 @@
         </div>
       </div>
 
-      <div class="agoda-layout" style="display:flex; gap:28px; align-items:flex-start;">
-        <!-- Image display on the left -->
-        <div class="agoda-img-panel" style="flex:0 0 64%;">
-          <div class="agoda-img-container" style="border-radius:var(--radius); border:1px solid var(--border); overflow:hidden; position:relative;">
-            <img class="agoda-project-img active" data-idx="0" src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ SSU.png" alt="ADR+" style="width:100%; display:block; transition:opacity 0.3s ease;" data-lightbox>
-            <img class="agoda-project-img" data-idx="1" src="https://raw.githubusercontent.com/npaoin/31/main/images/YCS dashboard.png" alt="Property Portal" style="width:100%; display:none; transition:opacity 0.3s ease;" data-lightbox>
-            <img class="agoda-project-img" data-idx="2" src="https://raw.githubusercontent.com/npaoin/31/main/images/Wholesale portal.png" alt="Wholesale Portal" style="width:100%; display:none; transition:opacity 0.3s ease;" data-lightbox>
-            <img class="agoda-project-img" data-idx="3" src="https://raw.githubusercontent.com/npaoin/31/main/images/Global PSAT GPT dashboard.png" alt="PSAT Dashboard" style="width:100%; display:none; transition:opacity 0.3s ease;" data-lightbox>
+      <div class="project-cards">
+
+        <!-- 1. ADR+ -->
+        <div class="project-card">
+          <div class="card-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ SSU.png" alt="Agoda Dynamic Rates+" data-lightbox style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-title">Agoda Dynamic Rates+</div>
+              <p class="card-desc">An automated pricing program on Agoda Property Portal that helps hotels beat third-party listings by 2% to convert more direct bookings and increase revenue, now serving over 15K active hotels and growing.</p>
+              <ul class="card-bullets">
+                <li>Full product ownership from pre-activation sign-up through post-activation management and analytics</li>
+                <li>Created 8+ core features including self-sign-up, tier selection, program dashboard, performance report, and deactivation flow</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <a class="btn-primary" onclick="showPage('casestudy')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
           </div>
         </div>
 
-        <!-- Accordion on the right -->
-        <div class="agoda-accordion-panel" style="flex:1; min-width:0;">
-          <div class="agoda-accordion" style="display:flex; flex-direction:column; gap:12px;">
-
-            <div class="agoda-acc-item active" data-project="0" onclick="selectAgodaProject(this)" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:0 20px;">
-              <div class="agoda-acc-header" style="display:flex; align-items:center; gap:10px; padding:14px 0; cursor:pointer;">
-                <span style="font-size:20px; flex-shrink:0;">📈</span>
-                <span class="cs-approach-title" style="flex:1;">Agoda Dynamic Rates+</span>
-                <svg class="cs-approach-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="agoda-acc-body" style="max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease; padding:0 0 0 38px;">
-                <div class="cs-approach-desc">
-                  <p style="margin:0 0 12px;">An automated pricing program on Agoda Property Portal that helps hotels beat third-party listings by 2% to convert more direct bookings and increase revenue, now serving over 15K active hotels and growing.</p>
-                  <ul class="learnings-list" style="margin-bottom:12px;">
-                    <li>Full product ownership from pre-activation sign-up through post-activation management and analytics</li>
-                    <li>Created 8+ core features including self-sign-up, tier selection, program dashboard, performance report, and deactivation flow</li>
-                  </ul>
-                  <a class="btn-primary" onclick="showPage('casestudy')" style="margin-bottom:4px; display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-                </div>
-              </div>
+        <!-- 2. Property Portal -->
+        <div class="project-card">
+          <div class="card-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/YCS dashboard.png" alt="Agoda Property Portal" data-lightbox style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-title">Agoda Property Portal</div>
+              <p class="card-desc">Agoda's partner-facing platform where hotel and home partners manage their listings, rates, and performance.</p>
+              <ul class="card-bullets">
+                <li>Calendar Sync — Designed calendar synchronization feature for home properties to manage availability across multiple booking platforms like Airbnb and Booking.com</li>
+                <li>Chargeback Notification — Designed chargeback alert feature that notifies properties and supports dispute management</li>
+                <li>Agoda Advanced — Designed self-sign-up page and transaction details page for this partner program</li>
+                <li>Partner Programs — Contributed to strategic vision for consistent program education and experiences across all partner programs</li>
+                <li>Finance — Supported Finance UI redesign by consolidating user research and partner satisfaction data</li>
+              </ul>
             </div>
-
-            <div class="agoda-acc-item" data-project="1" onclick="selectAgodaProject(this)" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:0 20px;">
-              <div class="agoda-acc-header" style="display:flex; align-items:center; gap:10px; padding:14px 0; cursor:pointer;">
-                <span style="font-size:20px; flex-shrink:0;">🏨</span>
-                <span class="cs-approach-title" style="flex:1;">Agoda Property Portal</span>
-                <svg class="cs-approach-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="agoda-acc-body" style="max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease; padding:0 0 0 38px;">
-                <div class="cs-approach-desc">
-                  <p style="margin:0 0 12px;">Agoda's partner-facing platform where hotel and home partners manage their listings, rates, and performance.</p>
-                  <ul class="learnings-list" style="margin-bottom:12px;">
-                    <li>Calendar Sync — Designed calendar synchronization feature for home properties to manage availability across multiple booking platforms like Airbnb and Booking.com</li>
-                    <li>Chargeback Notification — Designed chargeback alert feature that notifies properties and supports dispute management</li>
-                    <li>Agoda Advanced — Designed self-sign-up page and transaction details page for this partner program</li>
-                    <li>Partner Programs — Contributed to strategic vision for consistent program education and experiences across all partner programs</li>
-                    <li>Finance — Supported Finance UI redesign by consolidating user research and partner satisfaction data</li>
-                  </ul>
-                  <a class="btn-primary" href="https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1" target="_blank" rel="noopener" style="display:inline-flex; margin-top:4px; margin-bottom:16px;">View Figma handoff <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                </div>
-              </div>
+            <div class="card-actions">
+              <a class="btn-primary" href="https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1" target="_blank" rel="noopener" style="display:inline-flex;">View Figma handoff <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
             </div>
-
-            <div class="agoda-acc-item" data-project="2" onclick="selectAgodaProject(this)" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:0 20px;">
-              <div class="agoda-acc-header" style="display:flex; align-items:center; gap:10px; padding:14px 0; cursor:pointer;">
-                <span style="font-size:20px; flex-shrink:0;">📊</span>
-                <span class="cs-approach-title" style="flex:1;">Wholesale Portal</span>
-                <svg class="cs-approach-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="agoda-acc-body" style="max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease; padding:0 0 0 38px;">
-                <div class="cs-approach-desc">
-                  <p style="margin:0 0 12px;">Wholesale distribution platform developed by Agoda for Booking Holdings that helps hotel and chain partners optimize B2B rate distribution and prevent revenue leakage across multiple booking channels.</p>
-                  <ul class="learnings-list" style="margin-bottom:12px;">
-                    <li>Designed end-to-end experiences for hotel partners and backoffice agents</li>
-                    <li>Built 5 core features including sales overview, partner management, rate misuse detection, optimization tools, and campaign management</li>
-                  </ul>
-                  <span class="badge-coming-soon">⏳ Coming soon</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="agoda-acc-item" data-project="3" onclick="selectAgodaProject(this)" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:0 20px;">
-              <div class="agoda-acc-header" style="display:flex; align-items:center; gap:10px; padding:14px 0; cursor:pointer;">
-                <span style="font-size:20px; flex-shrink:0;">🤖</span>
-                <span class="cs-approach-title" style="flex:1;">AI Partner Satisfaction Survey Dashboard</span>
-                <svg class="cs-approach-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="agoda-acc-body" style="max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease; padding:0 0 0 38px;">
-                <div class="cs-approach-desc">
-                  <p style="margin:0 0 12px;">GPT-powered dashboard automating partner satisfaction survey analysis and visualization for Product, Design, Research, and Business teams.</p>
-                  <ul class="learnings-list" style="margin-bottom:12px;">
-                    <li>Initiated and led project from concept to launch — designed dashboard interface and collaborated with data analyst and research team on GPT integration</li>
-                    <li>Reduced quarterly analysis time from 2 weeks to instant results, processing thousands of partner responses automatically</li>
-                  </ul>
-                  <span class="badge-coming-soon">⏳ Coming soon</span>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
+
+        <!-- 3. AI Partner Satisfaction Dashboard -->
+        <div class="project-card">
+          <div class="card-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Global PSAT GPT dashboard.png" alt="AI Partner Satisfaction Dashboard" data-lightbox style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-title">AI Partner Satisfaction Dashboard</div>
+              <p class="card-desc">An AI-powered dashboard that transforms thousands of quarterly survey responses from Agoda's accommodation partners into an always-on, real-time source of truth — replacing a manual process that ran only once a year.</p>
+              <ul class="card-bullets">
+                <li>Initiated and led project from concept to launch</li>
+                <li>Designed a standardized 53-tag taxonomy and dashboard interface</li>
+                <li>Now used across Supply, Product, Partner Experience, and business teams</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <a class="btn-primary" onclick="showPage('psat')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Wholesale Portal -->
+        <div class="project-card">
+          <div class="card-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Wholesale portal.png" alt="Wholesale Portal" data-lightbox style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-title">Wholesale Portal</div>
+              <p class="card-desc">Wholesale distribution platform developed by Agoda for Booking Holdings that helps hotel and chain partners optimize B2B rate distribution and prevent revenue leakage across multiple booking channels.</p>
+              <ul class="card-bullets">
+                <li>Designed end-to-end experiences for hotel partners and backoffice agents</li>
+                <li>Built 5 core features including sales overview, partner management, rate misuse detection, optimization tools, and campaign management</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <span class="badge-coming-soon">⏳ Coming soon</span>
+            </div>
+          </div>
+        </div>
+
       </div>
   </div>
 
@@ -1934,20 +1953,15 @@
           <div class="cs-sub-label">Dashboard redesign</div>
 
           <p class="cs-text" style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">Before</p>
-          <div class="cs-overview-side-by-side" style="display:flex; gap:16px; margin:0 0 28px; align-items:flex-start;">
-            <div class="cs-overview-img-wrap" style="flex:1; min-width:0; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-              <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Old ADR+ landing page.png" alt="MVP dashboard — before redesign" style="width:100%; display:block;" data-lightbox>
-            </div>
-            <div class="cs-overview-img-wrap" style="flex:1; min-width:0; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-              <img class="cs-overview-img-match" src="https://raw.githubusercontent.com/npaoin/31/main/images/Old landing page with dropdown.png" alt="MVP dashboard with dropdown — before redesign" style="width:100%; display:block; object-fit:cover; object-position:top;" data-lightbox>
-            </div>
+          <div class="cs-img-real" style="margin:0 0 28px;">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ dashboard before redesign.png" alt="MVP dashboard — before redesign" style="width:100%; display:block;" data-lightbox>
           </div>
 
           <p class="cs-text" style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">After</p>
 
           <div class="cs-design-layout">
             <div class="cs-design-img">
-              <div class="cs-zoom-container">
+              <div class="cs-zoom-container" style="background:#1A1714; border-color:transparent; padding:20px;">
                 <img class="cs-zoom-img" src="https://raw.githubusercontent.com/npaoin/31/main/images/New ADR+ landing page.png" alt="Redesigned dashboard" data-lightbox>
               </div>
             </div>
@@ -2036,13 +2050,8 @@
 
           <p class="cs-text">The redesign will be measured by: retained active users, reduced deactivation rate, decreased support escalations, and increased page engagement.</p>
 
-          <div class="mvp-comparison" style="display:flex; gap:16px; align-items:flex-start; margin:28px 0; flex-wrap:wrap;">
-            <div class="mvp-desktop-col" style="flex:1; min-width:280px; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-              <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MVP landing page desktop.png" alt="MVP landing page — desktop" style="width:100%; display:block;" data-lightbox>
-            </div>
-            <div class="mvp-mobile-col" style="flex:0 0 auto; width:auto; max-width:240px; overflow:hidden; border-radius:var(--radius); border:1px solid var(--border);">
-              <img class="mvp-mobile-img" src="https://raw.githubusercontent.com/npaoin/31/main/images/MVP landing page mobile.png" alt="MVP landing page — mobile" style="width:100%; display:block;" data-lightbox>
-            </div>
+          <div class="cs-img-real" style="margin:28px 0;">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ MVP landing page.png" alt="MVP landing page" style="width:100%; display:block;" data-lightbox>
           </div>
         </div>
 
@@ -2499,6 +2508,213 @@
 
       <a class="cs-back" onclick="showPage('early')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Early work</a>
 
+    </div>
+  </div>
+</div>
+
+<div id="page-psat" class="page">
+  <div class="container">
+    <div class="case-study-section">
+
+      <div class="cs-header">
+        <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+        <h1 class="cs-title">AI Partner Satisfaction Dashboard</h1>
+        <p class="cs-subtitle">An AI-powered dashboard that transforms thousands of quarterly survey responses from Agoda's accommodation partners into an always-on, real-time source of truth — replacing a manual process that ran only once a year and took the research team two weeks to complete.</p>
+        <div class="cs-meta">
+          <div>
+            <div class="cs-meta-label">Timeline</div>
+            <div class="cs-meta-value">2024 – ongoing</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Team</div>
+            <div class="cs-meta-value">Design · Research · Data Analytics</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">My role</div>
+            <div class="cs-role-tags">
+              <span class="role-tag">Project initiator</span>
+              <span class="role-tag">Taxonomy design</span>
+              <span class="role-tag">Dashboard design</span>
+              <span class="role-tag">Cross-functional collaboration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-body">
+
+        <div class="cs-section">
+          <div class="cs-section-label">Context</div>
+          <h2 class="cs-section-title">Thousands of partner responses — underutilized</h2>
+          <p class="cs-text">Agoda runs a Partner Satisfaction Survey (PSAT) every quarter, completed by roughly 12,000 properties — around 4,000 of whom leave open-text responses. It is a rich, direct signal from accommodation partners about what was and wasn't working. But we had no scalable way to act on it.</p>
+          <div class="problem-cards">
+            <div class="problem-card">
+              <div class="problem-number">1</div>
+              <div class="problem-content">
+                <div class="problem-title">Manual and infrequent analysis</div>
+                <div class="problem-desc">Processing the open-text responses required the UX Research team to manually read and tag each one — a process that only happened once a year, taking roughly two weeks each time.</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">2</div>
+              <div class="problem-content">
+                <div class="problem-title">Partner voice not reaching teams</div>
+                <div class="problem-desc">Because analysis was so infrequent and time-consuming, insights rarely made it to the teams who needed them — leaving three-quarters of feedback per year completely unexamined.</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">3</div>
+              <div class="problem-content">
+                <div class="problem-title">Product/feature-centric view only</div>
+                <div class="problem-desc">Even when insights did surface, they were siloed by product or feature team. There was no shared view of which pain-points were systemic across Agoda touchpoints and which were isolated to a specific area.</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">4</div>
+              <div class="problem-content">
+                <div class="problem-title">No comparable data for tracking over time</div>
+                <div class="problem-desc">On top of all this, tags evolved year to year as priorities shifted — making it impossible to reliably compare results across cycles. Persistent pain-points could go undetected simply because the taxonomy had changed.</div>
+              </div>
+            </div>
+          </div>
+          <p class="cs-text" style="margin-top: 24px;">To address this, we set out to:</p>
+          <div style="margin-top: 8px; padding: 20px 24px; border-left: 3px solid var(--accent); background: var(--tag-bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+            <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 600; color: var(--text-primary); line-height: 1.4; margin: 0;">Standardize a common language on partner pain-points — and use it across teams and time.</p>
+          </div>
+        </div>
+
+        <hr class="cs-divider" />
+
+        <div class="cs-section">
+          <div class="cs-section-label">Approach</div>
+          <h2 class="cs-section-title">Three steps to standardize, automate, and visualize</h2>
+          <p class="cs-text">We designed a three-step solution in collaboration across Product Design, UX Research, and Data Analytics.</p>
+
+          <div class="cs-sub-label">Step 1 — Define a shared taxonomy</div>
+          <p class="cs-text">We started by looking at previous partner pain-points to identify the most common issues, then grouped them into pre-defined categories — such as Extranet, Payment, Support Quality, and so on. Within each category, we broke them down into specific tags that mapped to features or areas partners interact with.</p>
+          <p class="cs-text">For each tag, we applied a three-layer definition system to make sure the AI could tag accurately and consistently:</p>
+          <div class="problem-cards">
+            <div class="problem-card">
+              <div class="problem-number">1</div>
+              <div class="problem-content">
+                <div class="problem-title">General definition</div>
+                <div class="problem-desc">A broad description of what the tag covers.</div>
+                <div class="problem-desc" style="margin-top: 8px; font-style: italic;">Example: "Extranet › Property Settings: This refers to when property partners set up property settings and facilities."</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">2</div>
+              <div class="problem-content">
+                <div class="problem-title">User action examples</div>
+                <div class="problem-desc">What the partner is actually trying to do.</div>
+                <div class="problem-desc" style="margin-top: 8px; font-style: italic;">Example: "Setting check-in/check-out time, configuring facilities, adding payment information."</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">3</div>
+              <div class="problem-content">
+                <div class="problem-title">Issue examples</div>
+                <div class="problem-desc">Possible issues or frustrations we anticipate.</div>
+                <div class="problem-desc" style="margin-top: 8px; font-style: italic;">Example: "Incorrect property information on Agoda, don't know how to edit information, incorrect breakfast charges."</div>
+              </div>
+            </div>
+          </div>
+          <p class="cs-text">I collaborated with Supply, Partner Experience, and Product teams to make sure the definitions made sense across the board — resulting in <strong>53 pain-point tags across 7 categories</strong> as a shared language for talking about partner pain-points.</p>
+          <div class="cs-img-real">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/PSAT taxonomy.png" alt="Taxonomy spreadsheet — 53 pain-points across 7 categories" style="width:100%; display:block;" data-lightbox>
+          </div>
+
+          <div class="cs-sub-label" style="margin-top: 36px;">Step 2 — Train an AI model to automate tagging</div>
+          <p class="cs-text">With the standardized tags and definitions in place, we needed a way to automatically tag thousands of partner responses. Our data analyst trained the AI model using the three-layer definitions. Responses were auto-translated where needed, then tagged with the category, the tag chosen, and the reason behind it.</p>
+          <p class="cs-text">I then reviewed the output to check tagging accuracy. If something was off, we went back to revise the definitions and ran the model again. After a few rounds of this, accuracy reached around 95%. From there, a data pipeline was built so that when new PSAT responses come in each quarter, the AI reads each open-text response and tags it automatically — consistently, without manual effort.</p>
+
+          <div class="cs-sub-label" style="margin-top: 36px;">Step 3 — Build a dashboard as a single source of truth</div>
+          <p class="cs-text">With automated tagging in place, we needed a way for everyone to access and explore this data. I designed the PSAT Dashboard on Tableau, which has three main views:</p>
+          <div class="problem-cards">
+            <div class="problem-card">
+              <div class="problem-number">1</div>
+              <div class="problem-content">
+                <div class="problem-title">Overview</div>
+                <div class="problem-desc">The landing page — showing total user comments and issues found, average partner rating, positive vs. negative feedback ratio, and a percentage breakdown of issues by category and tag.</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">2</div>
+              <div class="problem-content">
+                <div class="problem-title">Top Tags</div>
+                <div class="problem-desc">A ranked view of the most frequent pain-points, helping teams quickly see which issues account for the highest share of partner complaints. Filterable by time period, market, supply account type, and property type — useful for segment analysis, localisation work, or tracking changes over time.</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">3</div>
+              <div class="problem-content">
+                <div class="problem-title">Deep Dive</div>
+                <div class="problem-desc">Drill down to see exact partner comments per tag. If you're working on a specific feature, you can go straight to the relevant tag and read the actual verbatims.</div>
+              </div>
+            </div>
+          </div>
+          <div class="cs-img-real">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/PSAT dashboard.png" alt="PSAT Dashboard — Overview, Top Tags & Deep Dive views" style="width:100%; display:block;" data-lightbox>
+          </div>
+        </div>
+
+        <hr class="cs-divider" />
+
+        <div class="cs-section">
+          <div class="cs-section-label">Impact</div>
+          <h2 class="cs-section-title">From a two-week manual exercise to an always-on system</h2>
+          <div class="outcome-stats">
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">Q4 2024</div>
+              <div class="outcome-stat-label">Dashboard launched</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">2,239</div>
+              <div class="outcome-stat-label">Average monthly views</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">53 tags</div>
+              <div class="outcome-stat-label">Standardized pain-point taxonomy</div>
+            </div>
+            <div class="outcome-stat">
+              <div class="outcome-stat-value">Widely adopted</div>
+              <div class="outcome-stat-label">Across Supply, Product, Design, UX Research, Partner Experience, and business teams</div>
+            </div>
+          </div>
+
+          <div class="cs-sub-label">Use case 1 — Agoda Property Portal State of the Union</div>
+          <p class="cs-text">The dashboard made it easy for any team to look at partner pain-points longitudinally — tracking which issues had improved, which had worsened, and what was driving the changes. For example, 2025 data showed a notable drop in complaints around promotions and performance (linked directly to Supply Discount scrum work and page load improvements across Property Portal scrums), while finance-related complaints rose to become the top issue at 16%.</p>
+          <p class="cs-text">Teams across the organization now reference this data regularly — from product discovery, prioritization, and roadmap planning to end-of-quarter reviews.</p>
+
+          <div class="cs-sub-label">Use case 2 — Deep-diving into a specific feature</div>
+          <p class="cs-text">Anyone can filter by a specific tag — say, "Guest Messages" — to see what percentage of total partner complaints it accounts for, then download the verbatims and run their own GPT analysis to build hypotheses. This is now a standard step in the discovery phase for several product teams, replacing or supplementing what used to require a dedicated UX Research engagement.</p>
+          <ul class="learnings-list">
+            <li><div><strong>Example prompt used by teams:</strong><br><span style="margin-top:4px; display:inline-block;">"Analyse these verbatims and tell me the top 5 categories of user pain-points, what each means, the % for each, and 2–3 verbatim examples per category."</span></div></li>
+            <li><div><strong>From the Guest Messages analysis:</strong><br><span style="margin-top:4px; display:inline-block;">34% of complaints were about messaging restrictions (links, phone numbers, and PDFs blocked), and 26% were about delivery and notification failures.</span></div></li>
+          </ul>
+
+          <div class="cs-sub-label">Use case 3 — Pre/post experiment validation</div>
+          <p class="cs-text">Teams running A/B experiments can now cross-reference PSAT data to validate whether a design change affected partner sentiment — not just the primary metric. In one example, an experiment on deactivating promotions showed that the B-side (with the new deactivation flow) had fewer promo-related complaints (2% vs 4%) and a higher PSAT score (3.41 vs 3.07), directionally supporting the design decision.</p>
+          <p class="cs-text">The sample size is limited to survey respondents during the experiment window, so results are used directionally — but this adds a qualitative signal layer that wasn't previously available at all.</p>
+        </div>
+
+        <hr class="cs-divider" />
+
+        <div class="cs-section">
+          <div class="cs-section-label">What's next</div>
+          <h2 class="cs-section-title">The system keeps growing</h2>
+          <p class="cs-text">This project was different from most of my product design work. I wasn't just solving a specific partner-facing UX problem — I was building internal infrastructure that made it possible for others to solve partner problems faster and with better evidence. What started as a Supply Design initiative is now a shared system used across the organization.</p>
+
+          <div class="cs-sub-label" style="margin-top: 32px;">Going deeper, going wider, bigger uses</div>
+          <p class="cs-text">With the dashboard now used across teams, the next step is expanding the taxonomy further — more granular tagging within existing categories, broader coverage across new ones, and exploring how to identify and surface unknown pain-points that fall outside the current taxonomy.</p>
+
+          <div class="cs-sub-label">Going beyond the dashboard</div>
+          <p class="cs-text">Rather than expecting stakeholders to visit the dashboard, we're exploring whether there's a better way to bring insights to them. With more AI capabilities, one direction is proactively sending teams an AI-generated summary of the pain-points most relevant to their product area — delivered directly, without needing to look it up.</p>
+        </div>
+
+        <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+
+      </div>
     </div>
   </div>
 </div>
