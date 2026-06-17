@@ -56,7 +56,7 @@
     }
 
     .nav-inner {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 0 32px;
       height: 56px;
@@ -185,10 +185,10 @@
     .page { display: none; padding-top: 56px; min-height: 100vh; }
     .page.active { display: block; }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 
     /* HOME */
-    .home-section { padding: 80px 0 100px; }
+    .home-section { padding: 72px 0 8px; }
 
     .home-grid {
       display: grid;
@@ -261,7 +261,7 @@
       margin-bottom: 40px;
     }
 
-    .experience-item { display: flex; align-items: center; gap: 14px; }
+    .experience-item { display: flex; align-items: flex-start; gap: 16px; padding: 12px 0; }
 
     .exp-logo {
       width: 48px;
@@ -283,10 +283,15 @@
     .exp-logo.mtl { color: #FF1493; }
     .exp-logo.psych { color: var(--text-secondary); }
 
-    .exp-title { font-size: 16px; font-weight: 400; color: var(--text-primary); }
+    .exp-title-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 3px; }
+    .exp-title { font-size: 17px; font-weight: 600; color: var(--text-primary); }
     .exp-title a { color: var(--accent); text-decoration: none; }
     .exp-title a:hover { text-decoration: underline; }
-    .exp-period { font-size: 16px; color: var(--text-secondary); }
+    .exp-period { font-size: 13px; color: var(--text-secondary); }
+    .exp-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+    .exp-link-wrap { font-size: 16px; font-weight: 400; color: var(--accent); }
+    .exp-link { font-size: 16px; font-weight: 400; color: var(--accent); text-decoration: none; }
+    .exp-link:hover { text-decoration: underline; }
 
     .home-cta { display: flex; gap: 10px; flex-wrap: wrap; }
 
@@ -332,7 +337,7 @@
     .card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.25; }
     .card-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
     .card-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
-    .card-bullets li { font-size: 14px; color: var(--text-secondary); line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
+    .card-bullets li { font-size: 15px; color: var(--text-secondary); line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
     .card-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
     .card-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
@@ -1209,7 +1214,7 @@
     .learnings-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 
     .learnings-list li {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-secondary);
       display: flex;
       align-items: flex-start;
@@ -1226,13 +1231,436 @@
     .learnings-list li::before {
       content: '→';
       color: var(--accent);
-      font-size: 16px;
+      font-size: 15px;
       flex-shrink: 0;
       margin-top: 1px;
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp {
+    /* PROJECT LIST (landing page) */
+    .project-list-section {
+      padding: 32px 0 200px;
+      margin-top: 0;
+    }
+
+    .proj-list-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .proj-list-title::before,
+    .proj-list-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .proj-group {
+      border-top: 1px solid var(--border);
+      padding: 40px 0 0;
+      margin-bottom: 48px;
+    }
+
+    .proj-group-first {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .proj-group-header {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .proj-group-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .proj-group-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .proj-group-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--accent);
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .proj-group-vbar {
+      width: 1px;
+      min-height: 36px;
+      background: var(--border);
+      flex-shrink: 0;
+      align-self: stretch;
+    }
+
+    .proj-group-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .proj-group-line {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .proj-group-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .proj-group-bullets li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .proj-group-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--text-secondary);
+    }
+
+    .proj-group-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    .proj-group-divider {
+      color: var(--border);
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .proj-group-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .proj-rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 0;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      border-radius: 0;
+    }
+
+    .proj-row-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .proj-row-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .proj-row:last-child { border-bottom: none; }
+
+    .proj-row:hover .proj-row-title { color: var(--accent); }
+    .proj-row:hover .proj-row-arrow { color: var(--accent); transform: translateX(3px); }
+
+    .proj-row-coming-soon {
+      cursor: default;
+    }
+    .proj-row-coming-soon:hover .proj-row-title { color: var(--text-primary); }
+    .proj-row-coming-soon:hover .proj-row-arrow { transform: none; }
+
+    .proj-row-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      transition: color 0.15s ease;
+      margin: 0;
+    }
+
+    .proj-row-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .proj-row-arrow {
+      flex-shrink: 0;
+      color: var(--text-secondary);
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+
+    .proj-emoji {
+      font-size: 24px;
+      flex-shrink: 0;
+      width: 40px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .proj-desc-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .proj-row-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .proj-tag {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--tag-text);
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-text);
+      padding: 3px 10px;
+      border-radius: 20px;
+      opacity: 0.8;
+    }
+
+    .proj-text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: color 0.15s ease, gap 0.15s ease;
+    }
+
+    .proj-text-link:hover {
+      color: var(--accent-hover);
+      gap: 8px;
+    }
+
+    @media (max-width: 560px) {
+      .proj-row { flex-wrap: wrap; gap: 12px; }
+      .proj-text-link { font-size: 14px; }
+    }
+    .nav-inner {
+      justify-content: space-between;
+    }
+
+    /* ANIMATIONS — add project list */
+    .page.active .project-list-section {
+      animation: fadeUp 0.28s ease both;
+      animation-delay: 0.1s;
+    }
+
+    /* RESPONSIVE — project list */
+    @media (max-width: 860px) {
+      .proj-group-subtitle { font-size: 14px; }
+      .proj-row-desc { font-size: 14px; }
+      .proj-row-title { font-size: 16px; }
+      .proj-row { padding: 16px 0; }
+    }
+
+    @media (max-width: 560px) {
+      .proj-group { padding: 28px 0 0; margin-bottom: 36px; }
+      .proj-row-title { font-size: 15px; }
+      .proj-row-desc { font-size: 13px; }
+      .proj-group-subtitle { font-size: 13px; }
+    }
+
+    hr.section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 -32px;
+      width: calc(100% + 64px);
+    }
+
+    @media (max-width: 860px) {
+      hr.section-divider { margin: 0 -24px; width: calc(100% + 48px); }
+    }
+
+    @media (max-width: 560px) {
+      hr.section-divider { margin: 0 -16px; width: calc(100% + 32px); }
+    }
+
+    .projects-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 36px;
+      margin-top: 24px;
+    }
+
+    .closer-look-section .proj-list-title {
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 860px) { .projects-card { padding: 24px; } }
+    @media (max-width: 560px) { .projects-card { padding: 20px; } }
+
+    .closer-look-section {
+      padding: 12px 0 32px;
+      margin-top: 0;
+    }
+
+    /* ── HIGHLIGHTS GRID ── */
+    .hl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .hl-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hl-img {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      background: #F0EDEA;
+      flex-shrink: 0;
+    }
+
+    .hl-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    .hl-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .hl-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 4px;
+    }
+
+    .hl-tags-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .hl-content .cl-actions {
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+    .cl-company {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .cl-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .cl-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .cl-actions {
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+    @media (max-width: 860px) {
+      .hl-grid { grid-template-columns: 1fr; }
+      .hl-img { height: 260px; }
+      .cl-title { font-size: 18px; }
+    }
+
+    @media (max-width: 560px) {
+      .hl-img { height: 220px; }
+      .hl-content { padding: 20px; }
+      .closer-look-section { padding-top: 32px; }
+    }
+
+    /* NAV — RESPONSIVE override for no-tabs */
+    /* NAV ACTIONS spacing */
+    .nav-actions a { gap: 5px; font-size: 15px; }
+
+
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -1292,7 +1720,7 @@
       .nav-logo, .nav-actions { display: none; }
       .nav-links { position: static; transform: none; height: 56px; justify-content: center; flex: 1; }
       .nav-links a { padding: 0 16px 12px; font-size: 15px; }
-      .home-section { padding: 60px 0 80px; }
+      .home-section { padding: 40px 0; }
       .home-grid { grid-template-columns: 1fr; gap: 32px; }
       .home-photo { max-width: 220px; margin: 0 auto; align-self: auto; }
       .home-greeting { text-align: center; }
@@ -1318,12 +1746,43 @@
       .cs-image-block { height: 200px; }
       .insights-grid { grid-template-columns: 1fr; }
       .objectives-grid { grid-template-columns: 1fr; }
+
+      /* ── NEW LANDING PAGE ── */
+      .proj-list-title { font-size: 22px; }
+      .proj-group-label { font-size: 17px; }
+      .proj-row {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px 12px;
+        padding: 14px 0;
+        align-items: start;
+      }
+      .proj-emoji { grid-row: 1; grid-column: 1; padding-top: 2px; }
+      .proj-row-left { grid-row: 1; grid-column: 2; width: 100%; }
+      .proj-row-tags { grid-row: 1; grid-column: 2; justify-content: flex-start; }
+      .proj-desc-tags { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+      .proj-text-link { grid-row: 2; grid-column: 2; font-size: 14px; }
+      .badge-coming-soon { grid-row: 2; grid-column: 2; align-self: flex-start; width: fit-content; }
+      .proj-row-title { font-size: 16px; }
+      .proj-row-desc { font-size: 14px; }
+      .proj-group-subtitle { font-size: 14px; }
+      .projects-card { padding: 20px; }
+      .hl-grid { grid-template-columns: 1fr; }
+      .hl-img { height: 260px; }
+      .hl-content { padding: 24px; }
+      .cl-title { font-size: 18px; }
+      .closer-look-section { padding-top: 20px; }
+      .project-list-section { padding-top: 20px; }
+      .proj-group-divider { display: none; }
+      .proj-group-header { flex-direction: column; gap: 4px; align-items: flex-start; }
+      .exp-title-row { flex-wrap: wrap; gap: 4px; }
     }
 
     @media (max-width: 560px) {
       .container { padding: 0 16px; }
       .nav-links a { font-size: 14px; }
-      .home-section { padding: 40px 0 60px; }
+      .home-section { padding: 32px 0; }
       .home-greeting { font-size: 14px; }
       .home-name { font-size: 28px; }
       .home-bio { width: 100%; font-size: 15px; }
@@ -1366,6 +1825,21 @@
       .project-card { grid-template-columns: 1fr; }
       .card-img { height: 200px; }
       .card-content { padding: 24px; }
+
+      /* ── NEW LANDING PAGE ── */
+      .proj-list-title { font-size: 20px; }
+      .proj-group-label { font-size: 15px; }
+      .proj-row-title { font-size: 15px; }
+      .proj-row-desc { font-size: 13px; }
+      .proj-group-subtitle { font-size: 13px; }
+      .proj-emoji { font-size: 20px; width: 32px; }
+      .projects-card { padding: 16px; }
+      .hl-img { height: 220px; }
+      .hl-content { padding: 20px; }
+      .closer-look-section { padding-top: 12px; }
+      .project-list-section { padding-top: 12px; }
+      .proj-group-header-inner { flex-wrap: wrap; gap: 8px; }
+      .proj-group-vbar { display: none; }
     }
 
     /* Lightbox */
@@ -1553,11 +2027,11 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" onclick="showPage('home')">NP</a>
+    <a class="nav-logo" onclick="navScrollTo('section-home')" style="cursor:pointer;">NP</a>
     <ul class="nav-links">
-      <li><a onclick="showPage('home')" id="nav-home" class="active" data-text="Home">Home</a></li>
-      <li><a onclick="showPage('agoda')" id="nav-agoda" data-text="Agoda">Agoda</a></li>
-      <li><a onclick="showPage('early')" id="nav-early" data-text="Early work">Early work</a></li>
+      <li><a onclick="navScrollTo('section-home')" id="nav-home" class="active" data-text="About me">About me</a></li>
+      <li><a onclick="navScrollTo('section-quicklook')" id="nav-quick" data-text="Highlights">Highlights</a></li>
+      <li><a onclick="navScrollTo('section-projects')" id="nav-agoda" data-text="All projects">All projects</a></li>
     </ul>
     <div class="nav-actions">
       <a href="https://1drv.ms/b/c/20ea901eaaabe56a/IQCwg1EI3tZZRaadPsesXMF8AfC_FDyVGZiNHGCKVPYxfow?e=2gv13u" target="_blank">
@@ -1575,7 +2049,7 @@
 <!-- ═══════════════════════ HOME ═══════════════════════ -->
 <div id="page-home" class="page active">
   <div class="container">
-    <div class="home-section">
+    <div class="home-section" id="section-home">
       <div class="home-grid">
         <div class="home-photo">
           <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Nam's photo.jpg" alt="Nam — Natawan Paoin" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:16px;">
@@ -1613,8 +2087,12 @@
 </svg>
 </div>
               <div class="exp-info">
-                <div class="exp-title">Product designer at Agoda</div>
-                <div class="exp-period">2024 – Present</div>
+                <div class="exp-title-row">
+                  <div class="exp-title">Product designer at Agoda</div>
+                  <div class="exp-period">2024 – Present</div>
+                  <span class="exp-link-wrap">(<a href="https://www.agoda.com" target="_blank" class="exp-link">www.agoda.com</a>)</span>
+                </div>
+                <div class="exp-desc">Global online travel platform and part of Booking Holdings, operating across 40+ markets</div>
               </div>
             </div>
             <div class="experience-item">
@@ -1638,26 +2116,325 @@
 </svg>
 </div>
               <div class="exp-info">
-                <div class="exp-title">UX/UI designer at MTL</div>
-                <div class="exp-period">2022 – 2023</div>
+                <div class="exp-title-row">
+                  <div class="exp-title">UX/UI designer at MTL</div>
+                  <div class="exp-period">2022 – 2023</div>
+                </div>
+                <div class="exp-desc">One of Thailand's largest life insurance companies, Muang Thai Life Assurance</div>
               </div>
             </div>
             <div class="experience-item">
               <div class="exp-logo psych" style="padding:4px;"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="14" y="21" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#236868">Ψ</text></svg></div>
               <div class="exp-info">
-                <div class="exp-title">Psychologist</div>
-                <div class="exp-period">2020 – 2021</div>
+                <div class="exp-title-row">
+                  <div class="exp-title">Psychologist</div>
+                  <div class="exp-period">2020 – 2021</div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="home-cta">
+          <div class="home-cta" style="display:none;">
             <a class="btn-primary" onclick="showPage('agoda')">Agoda projects <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             <a class="btn-secondary" onclick="showPage('early')">Early work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- ── A QUICK LOOK ── -->
+    <div class="closer-look-section">
+      <h1 class="proj-list-title" id="section-quicklook">Highlights</h1>
+
+      <div class="hl-grid">
+
+        <!-- 1. ADR+ -->
+        <div class="hl-card">
+          <div class="hl-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ SSU.png" alt="Agoda Dynamic Rates+">
+          </div>
+          <div class="hl-content">
+            <div class="cl-company">Agoda · 2024–Present</div>
+            <div class="cl-title">Agoda Dynamic Rates+</div>
+            <p class="cl-desc">An automated pricing program on Agoda Property Portal that helps hotels beat third-party listings by 2% to convert more direct bookings and increase revenue, now serving over 15K active hotels and growing.</p>
+            <ul class="card-bullets">
+              <li>Full product ownership from pre-activation sign-up through post-activation management and analytics</li>
+              <li>Created 8+ core features including self-sign-up, tier selection, program dashboard, performance report, and deactivation flow</li>
+            </ul>
+            <div class="hl-tags">
+              <span class="hl-tags-label">Skills</span>
+              <div class="feature-tags">
+                <span class="feature-tag">UX process</span>
+                <span class="feature-tag">Responsive design</span>
+                <span class="feature-tag">Mobile view</span>
+              </div>
+            </div>
+            <div class="cl-actions">
+              <a class="btn-primary" onclick="showPage('casestudy')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. MTL Fit -->
+        <div class="hl-card">
+          <div class="hl-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MTL Fit.png" alt="MTL Fit Health App">
+          </div>
+          <div class="hl-content">
+            <div class="cl-company">Muang Thai Life Assurance · 2022–2023</div>
+            <div class="cl-title">MTL Fit Health App</div>
+            <p class="cl-desc">Sole UX/UI designer in an agile development team, owning the health and wellness app for Muang Thai Life Assurance, one of Thailand's largest insurance companies. Later evolved to Lead UX/UI Designer for a comprehensive app redesign—leading a junior designer through full app architecture planning, product roadmap development, and new design system creation.</p>
+            <div class="early-subsection" style="margin-bottom:16px;">
+              <div class="early-subsection-title">Key features delivered</div>
+              <div class="feature-tags">
+                <span class="feature-tag">Dynamic pricing</span>
+                <span class="feature-tag">Nutrition tracking</span>
+                <span class="feature-tag">Team challenges</span>
+                <span class="feature-tag">Photo download</span>
+                <span class="feature-tag">App redesign</span>
+                <span class="feature-tag">Back office tools</span>
+              </div>
+            </div>
+            <div class="hl-tags">
+              <span class="hl-tags-label">Skills</span>
+              <div class="feature-tags">
+                <span class="feature-tag">Design system</span>
+                <span class="feature-tag">Mobile app</span>
+              </div>
+            </div>
+            <div class="cl-actions">
+              <a class="btn-primary" onclick="showPage('mtlfit')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. PSAT -->
+        <div class="hl-card">
+          <div class="hl-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Global PSAT GPT dashboard.png" alt="AI Partner Satisfaction Dashboard">
+          </div>
+          <div class="hl-content">
+            <div class="cl-company">Agoda · 2024–Present</div>
+            <div class="cl-title">AI Partner Satisfaction Dashboard</div>
+            <p class="cl-desc">An AI-powered dashboard that transforms thousands of quarterly survey responses from Agoda's accommodation partners into an always-on, real-time source of truth — replacing a manual process that ran only once a year.</p>
+            <ul class="card-bullets">
+              <li>Initiated and led project from concept to launch</li>
+              <li>Designed a standardized 53-tag taxonomy and dashboard interface</li>
+              <li>Now used across Supply, Product, Partner Experience, and business teams</li>
+            </ul>
+            <div class="hl-tags">
+              <span class="hl-tags-label">Skills</span>
+              <div class="feature-tags">
+                <span class="feature-tag">AI</span>
+                <span class="feature-tag">Research</span>
+              </div>
+            </div>
+            <div class="cl-actions">
+              <a class="btn-primary" onclick="showPage('psat')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Property Portal -->
+        <div class="hl-card">
+          <div class="hl-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/YCS dashboard.png" alt="Agoda Property Portal">
+          </div>
+          <div class="hl-content">
+            <div class="cl-company">Agoda · 2024–Present</div>
+            <div class="cl-title">Agoda Property Portal</div>
+            <p class="cl-desc">Agoda's partner-facing platform where hotel and home partners manage their listings, rates, and performance.</p>
+            <ul class="card-bullets">
+              <li>Calendar Sync — Designed calendar synchronization feature for home properties to manage availability across multiple booking platforms like Airbnb and Booking.com</li>
+              <li>Chargeback Notification — Designed chargeback alert feature that notifies properties and supports dispute management</li>
+              <li>Agoda Advanced — Designed self-sign-up page and transaction details page for this partner program</li>
+              <li>Partner Programs — Contributed to strategic vision for consistent program education and experiences across all partner programs</li>
+              <li>Finance — Supported Finance UI redesign by consolidating user research and partner satisfaction data</li>
+            </ul>
+            <div class="hl-tags">
+              <span class="hl-tags-label">Skills</span>
+              <div class="feature-tags">
+                <span class="feature-tag">Handoff</span>
+                <span class="feature-tag">Responsive design</span>
+                <span class="feature-tag">Mobile view</span>
+              </div>
+            </div>
+            <div class="cl-actions">
+              <a class="btn-primary" href="https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1" target="_blank" rel="noopener" style="display:inline-flex;">View Figma handoff <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Wholesale Portal -->
+        <div class="hl-card">
+          <div class="hl-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Wholesale portal.png" alt="Wholesale Portal">
+          </div>
+          <div class="hl-content">
+            <div class="cl-company">Agoda · 2024–Present</div>
+            <div class="cl-title">Wholesale Portal</div>
+            <p class="cl-desc">Wholesale distribution platform developed by Agoda for Booking Holdings that helps hotel and chain partners optimize B2B rate distribution and prevent revenue leakage across multiple booking channels.</p>
+            <ul class="card-bullets">
+              <li>Designed end-to-end experiences for hotel partners and backoffice agents</li>
+              <li>Built 5 core features including sales overview, partner management, rate misuse detection, optimization tools, and campaign management</li>
+            </ul>
+            <div class="cl-actions">
+              <span class="badge-coming-soon">⏳ Coming soon</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Spacify -->
+        <div class="hl-card">
+          <div class="hl-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Spacify.png" alt="Spacify">
+          </div>
+          <div class="hl-content">
+            <div class="cl-company">CareerFoundry Project · 2021</div>
+            <div class="cl-title">Spacify</div>
+            <p class="cl-desc">A 6-week intensive course project — a responsive web app that provides property buyers with information on properties of interest.</p>
+            <div class="early-subsection" style="margin-bottom:16px;">
+              <div class="early-subsection-title">Key deliverables</div>
+              <ul class="learnings-list">
+                <li>User flows mapping property search journeys</li>
+                <li>Low to high-fidelity wireframes and prototypes</li>
+                <li><span>Complete visual design system (colors, typography, components) <a href="https://www.figma.com/proto/6yhhFNUZtiUIHFNRd5n1EG/UI-project?node-id=831-52583&page-id=831%3A52086&starting-point-node-id=831%3A52583&t=skLsUkNtOqSypt4y-1" target="_blank" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">View style guide</a></span></li>
+                <li>Responsive designs across mobile, tablet, and desktop breakpoints</li>
+              </ul>
+            </div>
+            <div class="learnings-box" style="margin-bottom:16px;">
+              <div class="learnings-title">What I learned</div>
+              <ul class="learnings-list">
+                <li>End-to-end UX/UI design process</li>
+                <li>Responsive design principles and progressive enhancement</li>
+                <li>Design systems and visual design fundamentals</li>
+              </ul>
+            </div>
+            <div class="cl-actions">
+              <span class="badge-coming-soon">⏳ Coming soon</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /hl-grid -->
+
+    </div><!-- /closer-look-section -->
+
+    <!-- ── PROJECT LIST ── -->
+    <div class="project-list-section">
+
+      <h1 class="proj-list-title" id="section-projects">All projects</h1>
+
+      <div class="projects-card">
+
+      <!-- Agoda -->
+      <div class="proj-group proj-group-first" id="section-agoda">
+        <div class="proj-group-header">
+          <h2 class="proj-group-label">Agoda</h2>
+          <span class="proj-group-divider">|</span>
+          <span class="proj-group-subtitle">B2B product designer creating data-driven solutions for 1 million+ hotel and home partners</span>
+        </div>
+        <div class="proj-rows">
+          <div class="proj-row" onclick="showPage('casestudy')">
+            <span class="proj-emoji">📈</span>
+            <div class="proj-row-left">
+              <h3 class="proj-row-title">Agoda Dynamic Rates+</h3>
+              <div class="proj-desc-tags">
+                <span class="proj-row-desc">An automated pricing program helping 15,000+ hotels convert more direct bookings</span>
+                <div class="proj-row-tags">
+                  <span class="feature-tag">UX process</span>
+                  <span class="feature-tag">Responsive design</span>
+                </div>
+              </div>
+            </div>
+            <a class="proj-text-link" onclick="event.stopPropagation(); showPage('casestudy')">View case study <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="proj-row" onclick="window.open('https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1','_blank')">
+            <span class="proj-emoji">🏨</span>
+            <div class="proj-row-left">
+              <h3 class="proj-row-title">Agoda Property Portal</h3>
+              <div class="proj-desc-tags">
+                <span class="proj-row-desc">Partner-facing platform for managing listings, rates, and performance</span>
+                <div class="proj-row-tags">
+                  <span class="feature-tag">Handoff</span>
+                  <span class="feature-tag">Responsive design</span>
+                </div>
+              </div>
+            </div>
+            <a class="proj-text-link" href="https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1" target="_blank" onclick="event.stopPropagation()">View Figma handoff <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+          <div class="proj-row" onclick="showPage('psat')">
+            <span class="proj-emoji">🤖</span>
+            <div class="proj-row-left">
+              <h3 class="proj-row-title">AI Partner Satisfaction Dashboard</h3>
+              <div class="proj-desc-tags">
+                <span class="proj-row-desc">AI-powered dashboard turning partner survey data into real-time insights</span>
+                <div class="proj-row-tags">
+                  <span class="feature-tag">AI</span>
+                  <span class="feature-tag">Research</span>
+                </div>
+              </div>
+            </div>
+            <a class="proj-text-link" onclick="event.stopPropagation(); showPage('psat')">View case study <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="proj-row proj-row-coming-soon">
+            <span class="proj-emoji">🔗</span>
+            <div class="proj-row-left">
+              <h3 class="proj-row-title">Wholesale Portal</h3>
+              <span class="proj-row-desc">B2B rate distribution platform for hotel and chain partners</span>
+            </div>
+            <span class="badge-coming-soon">⏳ Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MTL -->
+      <div class="proj-group" id="section-early">
+        <div class="proj-group-header">
+          <h2 class="proj-group-label">MTL</h2>
+          <span class="proj-group-divider">|</span>
+          <span class="proj-group-subtitle">B2C product designer building health tracking & property search experiences</span>
+        </div>
+        <div class="proj-rows">
+          <div class="proj-row" onclick="showPage('mtlfit')">
+            <span class="proj-emoji">🏃</span>
+            <div class="proj-row-left">
+              <h3 class="proj-row-title">MTL Fit Health App</h3>
+              <div class="proj-desc-tags">
+                <span class="proj-row-desc">Health and wellness app for Muang Thai Life Assurance</span>
+                <div class="proj-row-tags">
+                  <span class="feature-tag">Design system</span>
+                  <span class="feature-tag">Mobile app</span>
+                </div>
+              </div>
+            </div>
+            <a class="proj-text-link" onclick="event.stopPropagation(); showPage('mtlfit')">View case study <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CareerFoundry -->
+      <div class="proj-group">
+        <div class="proj-group-header">
+          <h2 class="proj-group-label">CareerFoundry</h2>
+          <span class="proj-group-divider">|</span>
+          <span class="proj-group-subtitle">UX/UI student crafting a responsive property search experience from concept to prototype</span>
+        </div>
+        <div class="proj-rows">
+          <div class="proj-row proj-row-coming-soon">
+            <span class="proj-emoji">🏠</span>
+            <div class="proj-row-left">
+              <h3 class="proj-row-title">Spacify</h3>
+              <span class="proj-row-desc">Responsive property search web app — CareerFoundry course project</span>
+            </div>
+            <span class="badge-coming-soon">⏳ Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-card -->
+    </div><!-- /project-list-section -->
+
   </div>
 </div>
 
@@ -1779,7 +2556,7 @@
 
       <!-- ── HEADER ── -->
       <div class="cs-header">
-        <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+        <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
         <h1 class="cs-title">Agoda Dynamic Rates+</h1>
         <p class="cs-subtitle" style="margin-bottom: 16px;">A $7.5M automated pricing program that helps 15,000+ hotel partners beat third-party listings by 2% to convert more direct bookings and increase revenue.</p>
         <p class="cs-text" style="margin-top: 0; margin-bottom: 16px;">As the sole designer from launch to scale, I owned every stage of the program and every touchpoint of the hotel partner journey — from pre-activation education and sign-up through post-activation management and analytics. I created 8+ core features, built scalable design systems that supported future growth while features were still being defined, conducted SQL data analysis to identify business and design opportunities, and advocated for strategic initiatives backed by data insights.</p>
@@ -2190,7 +2967,7 @@
         </div>
 
         <div style="margin-top: 32px;">
-          <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+          <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
         </div>
 
       </div><!-- /phase-2 -->
@@ -2318,7 +3095,7 @@
   <div class="container">
     <div class="case-study-section">
 
-      <a class="cs-back" onclick="showPage('early')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Early work</a>
+      <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
 
       <h1 class="cs-title">MTL Fit Health App</h1>
       <p class="cs-subtitle" style="margin-bottom: 8px;">A health app owned by Muang Thai Life Assurance (MTL), one of Thailand's largest insurance companies — striving to promote a holistic and enjoyable healthy lifestyle, guided by the slogan "being healthy is easy and fun."</p>
@@ -2507,7 +3284,7 @@
         </div>
       </div>
 
-      <a class="cs-back" onclick="showPage('early')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Early work</a>
+      <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
 
     </div>
   </div>
@@ -2518,7 +3295,7 @@
     <div class="case-study-section">
 
       <div class="cs-header">
-        <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+        <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
         <h1 class="cs-title">AI Partner Satisfaction Dashboard</h1>
         <p class="cs-subtitle">An AI-powered dashboard that transforms thousands of quarterly survey responses from Agoda's accommodation partners into an always-on, real-time source of truth — replacing a manual process that ran only once a year and took the research team two weeks to complete.</p>
         <div class="cs-meta">
@@ -2710,7 +3487,7 @@
           <p class="cs-text">Rather than expecting stakeholders to visit the dashboard, we're exploring whether there's a better way to bring insights to them. With more AI capabilities, one direction is proactively sending teams an AI-generated summary of the pain-points most relevant to their product area — delivered directly, without needing to look it up.</p>
         </div>
 
-        <a class="cs-back" onclick="showPage('agoda')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Agoda</a>
+        <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
 
       </div>
     </div>
@@ -2771,6 +3548,9 @@
   pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkPassword(); });
 
   // Lightbox
+  // Add lightbox to highlight card images
+  document.querySelectorAll('.hl-img img').forEach(img => img.setAttribute('data-lightbox', ''));
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
   const lightboxClose = lightbox.querySelector('.lightbox-close');
@@ -2816,7 +3596,110 @@
     nav.classList.toggle('scrolled', window.scrollY > 10);
   });
 
-  // ── Phase switching (ADR+ case study) ──
+  // ── Nav active state based on scroll position ──
+  function updateNavActive() {
+    const homePage = document.getElementById('page-home');
+    if (!homePage.classList.contains('active')) return;
+
+    const sections = [
+      { id: 'section-home',      navId: 'nav-home' },
+      { id: 'section-quicklook', navId: 'nav-quick' },
+      { id: 'section-projects',  navId: 'nav-agoda' },
+    ];
+
+    const scrollY = window.scrollY + 80;
+    let active = 'nav-home';
+
+    sections.forEach(({ id, navId }) => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) active = navId;
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const activeEl = document.getElementById(active);
+    if (activeEl) activeEl.classList.add('active');
+  }
+
+  let navRafPending = false;
+  window.addEventListener('scroll', () => {
+    if (!navRafPending) {
+      navRafPending = true;
+      requestAnimationFrame(() => {
+        updateNavActive();
+        navRafPending = false;
+      });
+    }
+  }, { passive: true });
+  updateNavActive();
+
+  // ── Nav scroll (Home / Agoda / Early work) ──
+  function navScrollTo(sectionId) {
+    const homePage = document.getElementById('page-home');
+    const scrollToSection = () => {
+      const el = document.getElementById(sectionId);
+      if (!el) return;
+      const offset = el.getBoundingClientRect().top + window.scrollY - 68;
+      window.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
+    };
+    if (!homePage.classList.contains('active')) {
+      showPage('home');
+      setTimeout(scrollToSection, 200);
+    } else {
+      scrollToSection();
+    }
+  }
+
+  // ── Quick Look Carousels ──
+  let clCurrent1 = 0, clCurrent2 = 0;
+  const clTotal1 = 4, clTotal2 = 2;
+
+  function initCloserLook() {
+    // Carousel 1
+    const dots1 = document.getElementById('clDots1');
+    if (dots1 && dots1.children.length === 0) {
+      for (let i = 0; i < clTotal1; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'cl-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = (idx => () => clGoTo1(idx))(i);
+        dots1.appendChild(dot);
+      }
+      clGoTo1(0);
+    }
+    // Carousel 2
+    const dots2 = document.getElementById('clDots2');
+    if (dots2 && dots2.children.length === 0) {
+      for (let i = 0; i < clTotal2; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'cl-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = (idx => () => clGoTo2(idx))(i);
+        dots2.appendChild(dot);
+      }
+      clGoTo2(0);
+    }
+  }
+
+  function clGoTo1(idx) {
+    clCurrent1 = idx;
+    document.getElementById('clTrack1').style.transform = `translateX(-${clCurrent1 * 100}%)`;
+    document.querySelectorAll('#clDots1 .cl-dot').forEach((d, i) => d.classList.toggle('active', i === clCurrent1));
+    document.getElementById('clPrev1').classList.toggle('hidden', clCurrent1 === 0);
+    document.getElementById('clNext1').classList.toggle('hidden', clCurrent1 === clTotal1 - 1);
+  }
+
+  function clGoTo2(idx) {
+    clCurrent2 = idx;
+    document.getElementById('clTrack2').style.transform = `translateX(-${clCurrent2 * 100}%)`;
+    document.querySelectorAll('#clDots2 .cl-dot').forEach((d, i) => d.classList.toggle('active', i === clCurrent2));
+    document.getElementById('clPrev2').classList.toggle('hidden', clCurrent2 === 0);
+    document.getElementById('clNext2').classList.toggle('hidden', clCurrent2 === clTotal2 - 1);
+  }
+
+  function clMove1(dir) { clGoTo1(Math.max(0, Math.min(clTotal1 - 1, clCurrent1 + dir))); }
+  function clMove2(dir) { clGoTo2(Math.max(0, Math.min(clTotal2 - 1, clCurrent2 + dir))); }
+
+  document.addEventListener('DOMContentLoaded', initCloserLook);
+
+
   const totalPhases = 3;
   function switchPhase(idx) {
     if (idx < 0 || idx >= totalPhases) return;
@@ -2832,11 +3715,6 @@
     const next = document.getElementById('page-' + page);
     if (!next || next === current) return;
 
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navMap = { home: 'nav-home', agoda: 'nav-agoda', early: 'nav-early', casestudy: 'nav-agoda', mtlfit: 'nav-early' };
-    const navId = navMap[page];
-    if (navId) document.getElementById(navId)?.classList.add('active');
-
     if (current) {
       current.classList.add('leaving');
       setTimeout(() => {
@@ -2844,6 +3722,10 @@
         next.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (page === 'mtlfit') initCarousel();
+        if (page === 'home') updateNavActive();
+        else {
+          document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        }
       }, 120);
     } else {
       next.classList.add('active');
