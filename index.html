@@ -47,7 +47,14 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease, opacity 0.35s ease;
+    }
+
+    nav.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     nav.scrolled {
@@ -183,6 +190,7 @@
 
     /* PAGES */
     .page { display: none; padding-top: 56px; min-height: 100vh; }
+    #page-home.page { padding-top: 0; } /* nav is hidden at the top of the hero, so no clearance needed here */
     .page.active { display: block; }
 
     .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
@@ -707,6 +715,14 @@
       margin-bottom: 32px;
     }
 
+    .cs-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
     .cs-meta { display: flex; gap: 32px; flex-wrap: wrap; }
 
     .cs-meta-label {
@@ -807,15 +823,33 @@
     .outcome-stat-label { font-size: 14px; color: var(--text-secondary); line-height: 1.4; }
 
     .problem-cards { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .problem-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .problem-cards-grid .problem-card { margin: 0; }
+    @media (max-width: 700px) { .problem-cards-grid { grid-template-columns: 1fr; } }
     .problem-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; }
     .problem-number { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
     .problem-content { flex: 1; }
     .problem-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
     .problem-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
 
+    /* ── TAG DIFF PILL (before/after comparison callouts) ── */
+    .tag-diff-pill { font-size: 11px; padding: 2px 8px; border-radius: 20px; background: var(--bg); border: 1px solid var(--border); color: var(--text-secondary); }
+    .tag-diff-pill.corrected { background: var(--accent); color: #fff; border-color: var(--accent); }
+
     /* ── REAL IMAGES ── */
     .cs-img-real { border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin: 24px 0; }
     .cs-img-real img { width: 100%; display: block; cursor: zoom-in; }
+
+    /* ── BEFORE/AFTER COMPARISON SCREENSHOTS (Analytics Center) ── */
+    .cs-compare-img { height: 480px; }
+    @media (max-width: 860px) { .cs-compare-img { height: 320px; } }
+    @media (max-width: 560px) { .cs-compare-img { height: 240px; } }
+
+    /* ── SANDBOX EXPLORATION GALLERY (Analytics Center) — stack on mobile ── */
+    @media (max-width: 560px) {
+      .cs-sandbox-gallery { flex-direction: column; }
+      .cs-sandbox-gallery > div { min-width: 100% !important; }
+    }
 
     /* ── PHASE SWITCHER ── */
     .cs-phase-switcher { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-top: 1px solid var(--border); margin-top: 16px; }
@@ -1644,6 +1678,39 @@
       padding-top: 16px;
     }
 
+    .cl-tagline { font-size: 15px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
+    .cl-field { font-size: 15px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 6px; }
+    .cl-field-label { color: var(--accent); font-weight: 500; }
+    .hl-content .card-bullets { margin-top: 4px; }
+
+    .hl-card-placeholder { opacity: 0.55; border-style: dashed; }
+    .hl-card-placeholder .hl-img {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+
+    /* ── REVAMPED HOME HERO ── */
+    .revamp-hero { padding: 48px 0 16px; }
+    .hero-intro-row { display: flex; align-items: center; gap: 20px; }
+    .hero-photo-circle { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .hero-text-col { display: flex; flex-direction: column; }
+    .hero-greeting { font-size: 20px; letter-spacing: 0.06em; color: var(--text-secondary); margin: 0 0 8px; }
+    .hero-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 44px; letter-spacing: -0.02em; color: var(--text-primary); line-height: 1.15; }
+    .hero-tagline { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 20px; letter-spacing: 0.06em; color: var(--text-secondary); margin-left: 10px; }
+
+    /* ── COMPANY SECTIONS ── */
+    .company-section { padding: 32px 0 60px; }
+    .company-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .company-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em; color: var(--accent); white-space: nowrap; margin: 0; }
+    .company-date { font-size: 16px; color: var(--text-secondary); letter-spacing: 0.03em; white-space: nowrap; }
+    .company-divider-line { flex: 1; height: 2px; background: var(--accent); border-radius: 2px; }
+    .company-desc, .company-meta { font-size: 16px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px; }
+    .company-section > .project-card { margin-top: 26px; }
+    .company-meta-label { color: var(--accent); font-weight: 500; }
+    .other-products-label { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: var(--text-primary); margin: 40px 0 24px; }
+    .platform-intro { margin: 24px 0 28px; }
+    .platform-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: var(--text-primary); margin: 0 0 8px; }
+
     @media (max-width: 860px) {
       .hl-grid { grid-template-columns: 1fr; }
       .hl-img { height: 260px; }
@@ -1651,6 +1718,14 @@
     }
 
     @media (max-width: 560px) {
+      .hero-intro-row { gap: 14px; }
+      .hero-photo-circle { width: 64px; height: 64px; }
+      .hero-name { font-size: 28px; }
+      .hero-tagline { display: block; margin-left: 0; margin-top: 4px; font-size: 15px; }
+
+      .company-header { flex-wrap: wrap; row-gap: 8px; }
+      .company-title { flex: 1 1 100%; white-space: normal; font-size: 22px; }
+
       .hl-img { height: 220px; }
       .hl-content { padding: 20px; }
       .closer-look-section { padding-top: 32px; }
@@ -2029,9 +2104,9 @@
   <div class="nav-inner">
     <a class="nav-logo" onclick="navScrollTo('section-home')" style="cursor:pointer;">NP</a>
     <ul class="nav-links">
-      <li><a onclick="navScrollTo('section-home')" id="nav-home" class="active" data-text="About me">About me</a></li>
-      <li><a onclick="navScrollTo('section-quicklook')" id="nav-quick" data-text="Highlights">Highlights</a></li>
-      <li><a onclick="navScrollTo('section-projects')" id="nav-agoda" data-text="All projects">All projects</a></li>
+      <li><a onclick="navScrollTo('section-agoda')" id="nav-agoda" class="active" data-text="Agoda">Agoda</a></li>
+      <li><a onclick="navScrollTo('section-mtl')" id="nav-mtl" data-text="MTL">MTL</a></li>
+      <li><a onclick="navScrollTo('section-early')" id="nav-early" data-text="Early work">Early work</a></li>
     </ul>
     <div class="nav-actions">
       <a href="https://1drv.ms/b/c/20ea901eaaabe56a/IQCwg1EI3tZZRaadPsesXMF8AfC_FDyVGZiNHGCKVPYxfow?e=2gv13u" target="_blank">
@@ -2046,234 +2121,116 @@
   </div>
 </nav>
 
-<!-- ═══════════════════════ HOME ═══════════════════════ -->
+<!-- ═══════════════════════ HOME (revamped) ═══════════════════════ -->
 <div id="page-home" class="page active">
   <div class="container">
-    <div class="home-section" id="section-home">
-      <div class="home-grid">
-        <div class="home-photo">
-          <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Nam's photo.jpg" alt="Nam — Natawan Paoin" style="width:100%; height:100%; object-fit:cover; display:block; border-radius:16px;">
-        </div>
-        <div class="home-content">
-          <p class="home-greeting">Hello, I'm</p>
-          <h1 class="home-name">Natawan Paoin<br><em>— or call me Nam</em></h1>
 
-          <!-- Resume & LinkedIn shown here on mobile/tablet only -->
-          <div class="home-nav-actions">
-            <a href="https://1drv.ms/b/c/20ea901eaaabe56a/IQCwg1EI3tZZRaadPsesXMF8AfC_FDyVGZiNHGCKVPYxfow?e=2gv13u" target="_blank">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Resume
-            </a>
-            <a href="https://www.linkedin.com/in/natawan/" target="_blank">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-          </div>
-          <p class="home-bio">With a background in psychology and 4 years of experience as a UX/UI designer, I bring deep user empathy and data skills to every product I design. From end-to-end design execution to strategic influence, I solve complex UX/UI challenges while building strong cross-functional partnerships.</p>
-
-          <div class="experience-list">
-            <div class="experience-item">
-              <div class="exp-logo agoda" style="padding:4px;"><svg width="30" height="16" viewBox="0 0 35 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M10.1175 12.4033C8.70352 12.4033 7.55322 13.5464 7.55322 14.9518C7.55322 16.357 8.70352 17.5002 10.1175 17.5002C11.5314 17.5002 12.6816 16.357 12.6816 14.9518C12.6816 13.5464 11.5314 12.4033 10.1175 12.4033Z" fill="#FCB716"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M2.95178 12.4033C1.53783 12.4033 0.387695 13.5464 0.387695 14.9518C0.387695 16.357 1.53783 17.5002 2.95178 17.5002C4.36557 17.5002 5.51603 16.357 5.51603 14.9518C5.51603 13.5464 4.36557 12.4033 2.95178 12.4033Z" fill="#EE363F"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M17.283 12.4033C15.8689 12.4033 14.7188 13.5464 14.7188 14.9518C14.7188 16.357 15.8689 17.5002 17.283 17.5002C18.6968 17.5002 19.8471 16.357 19.8471 14.9518C19.8471 13.5464 18.6968 12.4033 17.283 12.4033Z" fill="#07AF56"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M31.6136 12.4033C30.1997 12.4033 29.0496 13.5464 29.0496 14.9518C29.0496 16.357 30.1997 17.5002 31.6136 17.5002C33.0276 17.5002 34.1777 16.357 34.1777 14.9518C34.1777 13.5464 33.0276 12.4033 31.6136 12.4033Z" fill="#04A9DF"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M24.4484 12.4033C23.0345 12.4033 21.884 13.5464 21.884 14.9516C21.884 16.357 23.0343 17.4999 24.4483 17.4999C25.8622 17.4999 27.0124 16.357 27.0124 14.9516C27.0124 13.5464 25.8624 12.4033 24.4484 12.4033Z" fill="#A1479A"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.18226C0 3.52974 1.33456 2.28223 2.9857 2.28223C4.64803 2.28223 5.97124 3.51864 5.97124 5.17099V7.71128C5.97124 7.96974 5.79043 8.14961 5.51888 8.14961C5.23616 8.14961 5.06652 7.96974 5.06652 7.71128V6.9694H5.02132C4.67071 7.56506 3.96949 8.08214 2.92899 8.08214C1.32322 8.08214 0 6.84573 0 5.18226ZM5.0892 5.18227C5.0892 3.99079 4.18432 3.09158 2.9857 3.09158C1.78675 3.09158 0.882031 3.99079 0.882031 5.18227C0.882031 6.37358 1.78675 7.27295 2.9857 7.27295C4.18432 7.27295 5.0892 6.37358 5.0892 5.18227Z" fill="#5A5B5B"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M8.30145 9.95946C8.06393 9.84706 7.95068 9.64464 8.04125 9.40873C8.13182 9.16122 8.358 9.06025 8.59535 9.17265C9.00267 9.36364 9.51141 9.49858 10.0542 9.49858C11.4002 9.49858 12.2144 8.70051 12.2144 7.34042V6.9694H12.169C11.8184 7.56523 11.1175 8.08214 10.0769 8.08214C8.47092 8.08214 7.14771 6.84573 7.14771 5.18226C7.14771 3.52991 8.48226 2.28223 10.1336 2.28223C11.7961 2.28223 13.1193 3.5188 13.1193 5.17099V7.28422C13.1193 9.10518 11.9428 10.3303 10.0203 10.3303C9.43235 10.3303 8.84422 10.2179 8.30145 9.95946ZM12.2369 5.18227C12.2369 3.99078 11.3322 3.09142 10.1336 3.09142C8.93479 3.09142 8.03007 3.99078 8.03007 5.18227C8.03007 6.37375 8.93479 7.27295 10.1336 7.27295C11.3322 7.27295 12.2369 6.37375 12.2369 5.18227Z" fill="#5A5B5B"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M14.2954 5.18226C14.2954 3.52974 15.6188 2.28223 17.2813 2.28223C18.9436 2.28223 20.2668 3.52974 20.2668 5.18226C20.2668 6.83446 18.9436 8.08214 17.2813 8.08214C15.6188 8.08214 14.2954 6.83446 14.2954 5.18226ZM19.3848 5.18227C19.3848 3.99079 18.4799 3.09158 17.2813 3.09158C16.0823 3.09158 15.1776 3.99079 15.1776 5.18227C15.1776 6.37358 16.0823 7.27295 17.2813 7.27295C18.4799 7.27295 19.3848 6.37358 19.3848 5.18227Z" fill="#5A5B5B"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M21.4434 5.18187C21.4434 3.52935 22.7551 2.28183 24.3724 2.28183C25.4128 2.28183 26.1141 2.79891 26.4647 3.39457H26.5099V0.43833C26.5099 0.179874 26.6909 0 26.9622 0C27.2451 0 27.4146 0.179874 27.4146 0.43833V5.19298C27.4146 6.84534 26.0914 8.08175 24.4291 8.08175C22.7779 8.08175 21.4434 6.83406 21.4434 5.18187ZM26.5326 5.18187C26.5326 3.99039 25.6277 3.09118 24.4291 3.09118C23.2301 3.09118 22.3254 3.99039 22.3254 5.18187C22.3254 6.37319 23.2301 7.27256 24.4291 7.27256C25.6277 7.27256 26.5326 6.37319 26.5326 5.18187Z" fill="#5A5B5B"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M28.5911 5.18226C28.5911 3.52974 29.9256 2.28223 31.5768 2.28223C33.2393 2.28223 34.5625 3.51864 34.5625 5.17099V7.71128C34.5625 7.96974 34.3815 8.14961 34.1101 8.14961C33.8272 8.14961 33.6576 7.96974 33.6576 7.71128V6.9694H33.6124C33.2618 7.56506 32.5607 8.08214 31.5202 8.08214C29.9143 8.08214 28.5911 6.84573 28.5911 5.18226ZM33.6803 5.18227C33.6803 3.99079 32.7756 3.09158 31.5768 3.09158C30.378 3.09158 29.4733 3.99079 29.4733 5.18227C29.4733 6.37358 30.378 7.27295 31.5768 7.27295C32.7756 7.27295 33.6803 6.37358 33.6803 5.18227Z" fill="#5A5B5B"/>
-</svg>
-</div>
-              <div class="exp-info">
-                <div class="exp-title-row">
-                  <div class="exp-title">Product designer at Agoda</div>
-                  <div class="exp-period">2024 – Present</div>
-                  <span class="exp-link-wrap">(<a href="https://www.agoda.com" target="_blank" class="exp-link">www.agoda.com</a>)</span>
-                </div>
-                <div class="exp-desc">Global online travel platform and part of Booking Holdings, operating across 40+ markets</div>
-              </div>
-            </div>
-            <div class="experience-item">
-              <div class="exp-logo mtl" style="padding:4px;overflow:hidden;"><svg width="28" height="18" viewBox="0 0 65 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M32.4591 26.9354V16.9098C32.4591 15.0448 31.8978 13.2223 30.847 11.6756C29.7962 10.1289 28.3038 8.92838 26.5609 8.22788C24.8181 7.52738 22.904 7.35878 21.0639 7.74358C19.2238 8.12838 17.5414 9.04918 16.2321 10.388C14.9229 9.04918 13.2405 8.12838 11.4004 7.74358C9.56031 7.35878 7.64621 7.52738 5.90341 8.22788C4.16051 8.92838 2.66811 10.1289 1.61733 11.6756C0.566546 13.2223 0.0052164 15.0448 0.0052064 16.9098V26.9539C-0.0296336 27.6651 0.110787 28.374 0.414287 29.0193C0.581647 29.3573 1.53617 29.6339 2.69521 29.6339C3.85431 29.6339 4.77781 29.3881 4.97001 29.0623C5.29121 28.4094 5.43651 27.6851 5.39151 26.96V16.9098C5.39151 15.8404 5.81981 14.8147 6.58241 14.0585C7.34491 13.3023 8.37911 12.8775 9.45751 12.8775C10.5359 12.8775 11.5701 13.3023 12.3326 14.0585C13.0951 14.8147 13.5235 15.8404 13.5235 16.9098V26.9416C13.4833 27.6571 13.6239 28.3713 13.9326 29.0193C14.1 29.3573 15.0669 29.6339 16.2321 29.6339C17.3974 29.6339 18.3271 29.3881 18.5193 29.0623C18.8406 28.4094 18.9858 27.6851 18.9408 26.96V16.9098C18.9818 15.8668 19.4285 14.8801 20.1871 14.1565C20.9457 13.433 21.9574 13.0288 23.0099 13.0288C24.0624 13.0288 25.0741 13.433 25.8327 14.1565C26.5913 14.8801 27.038 15.8668 27.079 16.9098V26.9539C27.0409 27.6653 27.1815 28.375 27.4881 29.0193C27.6493 29.3573 28.61 29.6339 29.7691 29.6339C30.9281 29.6339 31.8517 29.3881 32.0438 29.0623C32.3651 28.4094 32.5103 27.6851 32.4653 26.96L32.4591 26.9354Z" fill="#FF0090"/>
-<path d="M64.2435 24.6614C63.6015 24.3468 62.8882 24.2028 62.1733 24.2434H60.0969C59.0173 24.2418 57.9825 23.8157 57.2192 23.0587C56.4558 22.3017 56.0263 21.2754 56.0246 20.2049V2.6923C56.0649 1.9768 55.9242 1.2626 55.6155 0.614599C55.4544 0.276599 54.4937 0 53.3346 0C52.1755 0 51.252 0.2458 51.066 0.5716C50.7453 1.2225 50.6001 1.9446 50.6446 2.6677V20.1741C50.6478 22.6593 51.6448 25.0417 53.4167 26.799C55.1886 28.5562 57.591 29.5449 60.0969 29.5482H62.1733C62.8823 29.5819 63.5889 29.4426 64.2311 29.1425C64.5658 28.9826 64.8509 28.0299 64.8509 26.8866C64.8509 25.7432 64.572 24.8458 64.2435 24.6614Z" fill="#FF0090"/>
-<path d="M48.9779 24.6614C48.3317 24.3464 47.6143 24.2024 46.8953 24.2434H44.8189C43.74 24.2417 42.7058 23.8155 41.9434 23.0584C41.1811 22.3012 40.7529 21.2749 40.7529 20.2049V13.4433H45.0297C45.7512 13.4832 46.4713 13.3437 47.1247 13.0376C47.4656 12.8777 47.7445 11.925 47.7445 10.7755C47.7445 9.626 47.4966 8.7101 47.1681 8.5257C46.5097 8.2071 45.7794 8.0631 45.0483 8.1077H40.7777V2.6923C40.8179 1.9768 40.6773 1.2626 40.3686 0.614599C40.2074 0.276599 39.2467 0 38.0877 0C36.9286 0 36.0051 0.2458 35.8129 0.5716C35.499 1.2246 35.3562 1.9455 35.3976 2.6677V20.1741C35.4009 22.6593 36.3978 25.0417 38.1698 26.799C39.9417 28.5562 42.344 29.5449 44.8499 29.5482H46.9263C47.6377 29.5855 48.3471 29.4461 48.9903 29.1425C49.325 28.9826 49.6102 28.0299 49.6102 26.8866C49.6102 25.7432 49.3064 24.8458 48.9779 24.6614Z" fill="#FF0090"/>
-<path d="M0.144531 35.7988H1.05567L2.54321 38.2023L4.02461 35.7988H4.93571V40.8885H4.08041V37.2372L2.54321 39.6345L1.01848 37.2556V40.8885H0.144531V35.7988Z" fill="#585857"/>
-<path d="M6.19531 38.7124V35.7803H7.05071V38.7124C7.05071 39.6529 7.51551 40.1631 8.29031 40.1631C9.06511 40.1631 9.53001 39.6836 9.53001 38.7493V35.8172H10.3853V38.7124C10.3853 40.2307 9.56091 40.9929 8.29031 40.9929C7.01971 40.9929 6.19531 40.2061 6.19531 38.7124Z" fill="#585857"/>
-<path d="M12.933 35.7627H13.7387L15.8833 40.8892H14.9784L14.4825 39.6598H12.1768L11.6747 40.8892H10.8008L12.933 35.7627ZM14.1726 38.8668L13.3297 36.8322L12.4929 38.8668H14.1726Z" fill="#585857"/>
-<path d="M16.6523 35.7988H17.4457L20.0552 39.3149V35.7988H20.8981V40.8885H20.1853L17.4953 37.2679V40.8885H16.6523V35.7988Z" fill="#585857"/>
-<path d="M21.8469 38.3558C21.8399 37.8488 21.983 37.3509 22.2583 36.9236C22.5337 36.4964 22.9293 36.1585 23.3962 35.9518C23.8631 35.7452 24.3809 35.6787 24.8855 35.7608C25.39 35.8428 25.8593 36.0697 26.2352 36.4134L25.6898 37.0896C25.5114 36.9123 25.2985 36.7729 25.0641 36.6799C24.8297 36.5869 24.5786 36.5423 24.3262 36.5486C24.1035 36.5635 23.886 36.6217 23.686 36.7199C23.4861 36.8182 23.3076 36.9546 23.1608 37.1212C23.014 37.2879 22.9018 37.4817 22.8306 37.6914C22.7593 37.9012 22.7305 38.1227 22.7456 38.3435C22.7205 38.5747 22.7445 38.8086 22.816 39.0301C22.8876 39.2515 23.0051 39.4556 23.1609 39.6294C23.3168 39.8031 23.5077 39.9425 23.7212 40.0386C23.9347 40.1348 24.1661 40.1855 24.4006 40.1876C24.8257 40.1926 25.2403 40.0563 25.5782 39.8004V38.8476H24.3386V38.0731H26.415V40.2061C25.8612 40.7133 25.1358 40.9963 24.382 40.999C24.0355 41.0077 23.691 40.9443 23.3707 40.8128C23.0505 40.6813 22.7616 40.4847 22.5227 40.2356C22.2838 39.9865 22.1002 39.6906 21.9838 39.3668C21.8674 39.043 21.8208 38.6986 21.8469 38.3558Z" fill="#585857"/>
-<path d="M31.0551 36.6287H29.5117V35.7988H33.4662V36.6287H31.9228V40.8885H31.0551V36.6287Z" fill="#585857"/>
-<path d="M34.3789 35.7988H35.2467V37.9134H37.571V35.7988H38.4263V40.8885H37.571V38.7432H35.2467V40.8885H34.3789V35.7988Z" fill="#585857"/>
-<path d="M41.4024 35.7627H42.1958L44.3403 40.8892H43.4354L42.9396 39.6598H40.6338L40.1318 40.8892H39.2578L41.4024 35.7627ZM42.642 38.8668L41.7991 36.8322L40.9623 38.8668H42.642Z" fill="#585857"/>
-<path d="M45.2266 35.7988H46.0819V40.8885H45.2266V35.7988Z" fill="#585857"/>
-<path d="M49.8633 35.7744H50.7434V40.0465H53.3095V40.864H49.8881L49.8633 35.7744Z" fill="#585857"/>
-<path d="M54.2188 35.7744H55.0803V40.864H54.2188V35.7744Z" fill="#585857"/>
-<path d="M56.3828 35.7744H60.0398V36.5919H57.263V37.9811H59.7422V38.7925H57.263V40.864H56.3828V35.7744Z" fill="#585857"/>
-<path d="M60.9492 35.7744H64.569V36.5735H61.8108V37.8951H64.2529V38.7126H61.8108V40.0772H64.6V40.8763H60.9492V35.7744Z" fill="#585857"/>
-</svg>
-</div>
-              <div class="exp-info">
-                <div class="exp-title-row">
-                  <div class="exp-title">UX/UI designer at MTL</div>
-                  <div class="exp-period">2022 – 2023</div>
-                </div>
-                <div class="exp-desc">One of Thailand's largest life insurance companies, Muang Thai Life Assurance</div>
-              </div>
-            </div>
-            <div class="experience-item">
-              <div class="exp-logo psych" style="padding:4px;"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="14" y="21" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#236868">Ψ</text></svg></div>
-              <div class="exp-info">
-                <div class="exp-title-row">
-                  <div class="exp-title">Psychologist</div>
-                  <div class="exp-period">2020 – 2021</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="home-cta" style="display:none;">
-            <a class="btn-primary" onclick="showPage('agoda')">Agoda projects <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            <a class="btn-secondary" onclick="showPage('early')">Early work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
+    <!-- HERO -->
+    <div class="revamp-hero" id="section-home">
+      <div class="hero-intro-row">
+        <img class="hero-photo-circle" src="https://raw.githubusercontent.com/npaoin/31/main/images/Nam's photo.jpg" alt="Nam — Natawan Paoin">
+        <div class="hero-text-col">
+          <p class="hero-greeting">Hello, I'm</p>
+          <h1 class="hero-name">Natawan Paoin<span class="hero-tagline">A product designer</span></h1>
         </div>
       </div>
     </div>
 
-    <!-- ── A QUICK LOOK ── -->
-    <div class="closer-look-section">
-      <h1 class="proj-list-title" id="section-quicklook">Highlights</h1>
+    <!-- ── AGODA ── -->
+    <div class="company-section" id="section-agoda">
+      <div class="company-header">
+        <h2 class="company-title">Agoda</h2>
+        <span class="company-date">2024 – Now</span>
+        <div class="company-divider-line"></div>
+      </div>
+      <p class="company-desc">Global online travel platform and part of Booking Holdings, operating across 40+ markets</p>
+      <p class="company-meta"><span class="company-meta-label">My role:</span> B2B product designer creating data-driven solutions for 1 million+ hotel and home partners</p>
+      <p class="company-meta"><span class="company-meta-label">Worked with:</span> 10+ scrum teams, 10+ product owners across multiple products</p>
+
+      <div class="platform-intro">
+        <h3 class="platform-title">Agoda Partner Portal</h3>
+        <p class="company-desc">Agoda's partner-facing platform where hotel and home partners manage their listings, rates, and performance.</p>
+        <p class="company-meta"><span class="company-meta-label">Features I shipped:</span> Analytics, Partner programs, Calendar, Finance, and more</p>
+        <p class="company-meta"><span class="company-meta-label">Supported devices:</span> Desktop, Tablet, Mobile</p>
+      </div>
 
       <div class="hl-grid">
 
-        <!-- 1. ADR+ -->
+        <!-- Analytics Center -->
+        <div class="hl-card">
+          <div class="hl-img">
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/analytics-center-thumbnail.png" alt="Analytics Center">
+          </div>
+          <div class="hl-content">
+            <div class="cl-title">Analytics Center</div>
+            <p class="cl-tagline">How I bring AI into my design process</p>
+            <p class="cl-field"><span class="cl-field-label">Product:</span> Agoda Partner Portal's Analytics Center, revamped across two parallel product milestones — Market Demand and Margin Program performance reporting.</p>
+            <p class="cl-field"><span class="cl-field-label">My work:</span></p>
+            <ul class="card-bullets">
+              <li>Sole designer across both milestones, working with 2 scrums and 2 product managers</li>
+              <li>Built a shared AI workflow in Cursor — from context-gathering to prototyping to sync-note automation — that shaped both revamps</li>
+            </ul>
+            <div class="cl-actions">
+              <a class="btn-primary" onclick="showPage('analyticscenter')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADR+ -->
         <div class="hl-card">
           <div class="hl-img">
             <img src="https://raw.githubusercontent.com/npaoin/31/main/images/ADR+ SSU.png" alt="Agoda Dynamic Rates+">
           </div>
           <div class="hl-content">
-            <div class="cl-company">Agoda · 2024–Present</div>
             <div class="cl-title">Agoda Dynamic Rates+</div>
-            <p class="cl-desc">An automated pricing program on Agoda Property Portal that helps hotels beat third-party listings by 2% to convert more direct bookings and increase revenue, now serving over 15K active hotels and growing.</p>
+            <p class="cl-tagline">How I own a product end-to-end</p>
+            <p class="cl-field"><span class="cl-field-label">Product:</span> An automated pricing program on Agoda Partner Portal that helps hotels beat third-party listings by 2% to convert more direct bookings and increase revenue, now serving over 15K active hotels and growing.</p>
+            <p class="cl-field"><span class="cl-field-label">My work:</span></p>
             <ul class="card-bullets">
               <li>Full product ownership from pre-activation sign-up through post-activation management and analytics</li>
               <li>Created 8+ core features including self-sign-up, tier selection, program dashboard, performance report, and deactivation flow</li>
             </ul>
-            <div class="hl-tags">
-              <span class="hl-tags-label">Skills</span>
-              <div class="feature-tags">
-                <span class="feature-tag">UX process</span>
-                <span class="feature-tag">Responsive design</span>
-                <span class="feature-tag">Mobile view</span>
-              </div>
-            </div>
             <div class="cl-actions">
               <a class="btn-primary" onclick="showPage('casestudy')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </div>
 
-        <!-- 5. MTL Fit -->
-        <div class="hl-card">
-          <div class="hl-img">
-            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MTL Fit.png" alt="MTL Fit Health App">
-          </div>
-          <div class="hl-content">
-            <div class="cl-company">Muang Thai Life Assurance · 2022–2023</div>
-            <div class="cl-title">MTL Fit Health App</div>
-            <p class="cl-desc">Sole UX/UI designer in an agile development team, owning the health and wellness app for Muang Thai Life Assurance, one of Thailand's largest insurance companies. Later evolved to Lead UX/UI Designer for a comprehensive app redesign—leading a junior designer through full app architecture planning, product roadmap development, and new design system creation.</p>
-            <div class="early-subsection" style="margin-bottom:16px;">
-              <div class="early-subsection-title">Key features delivered</div>
-              <div class="feature-tags">
-                <span class="feature-tag">Dynamic pricing</span>
-                <span class="feature-tag">Nutrition tracking</span>
-                <span class="feature-tag">Team challenges</span>
-                <span class="feature-tag">Photo download</span>
-                <span class="feature-tag">App redesign</span>
-                <span class="feature-tag">Back office tools</span>
-              </div>
-            </div>
-            <div class="hl-tags">
-              <span class="hl-tags-label">Skills</span>
-              <div class="feature-tags">
-                <span class="feature-tag">Design system</span>
-                <span class="feature-tag">Mobile app</span>
-              </div>
-            </div>
-            <div class="cl-actions">
-              <a class="btn-primary" onclick="showPage('mtlfit')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </div>
-          </div>
-        </div>
+      </div>
 
-        <!-- 3. PSAT -->
+      <h3 class="other-products-label">Other products</h3>
+      <div class="hl-grid">
+
+        <!-- PSAT -->
         <div class="hl-card">
           <div class="hl-img">
             <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Global PSAT GPT dashboard.png" alt="AI Partner Satisfaction Dashboard">
           </div>
           <div class="hl-content">
-            <div class="cl-company">Agoda · 2024–Present</div>
             <div class="cl-title">AI Partner Satisfaction Dashboard</div>
-            <p class="cl-desc">An AI-powered dashboard that transforms thousands of quarterly survey responses from Agoda's accommodation partners into an always-on, real-time source of truth — replacing a manual process that ran only once a year.</p>
+            <p class="cl-tagline">How I turn scattered feedback into a single source of truth</p>
+            <p class="cl-field"><span class="cl-field-label">Product:</span> An AI-powered dashboard that transforms thousands of quarterly survey responses from Agoda's accommodation partners into an always-on, real-time source of truth — replacing a manual process that ran only once a year. Now used across Supply, Product, Partner Experience, and business teams.</p>
+            <p class="cl-field"><span class="cl-field-label">My work:</span></p>
             <ul class="card-bullets">
               <li>Initiated and led project from concept to launch</li>
               <li>Designed a standardized 53-tag taxonomy and dashboard interface</li>
-              <li>Now used across Supply, Product, Partner Experience, and business teams</li>
             </ul>
-            <div class="hl-tags">
-              <span class="hl-tags-label">Skills</span>
-              <div class="feature-tags">
-                <span class="feature-tag">AI</span>
-                <span class="feature-tag">Research</span>
-              </div>
-            </div>
             <div class="cl-actions">
               <a class="btn-primary" onclick="showPage('psat')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </div>
 
-        <!-- 2. Property Portal -->
-        <div class="hl-card">
-          <div class="hl-img">
-            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/YCS dashboard.png" alt="Agoda Property Portal">
-          </div>
-          <div class="hl-content">
-            <div class="cl-company">Agoda · 2024–Present</div>
-            <div class="cl-title">Agoda Property Portal</div>
-            <p class="cl-desc">Agoda's partner-facing platform where hotel and home partners manage their listings, rates, and performance.</p>
-            <ul class="card-bullets">
-              <li>Calendar Sync — Designed calendar synchronization feature for home properties to manage availability across multiple booking platforms like Airbnb and Booking.com</li>
-              <li>Chargeback Notification — Designed chargeback alert feature that notifies properties and supports dispute management</li>
-              <li>Agoda Advanced — Designed self-sign-up page and transaction details page for this partner program</li>
-              <li>Partner Programs — Contributed to strategic vision for consistent program education and experiences across all partner programs</li>
-              <li>Finance — Supported Finance UI redesign by consolidating user research and partner satisfaction data</li>
-            </ul>
-            <div class="hl-tags">
-              <span class="hl-tags-label">Skills</span>
-              <div class="feature-tags">
-                <span class="feature-tag">Handoff</span>
-                <span class="feature-tag">Responsive design</span>
-                <span class="feature-tag">Mobile view</span>
-              </div>
-            </div>
-            <div class="cl-actions">
-              <a class="btn-primary" href="https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1" target="_blank" rel="noopener" style="display:inline-flex;">View Figma handoff <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Wholesale Portal -->
+        <!-- Wholesale Portal -->
         <div class="hl-card">
           <div class="hl-img">
             <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Wholesale portal.png" alt="Wholesale Portal">
           </div>
           <div class="hl-content">
-            <div class="cl-company">Agoda · 2024–Present</div>
             <div class="cl-title">Wholesale Portal</div>
-            <p class="cl-desc">Wholesale distribution platform developed by Agoda for Booking Holdings that helps hotel and chain partners optimize B2B rate distribution and prevent revenue leakage across multiple booking channels.</p>
+            <p class="cl-tagline">How I work with complex user flows</p>
+            <p class="cl-field"><span class="cl-field-label">Product:</span> B2B rate distribution platform developed by Agoda for Booking Holdings that helps hotel and chain partners optimize B2B rate distribution and prevent revenue leakage across multiple booking channels.</p>
+            <p class="cl-field"><span class="cl-field-label">My work:</span></p>
             <ul class="card-bullets">
               <li>Designed end-to-end experiences for hotel partners and backoffice agents</li>
               <li>Built 5 core features including sales overview, partner management, rate misuse detection, optimization tools, and campaign management</li>
@@ -2284,156 +2241,69 @@
           </div>
         </div>
 
-        <!-- 6. Spacify -->
-        <div class="hl-card">
-          <div class="hl-img">
-            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Spacify.png" alt="Spacify">
+      </div>
+    </div><!-- /section-agoda -->
+
+    <!-- ── MUANG THAI LIFE ASSURANCE ── -->
+    <div class="company-section" id="section-mtl">
+      <div class="company-header">
+        <h2 class="company-title">Muang Thai Life Assurance</h2>
+        <span class="company-date">2022 – 2023</span>
+        <div class="company-divider-line"></div>
+      </div>
+      <p class="company-desc">One of Thailand's largest life insurance companies</p>
+
+      <div class="project-card" style="min-height:300px;">
+        <div class="card-img">
+          <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MTL Fit.png" alt="MTL Fit Health App" data-lightbox>
+        </div>
+        <div class="card-content">
+          <div>
+            <div class="card-title">MTL Fit Health App</div>
+            <p class="cl-tagline">How I start my career as a sole designer</p>
+            <p class="cl-field"><span class="cl-field-label">Product:</span> B2C health and wellness app for Muang Thai Life Assurance's policyholders</p>
+            <p class="cl-field" style="margin-bottom:8px;"><span class="cl-field-label">My work:</span></p>
+            <ul class="card-bullets">
+              <li>Sole B2C product designer in an agile development team</li>
+              <li>Later promoted to Lead UX/UI Designer — led a junior designer through a full app redesign, covering architecture planning, product roadmap, and a new design system</li>
+              <li>Built features including dynamic pricing, nutrition tracking, team challenges, photo download, and back office tools</li>
+            </ul>
           </div>
-          <div class="hl-content">
-            <div class="cl-company">CareerFoundry Project · 2021</div>
-            <div class="cl-title">Spacify</div>
-            <p class="cl-desc">A 6-week intensive course project — a responsive web app that provides property buyers with information on properties of interest.</p>
-            <div class="early-subsection" style="margin-bottom:16px;">
-              <div class="early-subsection-title">Key deliverables</div>
-              <ul class="learnings-list">
-                <li>User flows mapping property search journeys</li>
-                <li>Low to high-fidelity wireframes and prototypes</li>
-                <li><span>Complete visual design system (colors, typography, components) <a href="https://www.figma.com/proto/6yhhFNUZtiUIHFNRd5n1EG/UI-project?node-id=831-52583&page-id=831%3A52086&starting-point-node-id=831%3A52583&t=skLsUkNtOqSypt4y-1" target="_blank" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">View style guide</a></span></li>
-                <li>Responsive designs across mobile, tablet, and desktop breakpoints</li>
-              </ul>
-            </div>
-            <div class="learnings-box" style="margin-bottom:16px;">
-              <div class="learnings-title">What I learned</div>
-              <ul class="learnings-list">
-                <li>End-to-end UX/UI design process</li>
-                <li>Responsive design principles and progressive enhancement</li>
-                <li>Design systems and visual design fundamentals</li>
-              </ul>
-            </div>
-            <div class="cl-actions">
-              <span class="badge-coming-soon">⏳ Coming soon</span>
-            </div>
+          <div class="card-actions">
+            <a class="btn-primary" onclick="showPage('mtlfit')" style="display:inline-flex;">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </div>
+      </div>
+    </div><!-- /section-mtl -->
 
-      </div><!-- /hl-grid -->
+    <!-- ── EARLY WORK ── -->
+    <div class="company-section" id="section-early">
+      <div class="company-header">
+        <h2 class="company-title">Early work</h2>
+        <div class="company-divider-line"></div>
+      </div>
 
-    </div><!-- /closer-look-section -->
-
-    <!-- ── PROJECT LIST ── -->
-    <div class="project-list-section">
-
-      <h1 class="proj-list-title" id="section-projects">All projects</h1>
-
-      <div class="projects-card">
-
-      <!-- Agoda -->
-      <div class="proj-group proj-group-first" id="section-agoda">
-        <div class="proj-group-header">
-          <h2 class="proj-group-label">Agoda</h2>
-          <span class="proj-group-divider">|</span>
-          <span class="proj-group-subtitle">B2B product designer creating data-driven solutions for 1 million+ hotel and home partners</span>
+      <div class="project-card" style="min-height:300px;">
+        <div class="card-img">
+          <img src="https://raw.githubusercontent.com/npaoin/31/main/images/Spacify.png" alt="Spacify" data-lightbox>
         </div>
-        <div class="proj-rows">
-          <div class="proj-row" onclick="showPage('casestudy')">
-            <span class="proj-emoji">📈</span>
-            <div class="proj-row-left">
-              <h3 class="proj-row-title">Agoda Dynamic Rates+</h3>
-              <div class="proj-desc-tags">
-                <span class="proj-row-desc">An automated pricing program helping 15,000+ hotels convert more direct bookings</span>
-                <div class="proj-row-tags">
-                  <span class="feature-tag">UX process</span>
-                  <span class="feature-tag">Responsive design</span>
-                </div>
-              </div>
-            </div>
-            <a class="proj-text-link" onclick="event.stopPropagation(); showPage('casestudy')">View case study <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <div class="card-content">
+          <div>
+            <div class="card-title">Spacify</div>
+            <p class="cl-tagline">How I polish my skills from concept to prototype</p>
+            <p class="cl-field"><span class="cl-field-label">Product:</span> A 6-week intensive course project — a responsive web app that provides property buyers with information on properties of interest.</p>
+            <p class="cl-field" style="margin-bottom:8px;"><span class="cl-field-label">My work:</span></p>
+            <ul class="card-bullets">
+              <li>Mapped user flows for property search journeys and built wireframes through high-fidelity prototypes</li>
+              <li>Created a complete visual design system and responsive layouts across mobile, tablet, and desktop</li>
+            </ul>
           </div>
-          <div class="proj-row" onclick="window.open('https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1','_blank')">
-            <span class="proj-emoji">🏨</span>
-            <div class="proj-row-left">
-              <h3 class="proj-row-title">Agoda Property Portal</h3>
-              <div class="proj-desc-tags">
-                <span class="proj-row-desc">Partner-facing platform for managing listings, rates, and performance</span>
-                <div class="proj-row-tags">
-                  <span class="feature-tag">Handoff</span>
-                  <span class="feature-tag">Responsive design</span>
-                </div>
-              </div>
-            </div>
-            <a class="proj-text-link" href="https://www.figma.com/design/7IdIY0UTbU3ZTP3LWcE2Ef/Handoff-Natawan?node-id=3-16423&t=R0RZ0jKdmQyh1Mlt-1" target="_blank" onclick="event.stopPropagation()">View Figma handoff <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
-          <div class="proj-row" onclick="showPage('psat')">
-            <span class="proj-emoji">🤖</span>
-            <div class="proj-row-left">
-              <h3 class="proj-row-title">AI Partner Satisfaction Dashboard</h3>
-              <div class="proj-desc-tags">
-                <span class="proj-row-desc">AI-powered dashboard turning partner survey data into real-time insights</span>
-                <div class="proj-row-tags">
-                  <span class="feature-tag">AI</span>
-                  <span class="feature-tag">Research</span>
-                </div>
-              </div>
-            </div>
-            <a class="proj-text-link" onclick="event.stopPropagation(); showPage('psat')">View case study <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
-          <div class="proj-row proj-row-coming-soon">
-            <span class="proj-emoji">🔗</span>
-            <div class="proj-row-left">
-              <h3 class="proj-row-title">Wholesale Portal</h3>
-              <span class="proj-row-desc">B2B rate distribution platform for hotel and chain partners</span>
-            </div>
+          <div class="card-actions">
             <span class="badge-coming-soon">⏳ Coming soon</span>
           </div>
         </div>
       </div>
-
-      <!-- MTL -->
-      <div class="proj-group" id="section-early">
-        <div class="proj-group-header">
-          <h2 class="proj-group-label">MTL</h2>
-          <span class="proj-group-divider">|</span>
-          <span class="proj-group-subtitle">B2C product designer building health tracking & property search experiences</span>
-        </div>
-        <div class="proj-rows">
-          <div class="proj-row" onclick="showPage('mtlfit')">
-            <span class="proj-emoji">🏃</span>
-            <div class="proj-row-left">
-              <h3 class="proj-row-title">MTL Fit Health App</h3>
-              <div class="proj-desc-tags">
-                <span class="proj-row-desc">Health and wellness app for Muang Thai Life Assurance</span>
-                <div class="proj-row-tags">
-                  <span class="feature-tag">Design system</span>
-                  <span class="feature-tag">Mobile app</span>
-                </div>
-              </div>
-            </div>
-            <a class="proj-text-link" onclick="event.stopPropagation(); showPage('mtlfit')">View case study <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CareerFoundry -->
-      <div class="proj-group">
-        <div class="proj-group-header">
-          <h2 class="proj-group-label">CareerFoundry</h2>
-          <span class="proj-group-divider">|</span>
-          <span class="proj-group-subtitle">UX/UI student crafting a responsive property search experience from concept to prototype</span>
-        </div>
-        <div class="proj-rows">
-          <div class="proj-row proj-row-coming-soon">
-            <span class="proj-emoji">🏠</span>
-            <div class="proj-row-left">
-              <h3 class="proj-row-title">Spacify</h3>
-              <span class="proj-row-desc">Responsive property search web app — CareerFoundry course project</span>
-            </div>
-            <span class="badge-coming-soon">⏳ Coming soon</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /projects-card -->
-    </div><!-- /project-list-section -->
+    </div><!-- /section-early -->
 
   </div>
 </div>
@@ -2465,7 +2335,7 @@
           <div class="card-content">
             <div>
               <div class="card-title">Agoda Dynamic Rates+</div>
-              <p class="card-desc">An automated pricing program on Agoda Property Portal that helps hotels beat third-party listings by 2% to convert more direct bookings and increase revenue, now serving over 15K active hotels and growing.</p>
+              <p class="card-desc">An automated pricing program on Agoda Partner Portal that helps hotels beat third-party listings by 2% to convert more direct bookings and increase revenue, now serving over 15K active hotels and growing.</p>
               <ul class="card-bullets">
                 <li>Full product ownership from pre-activation sign-up through post-activation management and analytics</li>
                 <li>Created 8+ core features including self-sign-up, tier selection, program dashboard, performance report, and deactivation flow</li>
@@ -2480,11 +2350,11 @@
         <!-- 2. Property Portal -->
         <div class="project-card">
           <div class="card-img">
-            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/YCS dashboard.png" alt="Agoda Property Portal" data-lightbox style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+            <img src="https://raw.githubusercontent.com/npaoin/31/main/images/YCS dashboard.png" alt="Agoda Partner Portal" data-lightbox style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; cursor:zoom-in; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
           </div>
           <div class="card-content">
             <div>
-              <div class="card-title">Agoda Property Portal</div>
+              <div class="card-title">Agoda Partner Portal</div>
               <p class="card-desc">Agoda's partner-facing platform where hotel and home partners manage their listings, rates, and performance.</p>
               <ul class="card-bullets">
                 <li>Calendar Sync — Designed calendar synchronization feature for home properties to manage availability across multiple booking platforms like Airbnb and Booking.com</li>
@@ -2558,6 +2428,7 @@
       <div class="cs-header">
         <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
         <h1 class="cs-title">Agoda Dynamic Rates+</h1>
+        <p class="cs-eyebrow">How I own a product end-to-end</p>
         <p class="cs-subtitle" style="margin-bottom: 16px;">A $7.5M automated pricing program that helps 15,000+ hotel partners beat third-party listings by 2% to convert more direct bookings and increase revenue.</p>
         <p class="cs-text" style="margin-top: 0; margin-bottom: 16px;">As the sole designer from launch to scale, I owned every stage of the program and every touchpoint of the hotel partner journey — from pre-activation education and sign-up through post-activation management and analytics. I created 8+ core features, built scalable design systems that supported future growth while features were still being defined, conducted SQL data analysis to identify business and design opportunities, and advocated for strategic initiatives backed by data insights.</p>
       </div>
@@ -2604,9 +2475,9 @@
           <h2 class="cs-section-title">Discover — <em>Should I join the program?</em></h2>
 
           <div class="cs-sub-label">Problem</div>
-          <p class="cs-text">When we launched ADR+ on Agoda Property Portal in June 2025, we started with only a self-sign-up flow and a minimal landing page — the goal was to validate hotel adoption before investing further. I broke down the design challenge into three core questions:</p>
+          <p class="cs-text">When we launched ADR+ on Agoda Partner Portal in June 2025, we started with only a self-sign-up flow and a minimal landing page — the goal was to validate hotel adoption before investing further. I broke down the design challenge into three core questions:</p>
           <ul class="learnings-list" style="margin-bottom: 20px;">
-            <li>How do I drive the 35,000–40,000 eligible hotels visiting Agoda Property Portal every month to discover ADR+?</li>
+            <li>How do I drive the 35,000–40,000 eligible hotels visiting Agoda Partner Portal every month to discover ADR+?</li>
             <li>How do I explain a complex automated pricing program clearly enough that hotels feel confident and want to join?</li>
             <li>How do I make the sign-up experience as easy as possible?</li>
           </ul>
@@ -2616,7 +2487,7 @@
           <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
             <div style="display: flex; gap: 12px;">
               <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
-              <p class="cs-text" style="margin: 0;"><strong>Banner & slideout</strong> — I investigated high-traffic pages within Agoda Property Portal and placed a banner and slideout where hotels were most likely to see them. This approach had shown promising results in past campaigns and could be self-published via a third-party tool with minimal dev effort, making it fast to test and iterate</p>
+              <p class="cs-text" style="margin: 0;"><strong>Banner & slideout</strong> — I investigated high-traffic pages within Agoda Partner Portal and placed a banner and slideout where hotels were most likely to see them. This approach had shown promising results in past campaigns and could be self-published via a third-party tool with minimal dev effort, making it fast to test and iterate</p>
             </div>
             <div style="display: flex; gap: 12px;">
               <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
@@ -3098,6 +2969,7 @@
       <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
 
       <h1 class="cs-title">MTL Fit Health App</h1>
+      <p class="cs-eyebrow">How I start my career as a sole designer</p>
       <p class="cs-subtitle" style="margin-bottom: 8px;">A health app owned by Muang Thai Life Assurance (MTL), one of Thailand's largest insurance companies — striving to promote a holistic and enjoyable healthy lifestyle, guided by the slogan "being healthy is easy and fun."</p>
       <p class="cs-text" style="margin-top: 0;">MTL Fit marked my professional entry into UX/UI design. I joined as the sole designer on the team, owning the end-to-end design across features and later evolving into Lead UX/UI Designer for a comprehensive app redesign — mentoring a junior designer while leading app architecture planning, product roadmap development, and a new design system.</p>
 
@@ -3297,6 +3169,7 @@
       <div class="cs-header">
         <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
         <h1 class="cs-title">AI Partner Satisfaction Dashboard</h1>
+        <p class="cs-eyebrow">How I turn scattered feedback into a single source of truth</p>
         <p class="cs-subtitle">An AI-powered dashboard that transforms thousands of quarterly survey responses from Agoda's accommodation partners into an always-on, real-time source of truth — replacing a manual process that ran only once a year and took the research team two weeks to complete.</p>
         <div class="cs-meta">
           <div>
@@ -3457,7 +3330,7 @@
             </div>
           </div>
 
-          <div class="cs-sub-label">Use case 1 — Agoda Property Portal State of the Union</div>
+          <div class="cs-sub-label">Use case 1 — Agoda Partner Portal State of the Union</div>
           <p class="cs-text">The dashboard made it easy for any team to look at partner pain-points longitudinally — tracking which issues had improved, which had worsened, and what was driving the changes. For example, 2025 data showed a notable drop in complaints around promotions and performance (linked directly to Supply Discount scrum work and page load improvements across Property Portal scrums), while finance-related complaints rose to become the top issue at 16%.</p>
           <p class="cs-text">Teams across the organization now reference this data regularly — from product discovery, prioritization, and roadmap planning to end-of-quarter reviews.</p>
 
@@ -3485,6 +3358,366 @@
 
           <div class="cs-sub-label">Going beyond the dashboard</div>
           <p class="cs-text">Rather than expecting stakeholders to visit the dashboard, we're exploring whether there's a better way to bring insights to them. With more AI capabilities, one direction is proactively sending teams an AI-generated summary of the pain-points most relevant to their product area — delivered directly, without needing to look it up.</p>
+        </div>
+
+        <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ ANALYTICS CENTER ═══════════════════════ -->
+<div id="page-analyticscenter" class="page">
+  <div class="container">
+    <div class="case-study-section">
+
+      <div class="cs-header">
+        <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
+        <h1 class="cs-title">Analytics Center</h1>
+        <p class="cs-eyebrow">How I bring AI into my design process</p>
+        <p class="cs-subtitle" style="margin-bottom: 24px;">Over the last few months I've built AI into an end-to-end design process — from research and context-gathering through prototyping, evaluation, and handoff. Here's what that looks like in practice, most recently across Analytics Center's two parallel product milestones — Market Demand and Margin Program reporting.</p>
+        <div class="cs-meta">
+          <div>
+            <div class="cs-meta-label">Timeline</div>
+            <div class="cs-meta-value">Ongoing</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Team</div>
+            <div class="cs-meta-value">2 scrums with 2 product managers</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">My role</div>
+            <div class="cs-role-tags">
+              <span class="role-tag">Sole designer, both product milestones</span>
+              <span class="role-tag">AI-assisted prototyping</span>
+              <span class="role-tag">Cross-functional facilitation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-body">
+
+        <div class="cs-section">
+          <div class="cs-section-label">Approach</div>
+          <h2 class="cs-section-title">AI across design projects</h2>
+
+          <div class="cs-sub-label">Research & context</div>
+          <div class="problem-cards-grid">
+            <div class="problem-card">
+              <div class="problem-number">1</div>
+              <div class="problem-content">
+                <div class="problem-title">Context gathering</div>
+                <div class="problem-desc">Pull domain knowledge and business context from internal resources. <em>Example: Agoda business context, partner program eligibility rules.</em></div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">2</div>
+              <div class="problem-content">
+                <div class="problem-title">Competitive research</div>
+                <div class="problem-desc">Analyze competitor products, patterns, and positioning. <em>Example: reviewed airline, OTA, and metasearch landing pages to see what each was selling, to help shape direction for a Flights "flagship store" concept.</em></div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">3</div>
+              <div class="problem-content">
+                <div class="problem-title">Research synthesis</div>
+                <div class="problem-desc">Synthesize past research into key findings to inform design decisions. <em>Example: Analytics Center and Margin Program performance — past research consolidated into key findings that fed directly into a structured, decision-tracking spec.</em></div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">4</div>
+              <div class="problem-content">
+                <div class="problem-title">Data query</div>
+                <div class="problem-desc">Write queries to pull historical quantitative data. <em>Example: partner program churn behavior — querying deactivation patterns by hotel segment, booking volume, and time in program.</em></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-sub-label" style="margin-top: 32px;">Build</div>
+          <div class="problem-cards-grid">
+            <div class="problem-card">
+              <div class="problem-number">5</div>
+              <div class="problem-content">
+                <div class="problem-title">Design exploration & prototyping</div>
+                <div class="problem-desc">Brainstorm UX/UI concepts and build real, interactive prototypes. <em>Example: Analytics, partner programs, and Flights flagship store.</em></div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">6</div>
+              <div class="problem-content">
+                <div class="problem-title">Copywriting</div>
+                <div class="problem-desc">Tighten and refine English copy.</div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">7</div>
+              <div class="problem-content">
+                <div class="problem-title">GitLab setup</div>
+                <div class="problem-desc">Create projects and push prototypes to GitLab so multiple teams — product, dev, business, and other designers — can click through them directly.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-sub-label" style="margin-top: 32px;">Communicate & handoff</div>
+          <div class="problem-cards-grid">
+            <div class="problem-card">
+              <div class="problem-number">8</div>
+              <div class="problem-content">
+                <div class="problem-title">Meeting synthesis</div>
+                <div class="problem-desc">Turn meeting discussions into actionable next steps. <em>Example: Margin Program design syncs — transcripts turned into action items and a running decisions log the same day.</em></div>
+              </div>
+            </div>
+            <div class="problem-card">
+              <div class="problem-number">9</div>
+              <div class="problem-content">
+                <div class="problem-title">Bridging prototype to engineering handoff</div>
+                <div class="problem-desc">Map a prototype's components and states to a structured spec engineers can build from.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-sub-label" style="margin-top: 32px;">Meta</div>
+          <div class="problem-cards-grid">
+            <div class="problem-card">
+              <div class="problem-number">10</div>
+              <div class="problem-content">
+                <div class="problem-title">AI literacy</div>
+                <div class="problem-desc">Use AI to learn how to work with AI more effectively.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="cs-divider" />
+
+        <div class="cs-section">
+          <div class="cs-section-label">AI in practice</div>
+          <h2 class="cs-section-title">Two product milestones, one Analytics Center</h2>
+          <p class="cs-text">Agoda Partner Portal's Analytics Center scope split into two revamps of existing pages that kicked off in parallel — Market Demand reporting and Margin Program performance reporting — each with a different PM, scrum, and weekly sync cadence. I was the only designer across both.</p>
+
+          <div class="cs-sub-label">Setting up a project and contexts in Cursor</div>
+          <p class="cs-text">The groundwork started months before Market Demand and Margin Program became Q3 2026 product milestones — I'd already run UX audits on the current designs, helped with user research, conducted competitor analyses, and sat in on early discussions with product, market managers, business, and other designers about what to improve. My old process would've been gathering all of that manually into a Figma moodboard. This time I wanted AI in from the start: I set up a single Cursor project so everything could live in one place, then used MCP to pull in what I already had — competitor analysis, user research, market manager insights — and distilled it into a single markdown context file, so the rest of the process — starting with design exploration — stemmed from one consistent source of truth.</p>
+
+          <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px; align-items:stretch;">
+            <div style="flex:1; min-width:280px; display:flex; flex-direction:column; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); overflow:hidden;">
+              <div class="cs-compare-img" style="overflow:hidden;">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/market-demand-current.png" alt="Current Market Demand — City demand tab on YCS Analytics" style="width:100%; height:100%; object-fit:cover; object-position:top; display:block;" data-lightbox>
+              </div>
+              <div style="padding:16px 20px 20px; display:flex; flex-direction:column; flex:1;">
+                <div style="display:flex; align-items:center; gap:8px; margin:0 0 12px;">
+                  <div class="cs-sub-label" style="margin:0; font-size:13px;">Market demand</div>
+                  <span class="badge-coming-soon" style="padding:3px 10px;">Before</span>
+                </div>
+                <div class="cs-section-label" style="margin-bottom:4px;">Partner need</div>
+                <p class="cs-text" style="font-size:14px; margin-bottom:14px;">Spot uncaptured demand & pricing opportunity</p>
+                <div class="cs-section-label" style="margin-bottom:4px;">A few pain points</div>
+                <ul class="cs-text" style="font-size:14px; margin:0; padding-left:18px;">
+                  <li>Lacks forward-looking demand data</li>
+                  <li>No visibility into demand being missed</li>
+                  <li>No clear next action</li>
+                </ul>
+              </div>
+            </div>
+            <div style="flex:1; min-width:280px; display:flex; flex-direction:column; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); overflow:hidden;">
+              <div class="cs-compare-img" style="overflow:hidden;">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/margin-program-current.png" alt="Current Margin Program campaign detail page on YCS" style="width:100%; height:100%; object-fit:cover; object-position:top; display:block;" data-lightbox>
+              </div>
+              <div style="padding:16px 20px 20px; display:flex; flex-direction:column; flex:1;">
+                <div style="display:flex; align-items:center; gap:8px; margin:0 0 12px;">
+                  <div class="cs-sub-label" style="margin:0; font-size:13px;">Margin program performance</div>
+                  <span class="badge-coming-soon" style="padding:3px 10px;">Before</span>
+                </div>
+                <div class="cs-section-label" style="margin-bottom:4px;">Partner need</div>
+                <p class="cs-text" style="font-size:14px; margin-bottom:14px;">Understand program performance & bookings across Agoda's flagship partner programs — AGP, Boost Rank, Sponsored Listing, ADR+</p>
+                <div class="cs-section-label" style="margin-bottom:4px;">A few pain points</div>
+                <ul class="cs-text" style="font-size:14px; margin:0; padding-left:18px;">
+                  <li>Raw counts only — impressions, clicks, bookings, revenue</li>
+                  <li>No before/after comparison</li>
+                  <li>ROAS calculated incorrectly</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-sub-label" style="margin-top: 32px;">Design exploration & prototyping</div>
+          <p class="cs-text">With context in place, I connected Agoda's design system and Recharts inside Cursor and built a shared skeleton first, then split into sandboxes within the same prototype — one per product milestone. Each sandbox became a playground for exploration: I'd prompt AI for ideas, then guide and refine with my own take until one held up. Once a sandbox looked right, I asked AI to piece the components together into the working prototype.</p>
+          <div style="display:flex; flex-direction:column; gap:20px; margin:12px 0 0;">
+
+            <div style="border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:16px 18px;">
+              <div class="cs-section-label" style="margin-bottom:4px;">Market demand sandbox</div>
+              <p class="cs-text" style="font-size:14px; margin-bottom:12px;">One of several explored here: how to visually flag the demand a hotel is missing out on. I went back and forth with AI through several rounds — colors, shapes, typography — before landing on the version on the right: the green-to-red ratio shows captured vs. uncaptured at a glance, and the gap between the two segments (instead of a connected bar) makes them easier to tell apart.</p>
+              <div class="cs-sandbox-gallery" style="display:flex; gap:10px; flex-wrap:wrap;">
+
+                <div style="flex:1; min-width:190px;">
+                  <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:14px 16px; min-height:96px;">
+                    <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:10px;">Top opportunities in Zürich</div>
+                    <div style="display:flex; gap:18px; flex-wrap:wrap;">
+                      <div>
+                        <div style="font-size:13px; color:var(--text-primary); margin-bottom:3px;">31–60 days lead time</div>
+                        <span style="font-size:12px; font-weight:700; color:#d64545;">55% uncaptured</span>
+                      </div>
+                      <div>
+                        <div style="font-size:13px; color:var(--text-primary); margin-bottom:3px;">1 night length of stay</div>
+                        <span style="font-size:12px; font-weight:700; color:#d64545;">27% uncaptured</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="flex:1; min-width:190px;">
+                  <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:14px 16px; min-height:96px;">
+                    <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">Top opportunities in Zürich</div>
+                    <div style="display:flex; gap:24px; flex-wrap:wrap;">
+                      <div>
+                        <div style="font-size:13px; color:var(--text-primary); margin-bottom:6px;">31–60 days lead time</div>
+                        <div style="display:flex; align-items:center; gap:6px;"><div style="height:6px; width:41px; border-radius:3px; background:#d64545;"></div><span style="font-size:12px; color:var(--text-secondary);">55% uncaptured</span></div>
+                      </div>
+                      <div>
+                        <div style="font-size:13px; color:var(--text-primary); margin-bottom:6px;">1 night length of stay</div>
+                        <div style="display:flex; align-items:center; gap:6px;"><div style="height:6px; width:20px; border-radius:3px; background:#d64545;"></div><span style="font-size:12px; color:var(--text-secondary);">27% uncaptured</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="flex:1; min-width:190px;">
+                  <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:14px 16px; min-height:96px; position:relative;">
+                    <span class="tag-diff-pill corrected" style="position:absolute; top:-9px; right:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;">Selected</span>
+                    <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">Top opportunities in Zürich</div>
+                    <div style="display:flex; gap:24px; flex-wrap:wrap;">
+                      <div>
+                        <div style="font-size:13px; color:var(--text-primary); margin-bottom:6px;">31–60 days lead time</div>
+                        <div style="display:flex; align-items:center; gap:6px;"><div style="display:flex; gap:2px; width:41px; height:5px;"><div style="width:45%; border-radius:3px; background:#1a8a4a;"></div><div style="width:55%; border-radius:3px; background:#d64545;"></div></div><span style="font-size:12px; color:var(--text-secondary);">55% uncaptured</span></div>
+                      </div>
+                      <div>
+                        <div style="font-size:13px; color:var(--text-primary); margin-bottom:6px;">1 night length of stay</div>
+                        <div style="display:flex; align-items:center; gap:6px;"><div style="display:flex; gap:2px; width:20px; height:5px;"><div style="width:73%; border-radius:3px; background:#1a8a4a;"></div><div style="width:27%; border-radius:3px; background:#d64545;"></div></div><span style="font-size:12px; color:var(--text-secondary);">27% uncaptured</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div style="border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:16px 18px;">
+              <div class="cs-section-label" style="margin-bottom:4px;">Margin program sandbox</div>
+              <p class="cs-text" style="font-size:14px; margin-bottom:12px;">Another sandbox thread: charting median sort rank over time. AI built out a handful of approaches — a plain trend line, a benchmark zone, a target threshold — but a single point per day was hiding something a partner would actually want to know: how much their rank swings day to day, not just where it lands on average. The version on the right, daily columns spanning each day's best-to-worst rank, answered that directly.</p>
+              <div class="cs-sandbox-gallery" style="display:flex; gap:10px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:190px;">
+                  <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px; min-height:96px; display:flex; align-items:center;">
+                    <svg width="100%" height="46" viewBox="0 0 160 46" preserveAspectRatio="none">
+                      <polyline points="0,38 20,36 40,32 60,30 80,24 100,20 120,14 140,10 160,8" fill="none" stroke="#F5A623" stroke-width="2.5"/>
+                    </svg>
+                  </div>
+                </div>
+                <div style="flex:1; min-width:190px;">
+                  <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px; min-height:96px; display:flex; align-items:center;">
+                    <svg width="100%" height="46" viewBox="0 0 160 46" preserveAspectRatio="none">
+                      <rect x="0" y="10" width="160" height="14" fill="#F5A623" opacity="0.15"/>
+                      <polyline points="0,38 20,34 40,28 60,26 80,20 100,18 120,12 140,9 160,6" fill="none" stroke="#F5A623" stroke-width="2.5"/>
+                    </svg>
+                  </div>
+                </div>
+                <div style="flex:1; min-width:190px;">
+                  <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px; min-height:96px; display:flex; align-items:center;">
+                    <svg width="100%" height="46" viewBox="0 0 160 46" preserveAspectRatio="none">
+                      <line x1="0" y1="22" x2="160" y2="22" stroke="var(--text-secondary)" stroke-width="1" stroke-dasharray="4 3"/>
+                      <polyline points="0,38 20,34 40,30 60,28 80,20 100,16 120,20 140,14 160,12" fill="none" stroke="#F5A623" stroke-width="2.5"/>
+                    </svg>
+                  </div>
+                </div>
+                <div style="flex:1; min-width:190px;">
+                  <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px; min-height:96px; display:flex; align-items:center; position:relative;">
+                    <span class="tag-diff-pill corrected" style="position:absolute; top:-9px; right:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;">Selected</span>
+                    <svg width="100%" height="46" viewBox="0 0 160 46">
+                      <g stroke="#F5D699" stroke-width="4" stroke-linecap="round">
+                        <line x1="10" y1="36" x2="10" y2="24"/><line x1="34" y1="32" x2="34" y2="20"/>
+                        <line x1="58" y1="28" x2="58" y2="16"/><line x1="82" y1="24" x2="82" y2="12"/>
+                        <line x1="106" y1="20" x2="106" y2="8"/><line x1="130" y1="16" x2="130" y2="6"/><line x1="154" y1="14" x2="154" y2="4"/>
+                      </g>
+                      <g fill="#F5A623"><circle cx="10" cy="30" r="2"/><circle cx="34" cy="26" r="2"/><circle cx="58" cy="22" r="2"/><circle cx="82" cy="18" r="2"/><circle cx="106" cy="14" r="2"/><circle cx="130" cy="11" r="2"/><circle cx="154" cy="9" r="2"/></g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="cs-sub-label" style="margin-top: 32px;">Syncs & interactions</div>
+          <p class="cs-text">I published the prototype to GitLab Pages so PM, business, and BI could try it out themselves. Syncs then focused on which directions were worth building for partners, and what BI could support. After each sync, an AI skill I built converted the transcript into a same-day action-item list and rolled it into one Confluence doc organized by partner jobs-to-be-done — decided, pending design, pending BI — so I could jump straight into the next iteration. It took a few rounds to reach agreement.</p>
+
+          <div style="border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:18px 20px; margin:12px 0 0;">
+            <div style="font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:14px;">Program Performance Reporting</div>
+
+            <div class="cs-section-label" style="margin-bottom:8px;">Partner jobs to be done</div>
+
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px;">
+                <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Understand which campaign I'm looking at</div>
+                <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                  <div style="flex:1; min-width:180px;">
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#1a8a4a; margin-bottom:4px;">Decided</div>
+                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Campaign context card shows dates, cost/booking, and targeting so partners can tell duplicate-named campaigns apart</div>
+                  </div>
+                  <div style="flex:1; min-width:180px;">
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#946200; margin-bottom:4px;">Pending design</div>
+                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Free-trial toggle — switch free-trial vs. post–free-trial results on the same report, no separate campaign ID hunt</div>
+                  </div>
+                  <div style="flex:1; min-width:180px;">
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#d64545; margin-bottom:4px;">Pending BI</div>
+                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Can free-trial and paid-period data be linked so the toggle can pull both from one campaign record?</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px;">
+                <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Understand how the program is performing</div>
+                <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                  <div style="flex:1; min-width:180px;">
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#1a8a4a; margin-bottom:4px;">Decided</div>
+                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Key metrics: bookings &amp; room nights, revenue, cost, and ROAS — shown as a flat multiplier (e.g. 2.8×), not a percentage</div>
+                  </div>
+                  <div style="flex:1; min-width:180px;">
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#946200; margin-bottom:4px;">Pending design</div>
+                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Negative uplift messaging — how to show and explain underperformance without discouraging partners</div>
+                  </div>
+                  <div style="flex:1; min-width:180px;">
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#d64545; margin-bottom:4px;">Pending BI</div>
+                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Which metrics get a pre/post uplift %, and is that comparison still meaningful for long-running campaigns?</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-sub-label" style="margin-top: 32px;">Working prototypes</div>
+          <p class="cs-text">Both prototypes are close to final — the last steps are locking the remaining UI details and preparing the engineering handoff.</p>
+          <div style="display:flex; gap:20px; flex-wrap:wrap; margin:28px 0;">
+            <div style="flex:1; min-width:280px;">
+              <div class="cs-img-real" style="margin:0 0 8px;">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/market-demand-prototype.png" alt="Market demand prototype" style="width:100%; display:block;" data-lightbox>
+              </div>
+              <p style="font-size:12px; color:var(--text-secondary); text-align:center; margin:0;">Market demand</p>
+            </div>
+            <div style="flex:1; min-width:280px;">
+              <div class="cs-img-real" style="margin:0 0 8px;">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/program-performance-prototype.png" alt="Program performance prototype" style="width:100%; display:block;" data-lightbox>
+              </div>
+              <p style="font-size:12px; color:var(--text-secondary); text-align:center; margin:0;">Program performance</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="cs-divider" />
+
+        <div class="cs-section">
+          <div class="cs-section-label">Reflection</div>
+          <h2 class="cs-section-title">On working with AI this way</h2>
+          <p class="cs-text">This project is a small slice of what AI can do for design — a sandbox, a decision log, a working prototype. AI's role in my process is only going to grow from here, and I'm excited to keep figuring out what that looks like as the tools improve.</p>
         </div>
 
         <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
@@ -3592,9 +3825,24 @@
 
   // Nav scroll effect
   const nav = document.querySelector('nav');
+  const heroEl = document.getElementById('section-home');
+
+  // Nav stays hidden while the hero is in view; reveals once it scrolls past
+  // (on any page other than home, e.g. a case study, there's no hero — nav stays visible)
+  function updateNavVisibility() {
+    const onHome = document.getElementById('page-home').classList.contains('active');
+    if (onHome && heroEl) {
+      nav.classList.toggle('visible', heroEl.getBoundingClientRect().bottom <= 0);
+    } else {
+      nav.classList.add('visible');
+    }
+  }
+
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 10);
+    updateNavVisibility();
   });
+  updateNavVisibility();
 
   // ── Nav active state based on scroll position ──
   function updateNavActive() {
@@ -3602,13 +3850,13 @@
     if (!homePage.classList.contains('active')) return;
 
     const sections = [
-      { id: 'section-home',      navId: 'nav-home' },
-      { id: 'section-quicklook', navId: 'nav-quick' },
-      { id: 'section-projects',  navId: 'nav-agoda' },
+      { id: 'section-agoda', navId: 'nav-agoda' },
+      { id: 'section-mtl',   navId: 'nav-mtl' },
+      { id: 'section-early', navId: 'nav-early' },
     ];
 
     const scrollY = window.scrollY + 80;
-    let active = 'nav-home';
+    let active = 'nav-agoda';
 
     sections.forEach(({ id, navId }) => {
       const el = document.getElementById(id);
@@ -3726,11 +3974,13 @@
         else {
           document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
         }
+        updateNavVisibility();
       }, 120);
     } else {
       next.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (page === 'mtlfit') initCarousel();
+      updateNavVisibility();
     }
   }
 
