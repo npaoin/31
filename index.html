@@ -487,8 +487,6 @@
     border-top:3px solid var(--accent);
     box-shadow:0 4px 16px rgba(0,0,0,0.08);
   }
-  .project-item.active {
-  }
   .project-item h3 {
     font-family:'Plus Jakarta Sans',sans-serif;
     font-size:22px;
@@ -723,7 +721,8 @@
       margin-bottom: 12px;
     }
 
-    .cs-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+    /* ── CASE STUDY META (Timeline / Team / My role) — standardized across all case studies ── */
+    .cs-meta { display: flex; gap: 32px; flex-wrap: wrap; margin: 24px 0 0; }
 
     .cs-meta-label {
       font-size: 12px;
@@ -734,23 +733,20 @@
       margin-bottom: 4px;
     }
 
-    .cs-meta-value { font-size: 16px; color: var(--text-primary); font-weight: 400; }
+    .cs-meta-value { font-size: 15px; color: var(--text-primary); font-weight: 500; }
 
     .cs-role-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
-    .role-tag {
+    /* shared pill style for both "my role" tags and "key features" tags */
+    .role-tag, .feature-tag {
       font-size: 12px;
+      font-weight: 400;
       background: var(--bg);
       border: 1px solid var(--border);
       color: var(--text-secondary);
       padding: 3px 10px;
       border-radius: 20px;
     }
-
-    /* ── MTL FIT META ROW ── */
-    .cs-meta-row { display: flex; gap: 32px; flex-wrap: wrap; margin: 24px 0 0; }
-    .cs-meta-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 4px; }
-    .cs-meta-value { font-size: 15px; color: var(--text-primary); font-weight: 500; }
 
     /* ── CAROUSEL ── */
     .cs-carousel { position: relative; }
@@ -770,7 +766,22 @@
     /* ── PROCESS STEPS ── */
     .process-steps { display: flex; flex-direction: column; gap: 0; margin: 12px 0; }
     .process-step { display: flex; gap: 20px; padding: 24px 0; align-items: flex-start; }
-    .process-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    /* shared numbered-circle badge — used by process steps and problem/insight cards */
+    .process-num, .problem-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
     .process-content { flex: 1; min-width: 0; }
     .process-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
     .consideration-rows { display: flex; flex-direction: column; gap: 0; }
@@ -816,6 +827,45 @@
     /* ── OBJECTIVES GRID ── */
     .objectives-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
 
+    /* .objective-box — distinct from .learnings-box: same base card, but an accent left-border signals
+       "goal/objective" content rather than personal reflection */
+    .objective-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+    }
+
+    /* ── ARROW LIST — lightweight enumerated points within a narrative paragraph ── */
+    .cs-arrow-list { display: flex; flex-direction: column; gap: 12px; }
+    .cs-arrow-list-item { display: flex; gap: 12px; }
+    .cs-arrow-list-item .cs-arrow { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+
+    /* ── CALLOUT — highlighted key-statement box (e.g. a mission/goal statement) ── */
+    .cs-callout { margin-top: 8px; padding: 20px 24px; border-left: 3px solid var(--accent); background: var(--tag-bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .cs-callout-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 600; color: var(--text-primary); line-height: 1.4; margin: 0; }
+
+    /* ── DECISION TRACKER — stakeholder-sync outcomes grouped by job-to-be-done, each with decided/pending status columns ── */
+    .cs-decision-tracker { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: 18px 20px; margin-top: 12px; }
+    .cs-decision-tracker-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
+    .cs-decision-jobs { display: flex; flex-direction: column; gap: 8px; }
+    .cs-decision-job { border: 1px solid var(--border); border-radius: 8px; background: var(--bg); padding: 12px 14px; }
+    .cs-decision-job-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+    .cs-decision-columns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cs-decision-column { flex: 1; min-width: 180px; }
+    .cs-decision-status { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
+    .cs-decision-status.decided { color: #1a8a4a; }
+    .cs-decision-status.pending-design { color: #946200; }
+    .cs-decision-status.pending-bi { color: #d64545; }
+    .cs-decision-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ── IMAGE GALLERY — side-by-side screenshots with a caption, no card wrapper ── */
+    .cs-img-gallery { display: flex; gap: 20px; flex-wrap: wrap; margin: 28px 0; }
+    .cs-img-gallery-item { flex: 1; min-width: 280px; }
+    .cs-img-gallery-item .cs-img-real { margin: 0 0 8px; }
+    .cs-img-gallery-caption { font-size: 12px; color: var(--text-secondary); text-align: center; margin: 0; }
+
     /* ── OUTCOME STATS ── */
     .outcome-stats { display: flex; gap: 16px; margin: 20px 0; flex-wrap: wrap; }
     .outcome-stat { flex: 1; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; }
@@ -827,7 +877,6 @@
     .problem-cards-grid .problem-card { margin: 0; }
     @media (max-width: 700px) { .problem-cards-grid { grid-template-columns: 1fr; } }
     .problem-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; }
-    .problem-number { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
     .problem-content { flex: 1; }
     .problem-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
     .problem-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
@@ -840,10 +889,17 @@
     .cs-img-real { border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin: 24px 0; }
     .cs-img-real img { width: 100%; display: block; cursor: zoom-in; }
 
-    /* ── BEFORE/AFTER COMPARISON SCREENSHOTS (Analytics Center) ── */
-    .cs-compare-img { height: 480px; }
+    /* ── BEFORE/AFTER COMPARISON CARDS — reusable component for showing current-state screenshots + context ── */
+    .cs-compare-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; align-items: stretch; }
+    .cs-compare-card { flex: 1; min-width: 280px; display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+    .cs-compare-img { height: 480px; overflow: hidden; }
+    .cs-compare-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
     @media (max-width: 860px) { .cs-compare-img { height: 320px; } }
     @media (max-width: 560px) { .cs-compare-img { height: 240px; } }
+    .cs-compare-body { padding: 16px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+    .cs-compare-header { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; }
+    .cs-compare-label { margin: 0; font-size: 13px; }
+    .cs-compare-list { font-size: 14px; margin: 0; padding-left: 18px; }
 
     /* ── SANDBOX EXPLORATION GALLERY (Analytics Center) — stack on mobile ── */
     @media (max-width: 560px) {
@@ -884,45 +940,11 @@
 
     .back-to-top:hover { transform: translateY(-2px); }
 
-    .objectives-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
-
     .cs-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
     .cs-body {
       width: 100%;
     }
-
-    .cs-sidebar { position: sticky; top: 80px; }
-
-    .cs-toc {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-    }
-
-    .cs-toc-title {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
-    }
-
-    .cs-toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-
-    .cs-toc-list a {
-      font-size: 16px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      display: block;
-      padding: 5px 8px;
-      border-radius: 6px;
-      transition: all 0.15s;
-    }
-
-    .cs-toc-list a:hover { background: var(--bg); color: var(--text-primary); }
 
     .cs-section { margin-bottom: 56px; }
 
@@ -949,23 +971,6 @@
 
     .cs-text { font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 16px; }
 
-    .cs-image-block {
-      background: linear-gradient(145deg, #EEF2FF, #E4EBFC);
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 28px 0;
-    }
-
-    .cs-image-label {
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 400;
-    }
-
     /* Insight Cards */
     .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
 
@@ -981,8 +986,6 @@
 
     .insight-title { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-primary); margin-bottom: 6px; line-height: 1.35; }
 
-    .insight-stat { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; color: var(--text-primary); margin-bottom: 4px; }
-
     .insight-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -994,8 +997,10 @@
 
     .insight-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.55; flex: 1; }
 
-    .insight-opp {
-      font-size: 16px;
+    /* opportunity callout — optional field, usable inside insight-card OR problem-card.
+       .card-opportunity is the generic name (sized to match problem-card's 15px body text);
+       .insight-opp is the same style, just sized to match insight-card's larger 16px body text. */
+    .insight-opp, .card-opportunity {
       font-weight: 400;
       color: var(--accent);
       line-height: 1.7;
@@ -1004,16 +1009,13 @@
       border-top: 1px solid var(--border);
     }
 
-    .insight-opp::before {
+    .insight-opp::before, .card-opportunity::before {
       content: '💡 ';
       display: inline;
     }
 
-    .design-block { border-left: 2px solid var(--accent); padding-left: 20px; margin: 20px 0; }
-
-    .design-block-title { font-size: 16px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
-
-    .design-block-text { font-size: 16px; color: var(--text-secondary); line-height: 1.65; }
+    .insight-opp { font-size: 16px; }
+    .card-opportunity { font-size: 15px; }
 
     /* EARLY WORK */
     .early-section { padding: 60px 0 100px; }
@@ -1069,20 +1071,6 @@
     }
 
     .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .feature-tag {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text-secondary);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    .approach-table {
-
-    }
 
     /* Design section interactive layout */
     .cs-design-layout {
@@ -1228,7 +1216,8 @@
       margin-top: 1px;
     }
 
-    .learnings-box {
+    /* .learnings-box = personal reflection ("what I learned"); .whats-next-box = forward-looking roadmap content — same container, distinct semantic use */
+    .learnings-box, .whats-next-box {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
@@ -1873,10 +1862,6 @@
       .cs-section-title { font-size: 20px; }
       .cs-text { font-size: 15px; }
       .cs-image-block { height: 160px; }
-      .mvp-comparison { flex-direction: column; align-items: stretch; }
-      .mvp-mobile-col { width: 100% !important; max-width: 100% !important; }
-      /* Overview: stack images on mobile */
-      .cs-overview-side-by-side { flex-direction: column !important; }
       /* Phase table: stack on mobile */
       .phase-table thead { display: none; }
       .phase-table tbody tr { display: flex; flex-direction: column; padding: 14px 16px; gap: 4px; }
@@ -1890,12 +1875,12 @@
       .principles-grid { grid-template-columns: 1fr; }
       .consideration-row { flex-direction: column; gap: 4px; }
       .consideration-label { width: auto; }
-      .cs-meta-row { gap: 20px; }
+      .cs-meta { gap: 20px; }
       .early-title { font-size: 22px; }
       .early-visual { height: 220px; }
       .early-projects { gap: 24px; }
       .early-desc { font-size: 15px; }
-      .learnings-box { padding: 12px 16px; }
+      .learnings-box, .whats-next-box { padding: 12px 16px; }
       .agoda-section, .case-study-section, .early-section { padding: 40px 0 60px; }
       .project-card { grid-template-columns: 1fr; }
       .card-img { height: 200px; }
@@ -2425,12 +2410,31 @@
     <div class="case-study-section">
 
       <!-- ── HEADER ── -->
-      <div class="cs-header">
+      <div class="cs-header" style="margin-bottom: 24px;">
         <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
         <h1 class="cs-title">Agoda Dynamic Rates+</h1>
         <p class="cs-eyebrow">How I own a product end-to-end</p>
         <p class="cs-subtitle" style="margin-bottom: 16px;">A $7.5M automated pricing program that helps 15,000+ hotel partners beat third-party listings by 2% to convert more direct bookings and increase revenue.</p>
         <p class="cs-text" style="margin-top: 0; margin-bottom: 16px;">As the sole designer from launch to scale, I owned every stage of the program and every touchpoint of the hotel partner journey — from pre-activation education and sign-up through post-activation management and analytics. I created 8+ core features, built scalable design systems that supported future growth while features were still being defined, conducted SQL data analysis to identify business and design opportunities, and advocated for strategic initiatives backed by data insights.</p>
+
+        <div class="cs-meta">
+          <div>
+            <div class="cs-meta-label">Timeline</div>
+            <div class="cs-meta-value">Jun 2025 – ongoing</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Team</div>
+            <div class="cs-meta-value">Design · Product · Business · Engineering</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">My role</div>
+            <div class="cs-role-tags">
+              <span class="role-tag">Sole designer, full program lifecycle</span>
+              <span class="role-tag">SQL & data analysis</span>
+              <span class="role-tag">Design system for scale</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <p class="cs-text" style="margin-top: 16px; margin-bottom: 0;">I structured my design approach across three phases, each responding to a new set of challenges as the program and its hotel partners evolved.</p>
@@ -2484,17 +2488,17 @@
 
           <div class="cs-sub-label">Ideate & Iterate</div>
           <p class="cs-text">For <strong>discoverability</strong>, I explored three touchpoints to reach hotels:</p>
-          <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
-            <div style="display: flex; gap: 12px;">
-              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+          <div class="cs-arrow-list" style="margin-bottom: 16px;">
+            <div class="cs-arrow-list-item">
+              <span class="cs-arrow">→</span>
               <p class="cs-text" style="margin: 0;"><strong>Banner & slideout</strong> — I investigated high-traffic pages within Agoda Partner Portal and placed a banner and slideout where hotels were most likely to see them. This approach had shown promising results in past campaigns and could be self-published via a third-party tool with minimal dev effort, making it fast to test and iterate</p>
             </div>
-            <div style="display: flex; gap: 12px;">
-              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+            <div class="cs-arrow-list-item">
+              <span class="cs-arrow">→</span>
               <p class="cs-text" style="margin: 0;"><strong>ADR+ card on Growth Programs page</strong> — once a consolidated partner program hub launched after ADR+, I leveraged it to surface ADR+ alongside other programs hotels were already actively browsing</p>
             </div>
-            <div style="display: flex; gap: 12px;">
-              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+            <div class="cs-arrow-list-item">
+              <span class="cs-arrow">→</span>
               <p class="cs-text" style="margin: 0;"><strong>Email</strong> — evaluated but deprioritized due to typically low click-through rates and higher dev effort compared to the other channels</p>
             </div>
           </div>
@@ -2587,11 +2591,11 @@
 
           <p class="cs-text">From these insights, I defined two clear design objectives:</p>
           <div class="objectives-grid">
-            <div class="learnings-box">
+            <div class="objective-box">
               <div class="learnings-title">🎯 Enhance post-activation experiences</div>
               <p class="cs-text" style="margin-bottom: 0;">Give hotels more visibility into program performance, increase engagement, and reduce churn.</p>
             </div>
-            <div class="learnings-box">
+            <div class="objective-box">
               <div class="learnings-title">🎯 Ensure scalability</div>
               <p class="cs-text" style="margin-bottom: 0;">Design the dashboard to accommodate continuous feature additions without creating clutter. As features multiplied, buttons and links were competing for attention and creating information hierarchy issues.</p>
             </div>
@@ -2709,21 +2713,21 @@
 
           <p class="cs-text">The enhanced flow turns a deactivation intent into a retention and support opportunity — with personalization, alternatives, and better data collection at every step.</p>
 
-          <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-            <div style="display: flex; gap: 12px;">
-              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+          <div class="cs-arrow-list" style="margin-bottom: 20px;">
+            <div class="cs-arrow-list-item">
+              <span class="cs-arrow">→</span>
               <p class="cs-text" style="margin: 0;"><strong>Personalized first step</strong> — two versions based on hotel data: no ADR+ bookings variant encourages staying enrolled for future benefits; bookings variant shows full key metrics summary (average daily rate, net revenue, net bookings, net room nights vs. non-direct bookings) — making the cost of leaving concrete and personal</p>
             </div>
-            <div style="display: flex; gap: 12px;">
-              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+            <div class="cs-arrow-list-item">
+              <span class="cs-arrow">→</span>
               <p class="cs-text" style="margin: 0;"><strong>Alternative options step</strong> — Change tier (recommended), Pause, Report issue, or Proceed with deactivation — surfacing options hotels may not have known existed</p>
             </div>
-            <div style="display: flex; gap: 12px;">
-              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+            <div class="cs-arrow-list-item">
+              <span class="cs-arrow">→</span>
               <p class="cs-text" style="margin: 0;"><strong>Report issue flow</strong> — dedicated path to flag specific problems with preferred contact method, turning deactivation intent into a support opportunity</p>
             </div>
-            <div style="display: flex; gap: 12px;">
-              <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">→</span>
+            <div class="cs-arrow-list-item">
+              <span class="cs-arrow">→</span>
               <p class="cs-text" style="margin: 0;"><strong>Enhanced deactivation survey</strong> — refined from v1 learnings, with clearer reason categories and document upload for more actionable data</p>
             </div>
           </div>
@@ -2966,48 +2970,52 @@
   <div class="container">
     <div class="case-study-section">
 
-      <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
+      <!-- ── HEADER ── -->
+      <div class="cs-header">
+        <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
 
-      <h1 class="cs-title">MTL Fit Health App</h1>
-      <p class="cs-eyebrow">How I start my career as a sole designer</p>
-      <p class="cs-subtitle" style="margin-bottom: 8px;">A health app owned by Muang Thai Life Assurance (MTL), one of Thailand's largest insurance companies — striving to promote a holistic and enjoyable healthy lifestyle, guided by the slogan "being healthy is easy and fun."</p>
-      <p class="cs-text" style="margin-top: 0;">MTL Fit marked my professional entry into UX/UI design. I joined as the sole designer on the team, owning the end-to-end design across features and later evolving into Lead UX/UI Designer for a comprehensive app redesign — mentoring a junior designer while leading app architecture planning, product roadmap development, and a new design system.</p>
+        <h1 class="cs-title">MTL Fit Health App</h1>
+        <p class="cs-eyebrow">How I start my career as a sole designer</p>
+        <p class="cs-subtitle" style="margin-bottom: 8px;">A health app owned by Muang Thai Life Assurance (MTL), one of Thailand's largest insurance companies — striving to promote a holistic and enjoyable healthy lifestyle, guided by the slogan "being healthy is easy and fun."</p>
+        <p class="cs-text" style="margin-top: 0;">MTL Fit marked my professional entry into UX/UI design. I joined as the sole designer on the team, owning the end-to-end design across features and later evolving into Lead UX/UI Designer for a comprehensive app redesign — mentoring a junior designer while leading app architecture planning, product roadmap development, and a new design system.</p>
 
-      <div class="cs-meta-row">
-        <div class="cs-meta-item">
-          <div class="cs-meta-label">Company</div>
-          <div class="cs-meta-value">Muang Thai Life Assurance</div>
-        </div>
-        <div class="cs-meta-item">
-          <div class="cs-meta-label">Role</div>
-          <div class="cs-meta-value">UX/UI Designer → Lead UX/UI Designer</div>
-        </div>
-        <div class="cs-meta-item">
-          <div class="cs-meta-label">Timeline</div>
-          <div class="cs-meta-value">2022–2023</div>
-        </div>
-        <div class="cs-meta-item">
-          <div class="cs-meta-label">Users</div>
-          <div class="cs-meta-value">General public & MTL customers</div>
-        </div>
-        <div class="cs-meta-item">
-          <div class="cs-meta-label">Key features</div>
-          <div class="feature-tags" style="margin-top: 4px;">
-            <span class="feature-tag">Nutrition tracking</span>
-            <span class="feature-tag">Team challenges</span>
-            <span class="feature-tag">Photo download</span>
-            <span class="feature-tag">Dynamic pricing</span>
-            <span class="feature-tag">Back office tools</span>
-            <span class="feature-tag">App redesign</span>
-            <span class="feature-tag">Design system</span>
+        <div class="cs-meta">
+          <div>
+            <div class="cs-meta-label">Timeline</div>
+            <div class="cs-meta-value">2022–2023</div>
           </div>
+          <div>
+            <div class="cs-meta-label">Team</div>
+            <div class="cs-meta-value">Design · Product · Development</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">My role</div>
+            <div class="cs-role-tags">
+              <span class="role-tag">UX/UI Designer → Lead UX/UI Designer</span>
+              <span class="role-tag">Design system creation</span>
+              <span class="role-tag">Mentored a junior designer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-meta-label" style="margin-top: 24px;">Key features delivered</div>
+        <div class="feature-tags" style="margin-top: 4px;">
+          <span class="feature-tag">Nutrition tracking</span>
+          <span class="feature-tag">Team challenges</span>
+          <span class="feature-tag">Photo download</span>
+          <span class="feature-tag">Dynamic pricing</span>
+          <span class="feature-tag">Back office tools</span>
+          <span class="feature-tag">App redesign</span>
+          <span class="feature-tag">Design system</span>
         </div>
       </div>
 
-      <!-- CAROUSEL -->
+      <div class="cs-body">
+
+      <!-- CAROUSEL — reusable component: works for any number of instances per page -->
       <div class="cs-carousel" style="margin-top: 40px; margin-bottom: 48px;">
         <div class="carousel-track-wrap">
-          <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-track">
             <div class="carousel-slide">
               <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MTL Fit 1.png" alt="MTL Fit — screen 1">
             </div>
@@ -3015,14 +3023,14 @@
               <img src="https://raw.githubusercontent.com/npaoin/31/main/images/MTL Fit 2.png" alt="MTL Fit — screen 2">
             </div>
           </div>
-          <button class="carousel-btn carousel-prev" id="carouselPrev" onclick="carouselMove(-1)">
+          <button class="carousel-btn carousel-prev" onclick="carouselMove(this, -1)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
           </button>
-          <button class="carousel-btn carousel-next" id="carouselNext" onclick="carouselMove(1)">
+          <button class="carousel-btn carousel-next" onclick="carouselMove(this, 1)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
         </div>
-        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="carousel-dots"></div>
       </div>
 
       <!-- PROCESS -->
@@ -3133,6 +3141,8 @@
         </div>
       </div>
 
+      <hr class="cs-divider" />
+
       <!-- KEY LEARNINGS -->
       <div class="cs-section">
         <div class="cs-section-label">Reflection</div>
@@ -3158,6 +3168,7 @@
 
       <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
 
+      </div>
     </div>
   </div>
 </div>
@@ -3229,8 +3240,8 @@
             </div>
           </div>
           <p class="cs-text" style="margin-top: 24px;">To address this, we set out to:</p>
-          <div style="margin-top: 8px; padding: 20px 24px; border-left: 3px solid var(--accent); background: var(--tag-bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-            <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 600; color: var(--text-primary); line-height: 1.4; margin: 0;">Standardize a common language on partner pain-points — and use it across teams and time.</p>
+          <div class="cs-callout">
+            <p class="cs-callout-text">Standardize a common language on partner pain-points — and use it across teams and time.</p>
           </div>
         </div>
 
@@ -3353,11 +3364,15 @@
           <h2 class="cs-section-title">The system keeps growing</h2>
           <p class="cs-text">This project was different from most of my product design work. I wasn't just solving a specific partner-facing UX problem — I was building internal infrastructure that made it possible for others to solve partner problems faster and with better evidence. What started as a Supply Design initiative is now a shared system used across the organization.</p>
 
-          <div class="cs-sub-label" style="margin-top: 32px;">Going deeper, going wider, bigger uses</div>
-          <p class="cs-text">With the dashboard now used across teams, the next step is expanding the taxonomy further — more granular tagging within existing categories, broader coverage across new ones, and exploring how to identify and surface unknown pain-points that fall outside the current taxonomy.</p>
+          <div class="whats-next-box">
+            <div class="learnings-title">Going deeper, going wider, bigger uses</div>
+            <p style="font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin: 0;">With the dashboard now used across teams, the next step is expanding the taxonomy further — more granular tagging within existing categories, broader coverage across new ones, and exploring how to identify and surface unknown pain-points that fall outside the current taxonomy.</p>
+          </div>
 
-          <div class="cs-sub-label">Going beyond the dashboard</div>
-          <p class="cs-text">Rather than expecting stakeholders to visit the dashboard, we're exploring whether there's a better way to bring insights to them. With more AI capabilities, one direction is proactively sending teams an AI-generated summary of the pain-points most relevant to their product area — delivered directly, without needing to look it up.</p>
+          <div class="whats-next-box">
+            <div class="learnings-title">Going beyond the dashboard</div>
+            <p style="font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin: 0;">Rather than expecting stakeholders to visit the dashboard, we're exploring whether there's a better way to bring insights to them. With more AI capabilities, one direction is proactively sending teams an AI-generated summary of the pain-points most relevant to their product area — delivered directly, without needing to look it up.</p>
+          </div>
         </div>
 
         <a class="cs-back" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</a>
@@ -3500,39 +3515,39 @@
           <div class="cs-sub-label">Setting up a project and contexts in Cursor</div>
           <p class="cs-text">The groundwork started months before Market Demand and Margin Program became Q3 2026 product milestones — I'd already run UX audits on the current designs, helped with user research, conducted competitor analyses, and sat in on early discussions with product, market managers, business, and other designers about what to improve. My old process would've been gathering all of that manually into a Figma moodboard. This time I wanted AI in from the start: I set up a single Cursor project so everything could live in one place, then used MCP to pull in what I already had — competitor analysis, user research, market manager insights — and distilled it into a single markdown context file, so the rest of the process — starting with design exploration — stemmed from one consistent source of truth.</p>
 
-          <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px; align-items:stretch;">
-            <div style="flex:1; min-width:280px; display:flex; flex-direction:column; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); overflow:hidden;">
-              <div class="cs-compare-img" style="overflow:hidden;">
-                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/market-demand-current.png" alt="Current Market Demand — City demand tab on YCS Analytics" style="width:100%; height:100%; object-fit:cover; object-position:top; display:block;" data-lightbox>
+          <div class="cs-compare-grid">
+            <div class="cs-compare-card">
+              <div class="cs-compare-img">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/market-demand-current.png" alt="Current Market Demand — City demand tab on YCS Analytics" data-lightbox>
               </div>
-              <div style="padding:16px 20px 20px; display:flex; flex-direction:column; flex:1;">
-                <div style="display:flex; align-items:center; gap:8px; margin:0 0 12px;">
-                  <div class="cs-sub-label" style="margin:0; font-size:13px;">Market demand</div>
+              <div class="cs-compare-body">
+                <div class="cs-compare-header">
+                  <div class="cs-sub-label cs-compare-label">Market demand</div>
                   <span class="badge-coming-soon" style="padding:3px 10px;">Before</span>
                 </div>
                 <div class="cs-section-label" style="margin-bottom:4px;">Partner need</div>
                 <p class="cs-text" style="font-size:14px; margin-bottom:14px;">Spot uncaptured demand & pricing opportunity</p>
                 <div class="cs-section-label" style="margin-bottom:4px;">A few pain points</div>
-                <ul class="cs-text" style="font-size:14px; margin:0; padding-left:18px;">
+                <ul class="cs-text cs-compare-list">
                   <li>Lacks forward-looking demand data</li>
                   <li>No visibility into demand being missed</li>
                   <li>No clear next action</li>
                 </ul>
               </div>
             </div>
-            <div style="flex:1; min-width:280px; display:flex; flex-direction:column; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); overflow:hidden;">
-              <div class="cs-compare-img" style="overflow:hidden;">
-                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/margin-program-current.png" alt="Current Margin Program campaign detail page on YCS" style="width:100%; height:100%; object-fit:cover; object-position:top; display:block;" data-lightbox>
+            <div class="cs-compare-card">
+              <div class="cs-compare-img">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/margin-program-current.png" alt="Current Margin Program campaign detail page on YCS" data-lightbox>
               </div>
-              <div style="padding:16px 20px 20px; display:flex; flex-direction:column; flex:1;">
-                <div style="display:flex; align-items:center; gap:8px; margin:0 0 12px;">
-                  <div class="cs-sub-label" style="margin:0; font-size:13px;">Margin program performance</div>
+              <div class="cs-compare-body">
+                <div class="cs-compare-header">
+                  <div class="cs-sub-label cs-compare-label">Margin program performance</div>
                   <span class="badge-coming-soon" style="padding:3px 10px;">Before</span>
                 </div>
                 <div class="cs-section-label" style="margin-bottom:4px;">Partner need</div>
                 <p class="cs-text" style="font-size:14px; margin-bottom:14px;">Understand program performance & bookings across Agoda's flagship partner programs — AGP, Boost Rank, Sponsored Listing, ADR+</p>
                 <div class="cs-section-label" style="margin-bottom:4px;">A few pain points</div>
-                <ul class="cs-text" style="font-size:14px; margin:0; padding-left:18px;">
+                <ul class="cs-text cs-compare-list">
                   <li>Raw counts only — impressions, clicks, bookings, revenue</li>
                   <li>No before/after comparison</li>
                   <li>ROAS calculated incorrectly</li>
@@ -3650,44 +3665,44 @@
           <div class="cs-sub-label" style="margin-top: 32px;">Syncs & interactions</div>
           <p class="cs-text">I published the prototype to GitLab Pages so PM, business, and BI could try it out themselves. Syncs then focused on which directions were worth building for partners, and what BI could support. After each sync, an AI skill I built converted the transcript into a same-day action-item list and rolled it into one Confluence doc organized by partner jobs-to-be-done — decided, pending design, pending BI — so I could jump straight into the next iteration. It took a few rounds to reach agreement.</p>
 
-          <div style="border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:18px 20px; margin:12px 0 0;">
-            <div style="font-size:15px; font-weight:700; color:var(--text-primary); margin-bottom:14px;">Program Performance Reporting</div>
+          <div class="cs-decision-tracker">
+            <div class="cs-decision-tracker-title">Program Performance Reporting</div>
 
             <div class="cs-section-label" style="margin-bottom:8px;">Partner jobs to be done</div>
 
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px;">
-                <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Understand which campaign I'm looking at</div>
-                <div style="display:flex; gap:14px; flex-wrap:wrap;">
-                  <div style="flex:1; min-width:180px;">
-                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#1a8a4a; margin-bottom:4px;">Decided</div>
-                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Campaign context card shows dates, cost/booking, and targeting so partners can tell duplicate-named campaigns apart</div>
+            <div class="cs-decision-jobs">
+              <div class="cs-decision-job">
+                <div class="cs-decision-job-title">Understand which campaign I'm looking at</div>
+                <div class="cs-decision-columns">
+                  <div class="cs-decision-column">
+                    <div class="cs-decision-status decided">Decided</div>
+                    <div class="cs-decision-desc">Campaign context card shows dates, cost/booking, and targeting so partners can tell duplicate-named campaigns apart</div>
                   </div>
-                  <div style="flex:1; min-width:180px;">
-                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#946200; margin-bottom:4px;">Pending design</div>
-                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Free-trial toggle — switch free-trial vs. post–free-trial results on the same report, no separate campaign ID hunt</div>
+                  <div class="cs-decision-column">
+                    <div class="cs-decision-status pending-design">Pending design</div>
+                    <div class="cs-decision-desc">Free-trial toggle — switch free-trial vs. post–free-trial results on the same report, no separate campaign ID hunt</div>
                   </div>
-                  <div style="flex:1; min-width:180px;">
-                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#d64545; margin-bottom:4px;">Pending BI</div>
-                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Can free-trial and paid-period data be linked so the toggle can pull both from one campaign record?</div>
+                  <div class="cs-decision-column">
+                    <div class="cs-decision-status pending-bi">Pending BI</div>
+                    <div class="cs-decision-desc">Can free-trial and paid-period data be linked so the toggle can pull both from one campaign record?</div>
                   </div>
                 </div>
               </div>
 
-              <div style="border:1px solid var(--border); border-radius:8px; background:var(--bg); padding:12px 14px;">
-                <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:8px;">Understand how the program is performing</div>
-                <div style="display:flex; gap:14px; flex-wrap:wrap;">
-                  <div style="flex:1; min-width:180px;">
-                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#1a8a4a; margin-bottom:4px;">Decided</div>
-                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Key metrics: bookings &amp; room nights, revenue, cost, and ROAS — shown as a flat multiplier (e.g. 2.8×), not a percentage</div>
+              <div class="cs-decision-job">
+                <div class="cs-decision-job-title">Understand how the program is performing</div>
+                <div class="cs-decision-columns">
+                  <div class="cs-decision-column">
+                    <div class="cs-decision-status decided">Decided</div>
+                    <div class="cs-decision-desc">Key metrics: bookings &amp; room nights, revenue, cost, and ROAS — shown as a flat multiplier (e.g. 2.8×), not a percentage</div>
                   </div>
-                  <div style="flex:1; min-width:180px;">
-                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#946200; margin-bottom:4px;">Pending design</div>
-                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Negative uplift messaging — how to show and explain underperformance without discouraging partners</div>
+                  <div class="cs-decision-column">
+                    <div class="cs-decision-status pending-design">Pending design</div>
+                    <div class="cs-decision-desc">Negative uplift messaging — how to show and explain underperformance without discouraging partners</div>
                   </div>
-                  <div style="flex:1; min-width:180px;">
-                    <div style="font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#d64545; margin-bottom:4px;">Pending BI</div>
-                    <div style="font-size:14px; color:var(--text-secondary); line-height:1.5;">Which metrics get a pre/post uplift %, and is that comparison still meaningful for long-running campaigns?</div>
+                  <div class="cs-decision-column">
+                    <div class="cs-decision-status pending-bi">Pending BI</div>
+                    <div class="cs-decision-desc">Which metrics get a pre/post uplift %, and is that comparison still meaningful for long-running campaigns?</div>
                   </div>
                 </div>
               </div>
@@ -3696,18 +3711,18 @@
 
           <div class="cs-sub-label" style="margin-top: 32px;">Working prototypes</div>
           <p class="cs-text">Both prototypes are close to final — the last steps are locking the remaining UI details and preparing the engineering handoff.</p>
-          <div style="display:flex; gap:20px; flex-wrap:wrap; margin:28px 0;">
-            <div style="flex:1; min-width:280px;">
-              <div class="cs-img-real" style="margin:0 0 8px;">
-                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/market-demand-prototype.png" alt="Market demand prototype" style="width:100%; display:block;" data-lightbox>
+          <div class="cs-img-gallery">
+            <div class="cs-img-gallery-item">
+              <div class="cs-img-real">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/market-demand-prototype.png" alt="Market demand prototype" data-lightbox>
               </div>
-              <p style="font-size:12px; color:var(--text-secondary); text-align:center; margin:0;">Market demand</p>
+              <p class="cs-img-gallery-caption">Market demand</p>
             </div>
-            <div style="flex:1; min-width:280px;">
-              <div class="cs-img-real" style="margin:0 0 8px;">
-                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/program-performance-prototype.png" alt="Program performance prototype" style="width:100%; display:block;" data-lightbox>
+            <div class="cs-img-gallery-item">
+              <div class="cs-img-real">
+                <img src="https://raw.githubusercontent.com/npaoin/31/main/images/program-performance-prototype.png" alt="Program performance prototype" data-lightbox>
               </div>
-              <p style="font-size:12px; color:var(--text-secondary); text-align:center; margin:0;">Program performance</p>
+              <p class="cs-img-gallery-caption">Program performance</p>
             </div>
           </div>
         </div>
@@ -3969,7 +3984,7 @@
         current.classList.remove('active', 'leaving');
         next.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (page === 'mtlfit') initCarousel();
+        initCarousels(next);
         if (page === 'home') updateNavActive();
         else {
           document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
@@ -3979,19 +3994,13 @@
     } else {
       next.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (page === 'mtlfit') initCarousel();
+      initCarousels(next);
       updateNavVisibility();
     }
   }
 
   // === Project Grid ===
 
-function isMobile() {
-  return window.innerWidth <= 860;
-}
-
-
-// Match overview image heights
 // ── Gallery lightbox (for accordion "View images" buttons) ──
 const galleries = {
   propertyportal: [
@@ -4018,56 +4027,64 @@ function openGallery(key, e) {
   document.body.style.overflow = 'hidden';
 }
 
-// ── Carousel (MTL Fit) ──
-let carouselCurrent = 0;
-let carouselTotal = 0;
+// ── Carousel — reusable component, supports multiple independent instances per page ──
+// state lives on the .cs-carousel element itself (via a WeakMap) rather than in globals,
+// so any case study can drop in as many carousels as it needs.
+const carouselState = new WeakMap();
 
-function initCarousel() {
-  const track = document.getElementById('carouselTrack');
-  const dotsWrap = document.getElementById('carouselDots');
-  const prevBtn = document.getElementById('carouselPrev');
-  const nextBtn = document.getElementById('carouselNext');
+function initCarousels(scope) {
+  (scope || document).querySelectorAll('.cs-carousel').forEach(initCarousel);
+}
+
+function initCarousel(carousel) {
+  const track = carousel.querySelector('.carousel-track');
+  const dotsWrap = carousel.querySelector('.carousel-dots');
   if (!track) return;
 
   const slides = track.querySelectorAll('.carousel-slide');
-  carouselTotal = slides.length;
-  carouselCurrent = 0;
+  carouselState.set(carousel, { current: 0, total: slides.length });
   dotsWrap.innerHTML = '';
 
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    dot.onclick = () => carouselGoTo(i);
+    dot.onclick = () => carouselGoTo(carousel, i);
     dotsWrap.appendChild(dot);
   });
 
   slides.forEach((slide, i) => {
-    slide.onclick = () => openCarouselLightbox(i);
+    slide.onclick = () => openCarouselLightbox(carousel, i);
   });
 
-  carouselGoTo(0);
+  carouselGoTo(carousel, 0);
 }
 
-function carouselGoTo(idx) {
-  const track = document.getElementById('carouselTrack');
-  const prevBtn = document.getElementById('carouselPrev');
-  const nextBtn = document.getElementById('carouselNext');
-  if (!track) return;
-  carouselCurrent = idx;
-  track.style.transform = `translateX(-${carouselCurrent * 100}%)`;
-  document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselCurrent));
-  prevBtn.classList.toggle('hidden', carouselCurrent === 0);
-  nextBtn.classList.toggle('hidden', carouselCurrent === carouselTotal - 1);
+function carouselGoTo(carousel, idx) {
+  const track = carousel.querySelector('.carousel-track');
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  const state = carouselState.get(carousel);
+  if (!track || !state) return;
+  state.current = idx;
+  track.style.transform = `translateX(-${idx * 100}%)`;
+  carousel.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  prevBtn.classList.toggle('hidden', idx === 0);
+  nextBtn.classList.toggle('hidden', idx === state.total - 1);
 }
 
-function carouselMove(dir) { carouselGoTo(Math.max(0, Math.min(carouselTotal - 1, carouselCurrent + dir))); }
+function carouselMove(btn, dir) {
+  const carousel = btn.closest('.cs-carousel');
+  const state = carouselState.get(carousel);
+  if (!state) return;
+  carouselGoTo(carousel, Math.max(0, Math.min(state.total - 1, state.current + dir)));
+}
 
 // ── Lightbox with nav ──
 let lbImages = [];
 let lbIndex = 0;
 
-function openCarouselLightbox(idx) {
-  const slides = document.querySelectorAll('.carousel-slide img');
+function openCarouselLightbox(carousel, idx) {
+  const slides = carousel.querySelectorAll('.carousel-slide img');
   lbImages = Array.from(slides).map(img => ({ src: img.src, alt: img.alt }));
   lbIndex = idx;
   updateLightbox();
@@ -4090,47 +4107,6 @@ function updateLightbox() {
 
 document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); lbIndex = Math.max(0, lbIndex - 1); updateLightbox(); });
 document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); lbIndex = Math.min(lbImages.length - 1, lbIndex + 1); updateLightbox(); });
-
-function matchOverviewHeights() {
-  const wraps = document.querySelectorAll('.cs-overview-img-wrap');
-  if (wraps.length === 2) {
-    // Reset heights first
-    wraps[1].style.height = '';
-    const img2 = wraps[1].querySelector('img');
-    if (img2) img2.style.height = '';
-    // Get first image natural rendered height
-    const h = wraps[0].offsetHeight;
-    if (h > 0) {
-      wraps[1].style.height = h + 'px';
-      if (img2) img2.style.height = '100%';
-    }
-  }
-}
-window.addEventListener('load', matchOverviewHeights);
-window.addEventListener('resize', matchOverviewHeights);
-// Retry after a short delay in case images haven't rendered yet
-window.addEventListener('load', function() { setTimeout(matchOverviewHeights, 300); });
-
-
-// Match MVP image heights
-function matchMvpHeights() {
-  if (isMobile()) return;
-  const desktop = document.querySelector('.mvp-desktop-col');
-  const mobile = document.querySelector('.mvp-mobile-col');
-  if (desktop && mobile) {
-    mobile.style.height = '';
-    const mobileImg = mobile.querySelector('img');
-    if (mobileImg) mobileImg.style.height = '';
-    const h = desktop.offsetHeight;
-    if (h > 0) {
-      mobile.style.height = h + 'px';
-      if (mobileImg) mobileImg.style.height = '100%';
-    }
-  }
-}
-window.addEventListener('load', matchMvpHeights);
-window.addEventListener('resize', matchMvpHeights);
-window.addEventListener('load', function() { setTimeout(matchMvpHeights, 300); });
 
 // Agoda page accordion + image swap
 function selectAgodaProject(el) {
